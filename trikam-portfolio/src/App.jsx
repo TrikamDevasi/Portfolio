@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, lazy, Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { useIntersectionObserver } from './hooks/useIntersectionObserver';
 import { useParallaxBlobs } from './hooks/useParallaxBlobs';
 import Header from './components/Header';
