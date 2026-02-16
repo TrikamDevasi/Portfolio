@@ -1,214 +1,132 @@
-import React, { useEffect } from 'react'
-import Header from './components/Header.jsx'
-import Hero from './components/Hero.jsx'
-import About from './components/About.jsx'
-import Projects from './components/Projects.jsx'
-import Certificates from './components/Certificates.jsx'
-import CaseStudy from './components/CaseStudy.jsx'
-import Contact from './components/Contact.jsx'
-import Footer from './components/Footer.jsx'
-import CustomCursor from './components/CustomCursor.jsx'
+import React, { useEffect, useRef, lazy, Suspense } from 'react';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import CustomCursor from './components/Cursor';
+
+// Lazy load below-fold sections for faster initial load
+const Projects = lazy(() => import('./components/Projects'));
+const CaseStudy = lazy(() => import('./components/CaseStudy'));
+const About = lazy(() => import('./components/About'));
+const Certificates = lazy(() => import('./components/Certificates'));
+const Contact = lazy(() => import('./components/Contact'));
+const Footer = lazy(() => import('./components/Footer'));
+
+// Utility: RequestAnimationFrame throttle for smooth animations
+import { rafThrottle } from './utils/performance';
+
+// Section loading fallback
+const SectionFallback = () => (
+  <div style={{ minHeight: '400px' }} />
+);
 
 function App() {
+  const scrollObserverRef = useRef(null);
+
   useEffect(() => {
-    // Header background + shrink + scroll progress
-    function handleScroll() {
-      const header = document.querySelector('header')
-      if (header) {
-        const scrolled = window.scrollY || window.pageYOffset
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        if (scrolled > 100) {
-          header.style.background = 'rgba(10, 10, 10, 0.95)'
-        } else {
-          header.style.background = 'rgba(10, 10, 10, 0.6)'
-        }
-
-        if (scrolled > 40) {
-          header.classList.add('header-shrink')
-        } else {
-          header.classList.remove('header-shrink')
-        }
-      }
-
-      const winScroll = document.documentElement.scrollTop
-      const height =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight
-      const scrolledPercent = height > 0 ? (winScroll / height) * 100 : 0
-      const bar = document.querySelector('.scroll-progress')
-      if (bar) bar.style.width = scrolledPercent + '%'
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
-
-    // IntersectionObserver animations
+    // =============================
+    // INTERSECTION OBSERVER (reveal animations)
+    // =============================
     const observerOptions = {
-      threshold: 0.15,
-      rootMargin: '0px 0px -80px 0px',
-    }
+      threshold: 0.1,
+      rootMargin: '0px 0px -60px 0px',
+    };
 
-    const scrollObserver = new IntersectionObserver(
-      (entries) => {
+    scrollObserverRef.current = new IntersectionObserver((entries) => {
+      requestAnimationFrame(() => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('visible')
+            entry.target.classList.add('visible');
+            scrollObserverRef.current?.unobserve(entry.target);
           }
-        })
-      },
-      observerOptions,
-    )
+        });
+      });
+    }, observerOptions);
 
-    const revealEls = document.querySelectorAll(
-      '.reveal-text, .scale-on-scroll, .zoom-wrapper',
-    )
-    revealEls.forEach((el) => scrollObserver.observe(el))
+    // Observe elements efficiently
+    const revealEls = document.querySelectorAll('.reveal-text, .scale-on-scroll, .zoom-wrapper');
+    revealEls.forEach((el) => scrollObserverRef.current?.observe(el));
 
-    const skillCats = document.querySelectorAll('.skill-category')
+    // Skill tags with delay
+    const skillCats = document.querySelectorAll('.skill-category');
     skillCats.forEach((category) => {
-      const tags = category.querySelectorAll('.skill-tag')
+      const tags = category.querySelectorAll('.skill-tag');
       tags.forEach((tag) => {
-        tag.classList.add('stagger-item')
-        scrollObserver.observe(tag)
-      })
-    })
+        tag.classList.add('stagger-item');
+        scrollObserverRef.current?.observe(tag);
+      });
+    });
 
-    const projectCertCards = document.querySelectorAll(
-      '.project-card, .cert-card',
-    )
+    // Project/Cert cards with stagger
+    const projectCertCards = document.querySelectorAll('.project-card, .cert-card');
     projectCertCards.forEach((card, index) => {
-      card.style.setProperty('--delay', `${index * 0.1}s`)
-      scrollObserver.observe(card)
-    })
+      card.style.setProperty('--delay', `${Math.min(index * 0.08, 0.6)}s`);
+      scrollObserverRef.current?.observe(card);
+    });
 
-    // Parallax blobs
-    function handleMouseMove(e) {
-      const moveX = (e.clientX - window.innerWidth / 2) * 0.01
-      const moveY = (e.clientY - window.innerHeight / 2) * 0.01
-      document
-        .querySelectorAll('.morphing-blob')
-        .forEach((blob, index) => {
-          const speed = (index + 1) * 0.5
-          blob.style.transform = `translate(${
-            moveX * speed
-          }px, ${moveY * speed}px)`
-        })
-    }
+    // =============================
+    // PARALLAX BLOBS (Desktop only, reduced motion aware)
+    // =============================
+    let blobsArray = [];
 
-    window.addEventListener('mousemove', handleMouseMove)
+    const handleMouseMoveBlobs = rafThrottle((e) => {
+      if (prefersReducedMotion || window.innerWidth < 768) return;
 
-    // THEME SWITCHER
-    const themeToggle = document.querySelector('.theme-toggle')
-    const themeDots = document.querySelectorAll('.theme-dot')
-    const AVAILABLE_THEMES = [
-      'theme-tech-neon',
-      'theme-emerald',
-      'theme-royal-purple',
-      'theme-warm-sunset',
-    ]
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
 
-    function setActiveDot(theme) {
-      themeDots.forEach((d) => d.classList.remove('active'))
-      const active = document.querySelector(
-        `.theme-dot[data-theme="${theme}"]`,
-      )
-      if (active) active.classList.add('active')
-    }
+      const moveX = (e.clientX - centerX) * 0.008;
+      const moveY = (e.clientY - centerY) * 0.008;
 
-    let savedTheme = localStorage.getItem('portfolio-theme')
-    if (!AVAILABLE_THEMES.includes(savedTheme)) {
-      savedTheme = 'theme-tech-neon'
-    }
-    document.body.classList.add(savedTheme)
-    setActiveDot(savedTheme)
+      blobsArray.forEach((blob, index) => {
+        const speed = (index + 1) * 0.3;
+        const x = moveX * speed;
+        const y = moveY * speed;
+        blob.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      });
+    });
 
-    const handleThemeToggleClick = () => {
-      if (themeToggle && themeToggle.parentElement) {
-        themeToggle.parentElement.classList.toggle('open')
+    // Cache blob elements
+    if (!prefersReducedMotion && window.innerWidth >= 768) {
+      blobsArray = Array.from(document.querySelectorAll('.morphing-blob'));
+      if (blobsArray.length > 0) {
+        window.addEventListener('mousemove', handleMouseMoveBlobs, { passive: true });
       }
     }
 
-    if (themeToggle) {
-      themeToggle.addEventListener('click', handleThemeToggleClick)
-    }
-
-    const handleDocClick = (e) => {
-      if (
-        themeToggle &&
-        themeToggle.parentElement &&
-        !themeToggle.parentElement.contains(e.target)
-      ) {
-        themeToggle.parentElement.classList.remove('open')
-      }
-    }
-
-    document.addEventListener('click', handleDocClick)
-
-    const handleThemeDotClick = (e) => {
-      const dot = e.currentTarget
-      const theme = dot.getAttribute('data-theme')
-      if (!theme) return
-      document.body.classList.remove(...AVAILABLE_THEMES)
-      document.body.classList.add(theme)
-      localStorage.setItem('portfolio-theme', theme)
-      setActiveDot(theme)
-    }
-
-    themeDots.forEach((dot) =>
-      dot.addEventListener('click', handleThemeDotClick),
-    )
-
-    // HAMBURGER
-    const hamburger = document.querySelector('.hamburger')
-    const handleHamburgerClick = () => {
-      if (!hamburger) return
-      const isOpen = document.body.classList.toggle('nav-open')
-      hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false')
-    }
-
-    if (hamburger) {
-      hamburger.addEventListener('click', handleHamburgerClick)
-    }
-
-    // cleanup
+    // =============================
+    // CLEANUP
+    // =============================
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('mousemove', handleMouseMove)
-      scrollObserver.disconnect()
-      if (themeToggle) {
-        themeToggle.removeEventListener(
-          'click',
-          handleThemeToggleClick,
-        )
+      handleMouseMoveBlobs.cancel?.();
+      window.removeEventListener('mousemove', handleMouseMoveBlobs);
+
+      if (scrollObserverRef.current) {
+        scrollObserverRef.current.disconnect();
       }
-      document.removeEventListener('click', handleDocClick)
-      themeDots.forEach((dot) =>
-        dot.removeEventListener('click', handleThemeDotClick),
-      )
-      if (hamburger) {
-        hamburger.removeEventListener('click', handleHamburgerClick)
-      }
-    }
-  }, [])
+    };
+  }, []);
 
   return (
     <>
       <a href="#home" className="skip-link">
         Skip to main content
       </a>
-      <div className="scroll-progress" />
 
       <CustomCursor />
       <Header />
       <Hero />
-      <About />
-      <Projects />
-      <Certificates />
-      <CaseStudy />
-      <Contact />
-      <Footer />
+      <Suspense fallback={<SectionFallback />}>
+        <Projects />
+        <CaseStudy />
+        <About />
+        <Certificates />
+        <Contact />
+        <Footer />
+      </Suspense>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
