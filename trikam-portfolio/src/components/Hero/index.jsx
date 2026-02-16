@@ -1,6 +1,6 @@
 // src/components/Hero/index.jsx
 
-import React, { useState, useMemo, useCallback, useRef } from 'react';
+import React, { useMemo, useCallback, useRef } from 'react';
 import '../../styles/Hero/Hero.css';
 import profilePic from '../../assets/portfoliopic.png';
 import resumePdf from '../../assets/Trikam Devasi Resume.pdf';
