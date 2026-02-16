@@ -13,8 +13,7 @@ const Certificates = lazy(() => import('./components/Certificates'));
 const Contact = lazy(() => import('./components/Contact'));
 const Footer = lazy(() => import('./components/Footer'));
 
-// Utility: RequestAnimationFrame throttle for smooth animations
-import { rafThrottle } from './utils/performance';
+
 
 // Section loading fallback
 import SectionFallback from './components/shared/SectionFallback';
