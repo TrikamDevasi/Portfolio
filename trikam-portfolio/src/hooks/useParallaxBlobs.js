@@ -2,6 +2,10 @@ import { useEffect } from 'react';
 import { rafThrottle } from '../utils/performance';
 import { useReducedMotion } from './useReducedMotion';
 
+/**
+ * Custom hook for parallax blobs animation
+ * Handles mouse movement interactions for background blobs
+ */
 export const useParallaxBlobs = () => {
     const prefersReducedMotion = useReducedMotion();
 
