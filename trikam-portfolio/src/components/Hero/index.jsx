@@ -7,6 +7,9 @@ import resumePdf from '../../assets/Trikam Devasi Resume.pdf';
 import { heroMessages, techStack, achievements, liveActivities, stats } from '../../data/heroData';
 import { HERO_CONFIG } from './utils/heroConfig';
 import { Icons } from './utils/icons';
+import { useMouseTracking } from '../../hooks/useMouseTracking';
+import { useParallax } from '../../hooks/useParallax';
+import { useViewCounter } from './hooks/useViewCounter';
 
 import { useHeroState } from './hooks/useHeroState';
 import { useParticles } from './hooks/useParticles';
