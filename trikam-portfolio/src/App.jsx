@@ -15,9 +15,7 @@ const Footer = lazy(() => import('./components/Footer'));
 import { rafThrottle } from './utils/performance';
 
 // Section loading fallback
-const SectionFallback = () => (
-  <div style={{ minHeight: '400px' }} />
-);
+import SectionFallback from './components/shared/SectionFallback';
 
 function App() {
   const scrollObserverRef = useRef(null);
