@@ -20,6 +20,7 @@ import SearchModal from './components/SearchModal';
 import ShortcutsModal from './components/ShortcutsModal';
 import ScrollToTop from './components/ScrollToTop';
 import HamburgerButton from './components/HamburgerButton';
+import CurrentTime from './components/CurrentTime';
 
 function Header() {
   // Menu state
@@ -137,13 +138,7 @@ function Header() {
           {/* Right Side - Actions */}
           <div className="nav-right">
             {/* Current Time */}
-            <div className="current-time" aria-label="Current time">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
-              <span>{formattedTime}</span>
-            </div>
+            <CurrentTime time={formattedTime} />
 
             {/* Search Button */}
             <button
