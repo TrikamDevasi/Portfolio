@@ -21,7 +21,7 @@ import SectionFallback from './components/shared/SectionFallback';
 function App() {
   const scrollObserverRef = useRef(null);
 
-  const scrollObserverRef = useRef(null);
+
 
   useIntersectionObserver();
 
