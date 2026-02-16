@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { rafThrottle } from '../utils/performance';
+import { useReducedMotion } from './useReducedMotion';
 
 export const useParallaxBlobs = () => {
-    useEffect(() => {
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReducedMotion = useReducedMotion();
 
+    useEffect(() => {
         // =============================
         // PARALLAX BLOBS (Desktop only, reduced motion aware)
         // =============================
@@ -40,5 +41,5 @@ export const useParallaxBlobs = () => {
             handleMouseMoveBlobs.cancel?.();
             window.removeEventListener('mousemove', handleMouseMoveBlobs);
         };
-    }, []);
+    }, [prefersReducedMotion]);
 };
