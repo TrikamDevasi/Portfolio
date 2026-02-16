@@ -1,17 +1,13 @@
 // src/components/Hero/index.jsx
 
-import React, { useMemo, useCallback, useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import '../../styles/Hero/Hero.css';
 import profilePic from '../../assets/portfoliopic.png';
 import resumePdf from '../../assets/Trikam Devasi Resume.pdf';
 import { heroMessages, techStack, achievements, liveActivities, stats } from '../../data/heroData';
 import { HERO_CONFIG } from './utils/heroConfig';
 import { Icons } from './utils/icons';
-import { generateParticles } from './utils/particles';
-import { useMouseTracking } from '../../hooks/useMouseTracking';
-import { useParallax } from '../../hooks/useParallax';
-import { useViewCounter } from './hooks/useViewCounter';
-import { deviceDetector } from '../../utils/deviceDetector';
+
 import { useHeroState } from './hooks/useHeroState';
 import { useParticles } from './hooks/useParticles';
 import Typewriter from '../shared/Typewriter';
