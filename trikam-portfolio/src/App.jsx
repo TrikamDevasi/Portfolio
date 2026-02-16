@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, lazy, Suspense } from 'react';
 import { useIntersectionObserver } from './hooks/useIntersectionObserver';
+import { useParallaxBlobs } from './hooks/useParallaxBlobs';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import CustomCursor from './components/Cursor';
