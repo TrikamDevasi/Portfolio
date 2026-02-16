@@ -19,6 +19,7 @@ import MobileMenu from './components/MobileMenu';
 import SearchModal from './components/SearchModal';
 import ShortcutsModal from './components/ShortcutsModal';
 import ScrollToTop from './components/ScrollToTop';
+import HamburgerButton from './components/HamburgerButton';
 
 function Header() {
   // Menu state
@@ -183,17 +184,10 @@ function Header() {
             </button>
 
             {/* Hamburger Menu */}
-            <button
-              className={`hamburger ${menuState.mobile ? 'active' : ''}`}
-              aria-label={menuState.mobile ? 'Close navigation menu' : 'Open navigation menu'}
-              aria-expanded={menuState.mobile}
+            <HamburgerButton
+              isOpen={menuState.mobile}
               onClick={() => setMenuState(prev => ({ ...prev, mobile: !prev.mobile }))}
-              type="button"
-            >
-              <span />
-              <span />
-              <span />
-            </button>
+            />
           </div>
         </nav>
 
