@@ -13,6 +13,7 @@ import { useParallax } from '../../hooks/useParallax';
 import { useViewCounter } from './hooks/useViewCounter';
 import { deviceDetector } from '../../utils/deviceDetector';
 import { useHeroState } from './hooks/useHeroState';
+import { useParticles } from './hooks/useParticles';
 import Typewriter from '../shared/Typewriter';
 import StatusBar from './components/StatusBar';
 import HeroButtons from './components/HeroButtons';
@@ -47,10 +48,7 @@ function Hero() {
   const { viewCount } = useViewCounter();
 
   // Optimized Particles
-  const particles = useMemo(() => {
-    const count = deviceDetector.getRecommendedParticleCount();
-    return generateParticles(count);
-  }, []);
+  const particles = useParticles();
 
   // Handlers
   const handleSmoothScroll = useCallback((e, targetId) => {
