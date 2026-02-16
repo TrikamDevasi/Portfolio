@@ -1,0 +1,371 @@
+/* =========================
+   Hero Animations (Keyframes) - Optimized
+   Only includes keyframes actually used by Hero components
+   ========================= */
+
+/* =========================
+   Background Animations
+   ========================= */
+
+@keyframes auroraShift {
+
+  0%,
+  100% {
+    transform: translate3d(-2%, -1%, 0) scale(1.04);
+  }
+
+  50% {
+    transform: translate3d(2%, 1%, 0) scale(1.06);
+  }
+}
+
+@keyframes auroraFloat {
+
+  0%,
+  100% {
+    transform: translate3d(1%, 2%, 0);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: translate3d(-1%, -2%, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes meshDrift {
+
+  0%,
+  100% {
+    background-position: 0 0, 40px 40px;
+    opacity: 0.3;
+  }
+
+  50% {
+    background-position: 50px 50px, 90px 90px;
+    opacity: 0.5;
+  }
+}
+
+@keyframes gradientOrb {
+
+  0%,
+  100% {
+    transform: translate3d(-50%, -50%, 0) scale(1) rotate(0deg);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+  }
+
+  50% {
+    transform: translate3d(-45%, -55%, 0) scale(1.1) rotate(180deg);
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}
+
+/* =========================
+   Particle Animations
+   ========================= */
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(0) scale(0) rotate(0deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+    transform: translateY(-20vh) scale(1) rotate(45deg);
+  }
+
+  90% {
+    opacity: 0.8;
+    transform: translateY(-80vh) scale(1.1) rotate(315deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-100vh) scale(0) rotate(360deg);
+  }
+}
+
+@keyframes particleTwinkle {
+
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+@keyframes particleGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(34, 211, 238, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 15px rgba(34, 211, 238, 0.6);
+  }
+}
+
+/* =========================
+   Content Entry Animations
+   ========================= */
+
+@keyframes contentFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes cardFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) translateX(20px) scale(0.95);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateX(0) scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   Title & Text Animations
+   ========================= */
+
+@keyframes titleReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    letter-spacing: 0.1em;
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.02);
+    letter-spacing: 0.02em;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    letter-spacing: 0;
+  }
+}
+
+@keyframes underlineGrow {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes textFadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes textFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cursorBlink {
+
+  0%,
+  45% {
+    opacity: 1;
+  }
+
+  50%,
+  95% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+/* =========================
+   Profile Ring Animations
+   ========================= */
+
+@keyframes ringRotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ringPulse {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.025);
+    opacity: 0.9;
+  }
+}
+
+@keyframes imageFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* =========================
+   Button Animations
+   ========================= */
+
+@keyframes buttonShine {
+  0% {
+    left: -100%;
+  }
+
+  50%,
+  100% {
+    left: 200%;
+  }
+}
+
+/* =========================
+   Scroll Indicator
+   ========================= */
+
+@keyframes scrollPulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(10px);
+  }
+}
+
+/* =========================
+   Status & Indicator
+   ========================= */
+
+@keyframes statusPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+    box-shadow: 0 0 0 6px rgba(34, 211, 238, 0);
+  }
+}
+
+@keyframes glowExpand {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0.4;
+  }
+}
+
+/* =========================
+   Glow Effects
+   ========================= */
+
+@keyframes glowPulse {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+/* =========================
+   Reduced Motion
+   ========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
