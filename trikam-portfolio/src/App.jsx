@@ -19,7 +19,7 @@ import { rafThrottle } from './utils/performance';
 import SectionFallback from './components/shared/SectionFallback';
 
 function App() {
-  const scrollObserverRef = useRef(null);
+
 
 
 
