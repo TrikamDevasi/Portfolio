@@ -21,10 +21,12 @@ import SectionFallback from './components/shared/SectionFallback';
 function App() {
   const scrollObserverRef = useRef(null);
 
+  const scrollObserverRef = useRef(null);
+
+  useIntersectionObserver();
+
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    useIntersectionObserver();
 
     // =============================
 
