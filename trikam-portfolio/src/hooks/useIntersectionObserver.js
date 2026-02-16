@@ -1,5 +1,9 @@
 import { useEffect, useRef } from 'react';
 
+/**
+ * Custom hook for Intersection Observer API
+ * Manages element visibility animations on scroll
+ */
 export const useIntersectionObserver = () => {
     const scrollObserverRef = useRef(null);
 
