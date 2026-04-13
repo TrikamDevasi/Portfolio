@@ -4,95 +4,107 @@ import SectionWrapper from "./SectionWrapper";
 import ProjectCard, { type Project } from "./ProjectCard";
 
 const projects: Project[] = [
-  /* ─── PERSONAL PROJECTS ─── */
+  /* ─── TIER 1: Core Infrastructure & AI ─── */
   {
     name: "SkillSense AI",
     category: "hackathon",
     hackathonName: "AI Integration Build",
     badgeText: "🏆 Top Innovation",
-    description: "An intelligent assessment platform that leverages Large Language Models (LLMs) to objectively evaluate developer skills through automated code analysis and interactive scoring.",
+    tier: 1,
+    architectureSchema: "LLM Orchestration · Async Task Queue · Email Pipeline",
+    architectureDetails: [
+      "Next.js Frontend",
+      "↓ REST API",
+      "Node.js Backend (Express)",
+      "↓ Redis Pub/Sub Queue",
+      "LLM Inference Worker (Groq/Gemini)",
+      "↓ SMTP Email Service",
+      "MongoDB Atlas (User/Session Store)",
+    ],
+    deploymentNote: "Containerized Node.js backend · Redis Pub/Sub for async AI processing · Decoupled email pipeline",
+    description: "AI-powered career assessment platform orchestrating multi-LLM inference pipelines. Implements Redis Pub/Sub to decouple asynchronous AI processing from the request lifecycle, enabling non-blocking email delivery and background scoring. Built with Next.js, Node.js, and MongoDB Atlas.",
     tech: ["Next.js", "Node.js", "MongoDB", "Redis", "OpenAI API", "JWT"],
     status: "In Development",
     github: "https://github.com/TrikamDevasi/SkillSense_AI",
-    live: "#", // Placeholder for demo
-  },
-  {
-    name: "Cinephiles Watch – React",
-    category: "personal",
-    description: "Movie discovery platform with a search‑first UI, filters, and detail pages. Features debounced search, genre/rating filters, and a fully responsive design.",
-    tech: ["React", "Tailwind CSS", "TMDB API", "React Router"],
-    live: "https://cinephiles-watch-react-js.onrender.com/",
-    github: "https://github.com/TrikamDevasi/cinephiles-watch-react.js-.git",
+    live: "#",
   },
   {
     name: "Game Hub",
     category: "personal",
-    description: "Realtime multiplayer hub for games like Chess and TicTacToe. Features real-time sync, room management, and player matching via WebSockets.",
+    tier: 1,
+    architectureSchema: "Real-Time Concurrency · WebSocket Room Architecture · State Sync",
+    architectureDetails: [
+      "React Client",
+      "↓ Socket.io Events",
+      "Node.js Socket Server",
+      "↓ Room-Based Namespacing",
+      "Game State Machine",
+      "↓ Broadcast to Room",
+      "Connected Clients (N players)",
+    ],
+    deploymentNote: "Socket.io room-based event architecture · Stateful server-side game logic · Real-time client sync",
+    description: "Real-time multiplayer gaming platform handling concurrent WebSocket connections via Socket.io room-based architecture. Server-side game state machine ensures consistency across N simultaneous players with sub-50ms broadcast latency.",
     tech: ["React", "Node.js", "Socket.io", "Express"],
     live: "https://trikamdevasi.github.io/game-portal",
     github: "https://github.com/TrikamDevasi/game-portal",
+  },
+  
+  /* ─── TIER 2: Full-Stack & Data Layers ─── */
+  {
+    name: "E-Commerce — Tic Tech Toe",
+    category: "hackathon",
+    hackathonName: "Tic Tech Toe Hackathon",
+    badgeText: "🏆 Tic Tech Toe",
+    tier: 2,
+    description: "Full-stack e-commerce platform with ML-powered product recommendations via Gemini API. Implements Redis caching for session management and product catalog, Google OAuth 2.0 for authentication, and transactional integrity for cart and order operations. Deployed with Docker Compose.",
+    deploymentNote: "Redis caching layer · Google OAuth · Dockerized services",
+    tech: ["React", "PostgreSQL", "Express", "Redis", "Docker", "Styled Components"],
+    github: "https://github.com/TrikamDevasi/tic_tech_toe-ecommerce-website-.git",
+    live: "#",
   },
   {
     name: "Expense Manager",
     category: "hackathon",
     hackathonName: "Odoo Hackathon (Gujarat Vidyapith)",
     badgeText: "🏆 Odoo Hackathon",
-    description: "Full‑stack tracker with categories, tracking history, and a structured dashboard. Features user authentication, data visualization, and report exports.",
+    tier: 2,
+    description: "Full-stack tracker with categories, tracking history, and a structured dashboard. Features JWT-based auth, complex data aggregation pipelines for reporting, and multi-category budget tracking with time-series visualization.",
     tech: ["Node.js", "Express", "MongoDB", "JWT", "JavaScript"],
     live: "https://expense-management-odoo.netlify.app/",
     github: "https://github.com/Trikamcg/expense_management/tree/main/project",
+  },
+  {
+    name: "Cinephiles Watch – React",
+    category: "personal",
+    tier: 2,
+    description: "Movie discovery platform with a search-first UI, filters, and detail pages. Features debounced search, genre/rating filters, and a fully responsive design.",
+    tech: ["React", "Tailwind CSS", "TMDB API", "React Router"],
+    live: "https://cinephiles-watch-react-js.onrender.com/",
+    github: "https://github.com/TrikamDevasi/cinephiles-watch-react.js-.git",
+  },
+
+  /* ─── TIER 3: Specialty / Edge ─── */
+  {
+    name: "Team Quantum Coders",
+    category: "hackathon",
+    hackathonName: "SU Hackathon",
+    badgeText: "🏆 SU Hackathon",
+    tier: 3,
+    description: "A collaborative resource management tool for rapid emergency response coordination. Optimized for high-concurrency access and mobile performance.",
+    tech: ["React Native", "Firebase", "Google Maps SDK", "Node.js"],
+    github: "https://github.com/TrikamDevasi/TEAM_QUANTUM_CODERS-SU-.git",
+    live: "#",
   },
   {
     name: "ArtPark",
     category: "hackathon",
     hackathonName: "CodeForge Hackathon",
     badgeText: "🏆 CodeForge Hackathon",
+    tier: 3,
     description: "A collaborative digital art park where users can create, share, and showcase generative art. Features real-time rendering and gallery management.",
     tech: ["React", "Canvas API", "Firebase", "Framer Motion", "Material UI"],
     github: "https://github.com/TrikamDevasi/ArtPark_CodeForge_Hackathon.git",
-    live: "#", // Placeholder for demo
-  },
-  {
-    name: "E-Commerce — Tic Tech Toe",
-    category: "hackathon",
-    hackathonName: "Tic Tech Toe Hackathon",
-    badgeText: "🏆 Tic Tech Toe",
-    description: "A full-featured e-commerce prototype with dynamic product filtering, persistent shopping cart logic, and a responsive checkout workflow.",
-    tech: ["React", "Context API", "Styled Components", "Express", "PostgreSQL"],
-    github: "https://github.com/TrikamDevasi/tic_tech_toe-ecommerce-website-.git",
-    live: "#", // Placeholder for demo
-  },
-  {
-    name: "Team Quantum Coders",
-    category: "hackathon",
-    hackathonName: "SU Hackathon",
-    badgeText: "🏆 SU Hackathon",
-    description: "A collaborative resource management tool for rapid emergency response coordination. Optimized for high-concurrency access and mobile performance.",
-    tech: ["React Native", "Firebase", "Google Maps SDK", "Node.js"],
-    github: "https://github.com/TrikamDevasi/TEAM_QUANTUM_CODERS-SU-.git",
-    live: "#", // Placeholder for demo
-  },
-  {
-    name: "Nexus Feed",
-    category: "personal",
-    description: "Modern card-based feed interface with advanced animations. UI experiment focused on fluid interactions and 'Glassmorphism' aesthetics.",
-    tech: ["React", "Framer Motion", "CSS Modules"],
-    live: "https://nexus-feed-demo.netlify.app/",
-  },
-  {
-    name: "Cinephiles Watch – Vanilla JS",
-    category: "personal",
-    description: "Framework‑free movie discovery platform focused on fast initial load. Raw performance-focused explorer built entirely with native DOM APIs.",
-    tech: ["HTML5", "CSS3", "Vanilla JavaScript ES6", "TMDB API"],
-    live: "https://cinephiles-watch.onrender.com/",
-  },
-  {
-    name: "Quiz Game",
-    category: "personal",
-    description: "Browser‑based multiplayer quiz game with real-time score tracking. Engineered for responsive state management across multiple clients.",
-    tech: ["HTML", "CSS", "JavaScript"],
-    github: "https://github.com/TrikamDevasi/quiz-game.git",
-    live: "#", // Placeholder for demo
+    live: "#",
   },
 ];
 
@@ -108,6 +120,23 @@ const ProjectsSection = () => {
 
   return (
     <SectionWrapper id="projects" title="Projects" subtitle="Things I've built with passion">
+      <style dangerouslySetInnerHTML={{__html: `
+        .tier-label {
+          font-size: var(--text-xs);
+          font-weight: 600;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: hsl(var(--muted-foreground));
+          margin-bottom: 1.5rem;
+          padding-bottom: 0.5rem;
+          border-bottom: 1px solid hsl(var(--border));
+        }
+        .tier-section { margin-bottom: 4rem; }
+        .grid-tier-1 { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+        .grid-tier-2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(400px, 100%), 1fr)); gap: 1.5rem; }
+        .grid-tier-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 1rem; }
+      `}} />
+
       {/* ── Filter Tabs ── */}
       <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
         {categories.map((cat) => (
@@ -122,7 +151,7 @@ const ProjectsSection = () => {
           >
             {cat}
             {activeFilter === cat && (
-              <motion.div
+               <motion.div
                 layoutId="activeFilter"
                 className="absolute -bottom-px left-1/4 right-1/4 h-px bg-primary shadow-[0_0_10px_rgba(0,217,255,0.8)]"
               />
@@ -133,39 +162,60 @@ const ProjectsSection = () => {
 
       {/* ── Projects Grid ── */}
       <LayoutGroup>
-        <motion.div 
-          layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, i) => (
-              <motion.div
-                key={project.name}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-              >
-                <ProjectCard project={project} index={i} />
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
-      </LayoutGroup>
+        <AnimatePresence mode="popLayout">
+          {filteredProjects.length > 0 ? (
+            activeFilter === "all" ? (
+              <motion.div layout className="w-full">
+                {/* Tier 1: Case Studies */}
+                <div className="tier-section">
+                  <h3 className="tier-label">Core Infrastructure & AI</h3>
+                  <div className="grid-tier-1">
+                    {filteredProjects.filter(p => p.tier === 1).map((project, i) => (
+                      <ProjectCard key={project.name} project={project} index={i} />
+                    ))}
+                  </div>
+                </div>
 
-      {/* ── Empty State ── */}
-      {filteredProjects.length === 0 && (
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          className="py-20 text-center"
-        >
-          <p className="text-muted-foreground font-mono">
-            No projects found in this category yet.
-          </p>
-        </motion.div>
-      )}
+                {/* Tier 2: Growth Assets */}
+                <div className="tier-section">
+                  <h3 className="tier-label">Full-Stack & Data Layers</h3>
+                  <div className="grid-tier-2">
+                    {filteredProjects.filter(p => p.tier === 2).map((project, i) => (
+                      <ProjectCard key={project.name} project={project} index={i} />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Tier 3: Specialty */}
+                <div className="tier-section">
+                  <h3 className="tier-label">Specialty / Edge</h3>
+                  <div className="grid-tier-3">
+                    {filteredProjects.filter(p => p.tier === 3).map((project, i) => (
+                      <ProjectCard key={project.name} project={project} index={i} />
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredProjects.map((project, i) => (
+                  <ProjectCard key={project.name} project={project} index={i} />
+                ))}
+              </motion.div>
+            )
+          ) : (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="py-20 text-center w-full"
+            >
+              <p className="text-muted-foreground font-mono">
+                No projects found in this category yet.
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </LayoutGroup>
     </SectionWrapper>
   );
 };

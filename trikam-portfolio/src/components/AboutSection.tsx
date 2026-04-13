@@ -7,8 +7,8 @@ const codeBlock = `const trikam = {
   education: "B.Tech CSE @ Swaminarayan University",
   semester: "2nd Sem (2025-2029)",
   passions: ["Building", "Learning", "Shipping"],
-  currentlyBuilding: "SkillSense AI",
-  learning: ["System Design", "AWS", "Docker", "Redis"],
+  currentlyArchitecting: "SkillSense AI",
+  infrastructure: ["AWS", "Docker", "CI/CD"],
   openTo: ["Freelance", "Internships", "Collabs"],
   coffee: true ☕
 };`;
@@ -59,12 +59,12 @@ const AboutSection = () => {
             transition={{ duration: 0.6 }}
           >
             <p className="text-muted-foreground leading-relaxed mb-6">
-              I'm a passionate Full-Stack Developer and B.Tech CSE student at Swaminarayan University, Kalol (2nd Sem, 2025-29).
-              I love building web applications that solve real problems, with a special interest in AI integration and real-time systems.
+              I'm a passionate Full-Stack Architect and B.Tech CSE student at Swaminarayan University, Kalol (2nd Sem, 2025-29).
+              I love building web applications that solve real problems, with a focus on system design, observability, and building infrastructure that survives scale.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-8">
-              From hackathon-winning expense trackers to AI-powered assessment platforms, I thrive on turning ideas into shipped products.
-              When I'm not coding, you'll find me exploring system design patterns or contributing to open source.
+              From hackathon-winning distributed systems to containerized AI-powered assessment platforms, I thrive on turning complex ideas into shipped, resilient products.
+              When I'm not coding, you'll find me exploring architecture patterns, optimizing CI/CD pipelines, or contributing to open source.
             </p>
 
             <div className="space-y-4">

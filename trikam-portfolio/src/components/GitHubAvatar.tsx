@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Logo from "./Logo";
-
-
 const GITHUB_AVATAR_URL = "https://github.com/TrikamDevasi.png?size=400";
 
 const GitHubAvatar = () => {
@@ -24,11 +22,12 @@ const GitHubAvatar = () => {
           {!imgError ? (
             <img
               src={GITHUB_AVATAR_URL}
-              alt="Trikam Devasi — GitHub profile picture"
-              className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700"
+              alt="Trikam Devasi — GitHub Profile"
+              className="w-full h-full object-cover grayscale-[10%] hover:grayscale-0 transition-all duration-700 hover:scale-110"
               onError={() => setImgError(true)}
             />
           ) : (
+
             /* Fallback: new logo */
             <div className="w-full h-full flex items-center justify-center select-none bg-secondary/80 backdrop-blur-sm">
               <Logo size="sm" className="scale-[0.8]" />

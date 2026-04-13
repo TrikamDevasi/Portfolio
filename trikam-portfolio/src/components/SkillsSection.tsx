@@ -31,6 +31,17 @@ const categories: SkillCategory[] = [
     ],
   },
   {
+    title: "DevOps & Quality Engineering",
+    skills: [
+      { name: "GitHub Actions", level: "Applied" },
+      { name: "Docker", level: "Applied" },
+      { name: "AWS EC2 / S3", level: "Applied" },
+      { name: "Jest", level: "Applied" },
+      { name: "Cypress / Playwright", level: "Applied" },
+      { name: "Redis Pub/Sub", level: "Applied" },
+    ],
+  },
+  {
     title: "Tools & Learning",
     skills: [
       { name: "Git/GitHub" },
@@ -39,9 +50,6 @@ const categories: SkillCategory[] = [
       { name: "Netlify" },
       { name: "Render" },
       { name: "System Design", level: "Learning" },
-      { name: "AWS", level: "Learning" },
-      { name: "Docker", level: "Learning" },
-      { name: "Redis", level: "Learning" },
     ],
   },
   {
@@ -56,7 +64,7 @@ const categories: SkillCategory[] = [
 
 const SkillsSection = () => (
   <SectionWrapper id="skills" title="Skills" subtitle="Technologies I work with">
-    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
       {categories.map((cat, i) => (
         <motion.div
           key={cat.title}
@@ -73,7 +81,11 @@ const SkillsSection = () => (
             {cat.skills.map((skill) => (
               <span
                 key={skill.name}
-                className="px-3 py-1.5 text-xs font-medium rounded-full bg-secondary text-foreground border border-border hover:border-primary/50 hover:bg-primary/10 transition-all duration-200 cursor-default"
+                className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-all duration-200 cursor-default ${
+                  skill.level === 'Applied' 
+                    ? 'bg-primary/10 text-primary border-primary/30 hover:border-primary/60 hover:bg-primary/20' 
+                    : 'bg-secondary text-foreground border-border hover:border-primary/50 hover:bg-primary/10'
+                }`}
               >
                 {skill.name}
               </span>
