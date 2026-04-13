@@ -77,6 +77,7 @@ interface StatImageProps {
   height?: number;
   className?: string;
   reloadKey: number;
+  userParam?: string; // Add optional userParam
 }
 
 const StatImage = ({
@@ -90,11 +91,12 @@ const StatImage = ({
   height = 195,
   className = "",
   reloadKey,
+  userParam = "username", // Default to username
 }: StatImageProps) => {
   const [mirrorIndex, setMirrorIndex] = useState(0);
   const [status, setStatus] = useState<"loading" | "loaded" | "error">("loading");
 
-  const currentSrc = `${mirrors[mirrorIndex]}?username=${USERNAME}&${params}&t=${reloadKey}`;
+  const currentSrc = `${mirrors[mirrorIndex]}?${userParam}=${USERNAME}&${params}&t=${reloadKey}`;
   const isFinalMirror = mirrorIndex >= mirrors.length - 1;
 
   const handleError = () => {
@@ -213,6 +215,7 @@ const GitHubStatsSection = () => {
         >
           <StatImage
             mirrors={STREAK_MIRRORS}
+            userParam="user"
             params={`${COMMON_PARAMS}&ring=06DF8C&fire=06DF8C&currStreakLabel=06DF8C&sideNums=06DF8C&sideLabels=939aff`}
             alt="GitHub Streak Stats"
             fallbackLabel="Streak Stats unavailable. Contribution telemetry disrupted."
