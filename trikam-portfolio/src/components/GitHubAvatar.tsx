@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Logo from "./Logo";
+
 
 const GITHUB_AVATAR_URL = "https://github.com/TrikamDevasi.png?size=400";
 
@@ -27,12 +29,11 @@ const GitHubAvatar = () => {
               onError={() => setImgError(true)}
             />
           ) : (
-            /* Fallback: gradient initials */
-            <div className="w-full h-full flex items-center justify-center select-none bg-secondary">
-              <span className="text-foreground/40 text-xl font-bold font-display">
-                TD
-              </span>
+            /* Fallback: new logo */
+            <div className="w-full h-full flex items-center justify-center select-none bg-secondary/80 backdrop-blur-sm">
+              <Logo size="sm" className="scale-[0.8]" />
             </div>
+
           )}
         </motion.div>
 

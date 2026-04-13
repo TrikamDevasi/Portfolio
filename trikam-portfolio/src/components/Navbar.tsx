@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, FileText } from "lucide-react";
 import { NavLink, Link } from "react-router-dom";
+import Logo from "./Logo";
+
 
 const navLinks = [
   { label: "About", href: "/about" },
@@ -31,10 +33,8 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-6 md:px-12">
-        <Link to="/" className="text-xl font-bold font-display tracking-tight flex items-center gap-2 group">
-          <span className="text-primary group-hover:rotate-12 transition-transform">&lt;</span>
-          <span className="text-foreground transition-colors group-hover:text-primary">TD</span>
-          <span className="text-primary group-hover:-rotate-12 transition-transform">/&gt;</span>
+        <Link to="/">
+          <Logo />
         </Link>
 
         {/* Desktop Navigation */}
