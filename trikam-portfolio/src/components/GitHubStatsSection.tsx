@@ -7,10 +7,10 @@ const USERNAME = "TrikamDevasi";
 
 /* ─── URL builder (cache-busting + custom theme) ─── */
 // Using tokyonight + explicit bg_color prevents blank SVG responses from the CDN
-const STATS_URL = `https://github-readme-stats.vercel.app/api?username=${USERNAME}&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&include_all_commits=true&count_private=true&rank_icon=github`;
-const LANGS_URL = `https://github-readme-stats.vercel.app/api/top-langs/?username=${USERNAME}&layout=compact&langs_count=8&theme=tokyonight&hide_border=true&bg_color=0d1117`;
+const STATS_URL = `https://github-readme-stats.vercel.app/api?username=${USERNAME}&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0a090f&include_all_commits=true&count_private=true&rank_icon=github&title_color=06DF8C&icon_color=06DF8C&text_color=939aff`;
+const LANGS_URL = `https://github-readme-stats.vercel.app/api/top-langs/?username=${USERNAME}&layout=compact&langs_count=8&theme=tokyonight&hide_border=true&bg_color=0a090f&title_color=06DF8C&text_color=939aff`;
 // streak-stats.demolab.com is the current active fork — herokuapp is frequently offline
-const STREAK_URL = `https://streak-stats.demolab.com?user=${USERNAME}&theme=tokyonight&hide_border=true&background=0d1117&ring=00d9ff&fire=00d9ff&currStreakLabel=00d9ff`;
+const STREAK_URL = `https://streak-stats.demolab.com?user=${USERNAME}&theme=tokyonight&hide_border=true&background=0a090f&ring=06DF8C&fire=06DF8C&currStreakLabel=06DF8C&sideNums=06DF8C&sideLabels=939aff`;
 
 /* ─── Skeleton placeholder ─── */
 const Skeleton = ({ width, height }: { width: string; height: number }) => (

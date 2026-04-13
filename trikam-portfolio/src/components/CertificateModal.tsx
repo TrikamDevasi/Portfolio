@@ -60,7 +60,7 @@ const CertificateModal = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.88, y: 24 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-10 max-w-3xl w-full rounded-2xl overflow-hidden border border-cyan-500/30 shadow-2xl shadow-cyan-500/10"
+            className="relative z-10 max-w-3xl w-full rounded-2xl overflow-hidden border border-primary/30 shadow-2xl shadow-primary/10"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header bar */}
@@ -73,7 +73,7 @@ const CertificateModal = ({
                   href={certLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs text-cyan-400 hover:text-cyan-300 transition-colors px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20"
+                  className="flex items-center gap-1.5 text-xs text-primary hover:text-primary-foreground transition-colors px-3 py-1.5 rounded-lg bg-primary/10 hover:bg-primary/20 border border-primary/20"
                 >
                   <ExternalLink size={12} />
                   Open

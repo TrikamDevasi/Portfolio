@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Send, Github, Linkedin, Youtube, Mail, Twitter, Code2, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 import SectionWrapper from "./SectionWrapper";
 import emailjs from "@emailjs/browser";
+import contactGif from "@/assets/paftdrunk-sun-3392_512.gif";
 
 const socials = [
   { icon: Github, href: "https://github.com/TrikamDevasi", label: "GitHub" },
@@ -147,6 +148,13 @@ const ContactSection = () => {
           viewport={{ once: true }}
           className="flex flex-col justify-center"
         >
+          <div className="mb-8 rounded-2xl overflow-hidden border border-border/50 shadow-2xl glow-border">
+            <img 
+              src={contactGif} 
+              alt="Contact Illustration" 
+              className="w-full h-auto object-cover opacity-80 hover:opacity-100 transition-opacity duration-500" 
+            />
+          </div>
           <p className="text-muted-foreground mb-6 leading-relaxed text-sm md:text-base">
             I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
             Feel free to reach out via the form or my social handles!

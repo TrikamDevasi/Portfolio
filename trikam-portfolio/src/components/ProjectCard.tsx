@@ -29,20 +29,20 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       exit={{ opacity: 0, scale: 0.9 }}
       transition={{ duration: 0.3, delay: index * 0.05 }}
       style={{
-        borderLeft: isHackathon ? "4px solid #F59E0B" : "none",
+        borderLeft: isHackathon ? "4px solid hsl(var(--accent))" : "none",
       }}
       className={`relative glass-card overflow-hidden p-6 flex flex-col group h-full transition-all duration-300 ${
         isHackathon 
-          ? "bg-yellow-500/5 glow-border hover:shadow-[0_0_30px_-5px_rgba(245,158,11,0.3)]" 
+          ? "bg-accent/5 glow-border hover:shadow-[0_0_30px_-5px_rgba(200,100,255,0.3)]" 
           : "glow-border hover:-translate-y-1"
       }`}
     >
       {/* ── Hackathon Shimmer Badge ── */}
       {isHackathon && (project.badgeText || "🏆 Hackathon") && (
         <div className="absolute top-3 right-3 z-10">
-          <div className="relative overflow-hidden px-2.5 py-1 rounded-full bg-yellow-500/20 border border-yellow-500/40 backdrop-blur-md">
-            <span className="text-[10px] font-bold text-yellow-400 uppercase tracking-widest flex items-center gap-1.5 whitespace-nowrap">
-              <Trophy size={10} className="text-yellow-400" />
+          <div className="relative overflow-hidden px-2.5 py-1 rounded-full bg-accent/20 border border-accent/40 backdrop-blur-md">
+            <span className="text-[10px] font-bold text-accent uppercase tracking-widest flex items-center gap-1.5 whitespace-nowrap">
+              <Trophy size={10} className="text-accent" />
               {project.badgeText || "Hackathon"}
             </span>
             {/* Shimmer effect */}
@@ -66,12 +66,12 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       <div className="flex items-start justify-between mb-4">
         <div className="pr-12">
           <h3 className={`text-xl font-bold tracking-tight transition-colors ${
-            isHackathon ? "text-yellow-400" : "text-foreground group-hover:text-primary"
+            isHackathon ? "text-accent" : "text-foreground group-hover:text-primary"
           }`}>
             {project.name}
           </h3>
           {isHackathon && project.hackathonName && (
-            <p className="text-[10px] font-mono text-yellow-500/70 mt-1 uppercase tracking-tighter">
+            <p className="text-[10px] font-mono text-accent/70 mt-1 uppercase tracking-tighter">
               {project.hackathonName}
             </p>
           )}
@@ -86,17 +86,6 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               title="View Source"
             >
               <Github size={18} />
-            </a>
-          )}
-          {project.live && (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-lg bg-secondary/50 text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all border border-border/50"
-              title="Live Demo"
-            >
-              <ExternalLink size={18} />
             </a>
           )}
         </div>
@@ -117,6 +106,29 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
         {project.description}
       </p>
 
+      {/* ── Primary Action: Live Demo ── */}
+      <div className="mb-6">
+        {project.live && project.live !== "#" ? (
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-xs font-bold uppercase tracking-widest transition-all hover:shadow-[0_0_20px_rgba(0,217,255,0.4)] group/btn"
+          >
+            <ExternalLink size={16} className="transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+            Live Demo
+          </a>
+        ) : (
+          <button
+            disabled
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-muted text-muted-foreground text-xs font-bold uppercase tracking-widest cursor-not-allowed border border-border/50"
+          >
+            <Construction size={16} />
+            Demo Coming Soon
+          </button>
+        )}
+      </div>
+
       {/* ── Tech Stack ── */}
       <div className="flex flex-wrap gap-2 pt-4 border-t border-border/30">
         {project.tech.map((t) => (
@@ -124,7 +136,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             key={t}
             className={`text-[10px] font-mono font-medium px-2 py-1 rounded-md border transition-colors ${
               isHackathon 
-                ? "bg-yellow-500/5 text-yellow-500/80 border-yellow-500/20" 
+                ? "bg-accent/5 text-accent/80 border-accent/20" 
                 : "bg-secondary/40 text-muted-foreground border-border hover:border-primary/30"
             }`}
           >

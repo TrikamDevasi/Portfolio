@@ -59,7 +59,7 @@ const SoloCard = ({ id, imageUrl, certLink, onPreview }: SoloCardProps) => {
       variants={cardVariants}
       whileHover={{ scale: 1.03 }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
-      className="group relative rounded-2xl overflow-hidden border border-white/10 bg-card/60 backdrop-blur-xl transition-all duration-300 hover:border-cyan-500/30"
+      className="group relative rounded-2xl overflow-hidden border border-white/10 bg-card/60 backdrop-blur-xl transition-all duration-300 hover:border-primary/30"
     >
       {/* Certificate image preview */}
       <div
@@ -71,7 +71,7 @@ const SoloCard = ({ id, imageUrl, certLink, onPreview }: SoloCardProps) => {
           <div className="absolute inset-0 flex items-center justify-center bg-[#0d0d1f]">
             <Loader2
               size={28}
-              className="text-cyan-400/50 animate-spin"
+              className="text-primary/50 animate-spin"
             />
           </div>
         )}
@@ -106,8 +106,8 @@ const SoloCard = ({ id, imageUrl, certLink, onPreview }: SoloCardProps) => {
       {/* Card footer */}
       <div className="px-4 py-3 flex items-center justify-between gap-3">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-full bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center shrink-0">
-            <span className="text-[9px] font-bold text-cyan-400 leading-none">
+          <div className="w-6 h-6 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center shrink-0">
+            <span className="text-[9px] font-bold text-primary leading-none">
               SL
             </span>
           </div>
@@ -123,7 +123,7 @@ const SoloCard = ({ id, imageUrl, certLink, onPreview }: SoloCardProps) => {
           href={certLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1.5 text-[11px] font-semibold text-cyan-400 hover:text-white px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/25 border border-cyan-500/20 hover:border-cyan-400/50 transition-all duration-200 shrink-0"
+          className="flex items-center gap-1.5 text-[11px] font-semibold text-primary hover:text-white px-3 py-1.5 rounded-lg bg-primary/10 hover:bg-primary/25 border border-primary/20 hover:border-primary/50 transition-all duration-200 shrink-0"
         >
           <ExternalLink size={11} />
           View
@@ -149,8 +149,8 @@ const CertificationsSection = () => {
     >
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-8">
-          <div className="w-7 h-7 rounded-full bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center">
-            <span className="text-[10px] font-bold text-cyan-400">SL</span>
+          <div className="w-7 h-7 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center">
+            <span className="text-[10px] font-bold text-primary">SL</span>
           </div>
           <h3 className="text-sm font-semibold text-white/60 uppercase tracking-widest">
             Sololearn · {SOLOLEARN_CERTS.length} Certificates

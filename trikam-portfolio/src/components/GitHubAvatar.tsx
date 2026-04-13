@@ -5,133 +5,45 @@ import { motion } from "framer-motion";
 
 const GITHUB_AVATAR_URL = "https://github.com/TrikamDevasi.png?size=400";
 
-/* ── Orbit ring helper ── */
-interface OrbitRingProps {
-  size: number;
-  duration: number;
-  delay?: number;
-}
-
-const OrbitRing = ({ size, duration, delay = 0 }: OrbitRingProps) => (
-  <div
-    className="absolute rounded-full pointer-events-none"
-    style={{
-      width: size,
-      height: size,
-      top: "50%",
-      left: "50%",
-      transform: "translate(-50%, -50%)",
-      border: "1px dashed rgba(0, 217, 255, 0.15)",
-      animation: `spin ${duration}s linear ${delay}s infinite`,
-    }}
-  />
-);
-
-/* ── Main component ── */
 const GitHubAvatar = () => {
   const [imgError, setImgError] = useState(false);
 
   return (
-    <div className="relative flex flex-col items-center">
-      {/* ── Keyframes (injected via style tag) ── */}
-      <style>{`
-        @keyframes spin {
-          from { transform: translate(-50%, -50%) rotate(0deg); }
-          to   { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-        @keyframes breathe {
-          0%, 100% { transform: scale(1); }
-          50%       { transform: scale(1.03); }
-        }
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(8px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
-
-      {/* ── Orbit rings container ── */}
-      <div className="relative flex items-center justify-center"
-           style={{ width: 330, height: 330 }}>
-        <OrbitRing size={250} duration={20} />
-        <OrbitRing size={290} duration={28} delay={-6} />
-        <OrbitRing size={330} duration={35} delay={-12} />
-
-        {/* ── Avatar wrapper with gradient border ── */}
+    <div className="relative inline-flex flex-col items-center">
+      {/* ── Avatar container ── */}
+      <div className="relative p-1 rounded-full border border-white/10 bg-gradient-to-br from-primary/20 via-transparent to-accent/20">
         <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
           whileHover={{ scale: 1.05 }}
-          transition={{ type: "spring", stiffness: 260, damping: 20 }}
-          className="relative z-10 rounded-full p-[3px]"
-          style={{
-            background: "linear-gradient(135deg, #00d9ff, #6366f1)",
-            animation: "breathe 3s ease-in-out infinite",
-          }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="relative rounded-full overflow-hidden w-full h-full border-2 border-background shadow-2xl"
         >
-          {/* Inner container */}
-          <div
-            className="relative rounded-full overflow-hidden"
-            style={{
-              width: 220,
-              height: 220,
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget.parentElement as HTMLElement).style.boxShadow =
-                "0 0 30px rgba(0,217,255,0.5), 0 0 60px rgba(99,102,241,0.2)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget.parentElement as HTMLElement).style.boxShadow =
-                "none";
-            }}
-          >
-            {!imgError ? (
-              <img
-                src={GITHUB_AVATAR_URL}
-                alt="Trikam Devasi — GitHub profile picture"
-                width={220}
-                height={220}
-                className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                onError={() => setImgError(true)}
-              />
-            ) : (
-              /* Fallback: gradient initials */
-              <div
-                className="w-full h-full flex items-center justify-center select-none"
-                style={{
-                  background: "linear-gradient(135deg, #00d9ff, #6366f1)",
-                }}
-              >
-                <span
-                  style={{
-                    color: "#fff",
-                    fontSize: "3.5rem",
-                    fontWeight: 800,
-                    letterSpacing: "-0.02em",
-                    fontFamily: "Space Grotesk, sans-serif",
-                  }}
-                >
-                  TD
-                </span>
-              </div>
-            )}
-          </div>
+          {!imgError ? (
+            <img
+              src={GITHUB_AVATAR_URL}
+              alt="Trikam Devasi — GitHub profile picture"
+              className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700"
+              onError={() => setImgError(true)}
+            />
+          ) : (
+            /* Fallback: gradient initials */
+            <div className="w-full h-full flex items-center justify-center select-none bg-secondary">
+              <span className="text-foreground/40 text-xl font-bold font-display">
+                TD
+              </span>
+            </div>
+          )}
         </motion.div>
-      </div>
 
-      {/* ── Availability badge ── */}
-      <div
-        className="mt-4 flex items-center gap-2 px-4 py-1.5 rounded-full border text-sm font-medium"
-        style={{
-          background: "rgba(0, 217, 255, 0.07)",
-          borderColor: "rgba(0, 217, 255, 0.25)",
-          color: "rgba(255,255,255,0.75)",
-          animation: "fadeUp 0.7s ease 0.5s both",
-        }}
-      >
-        {/* Green pulsing dot */}
-        <span className="relative flex h-2.5 w-2.5">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-60" />
-          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-400" />
-        </span>
-        Open to Work
+        {/* ── Availability badge ── */}
+        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full border border-white/10 bg-background/90 backdrop-blur-sm text-[8px] font-bold uppercase tracking-[0.15em] text-foreground/80 shadow-xl flex items-center gap-1.5 whitespace-nowrap">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
+            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary" />
+          </span>
+          Available
+        </div>
       </div>
     </div>
   );

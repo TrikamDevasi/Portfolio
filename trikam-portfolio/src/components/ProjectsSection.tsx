@@ -14,6 +14,7 @@ const projects: Project[] = [
     tech: ["Next.js", "Node.js", "MongoDB", "Redis", "OpenAI API", "JWT"],
     status: "In Development",
     github: "https://github.com/TrikamDevasi/SkillSense_AI",
+    live: "#", // Placeholder for demo
   },
   {
     name: "Cinephiles Watch – React",
@@ -49,6 +50,7 @@ const projects: Project[] = [
     description: "A collaborative digital art park where users can create, share, and showcase generative art. Features real-time rendering and gallery management.",
     tech: ["React", "Canvas API", "Firebase", "Framer Motion", "Material UI"],
     github: "https://github.com/TrikamDevasi/ArtPark_CodeForge_Hackathon.git",
+    live: "#", // Placeholder for demo
   },
   {
     name: "E-Commerce — Tic Tech Toe",
@@ -58,6 +60,7 @@ const projects: Project[] = [
     description: "A full-featured e-commerce prototype with dynamic product filtering, persistent shopping cart logic, and a responsive checkout workflow.",
     tech: ["React", "Context API", "Styled Components", "Express", "PostgreSQL"],
     github: "https://github.com/TrikamDevasi/tic_tech_toe-ecommerce-website-.git",
+    live: "#", // Placeholder for demo
   },
   {
     name: "Team Quantum Coders",
@@ -67,6 +70,7 @@ const projects: Project[] = [
     description: "A collaborative resource management tool for rapid emergency response coordination. Optimized for high-concurrency access and mobile performance.",
     tech: ["React Native", "Firebase", "Google Maps SDK", "Node.js"],
     github: "https://github.com/TrikamDevasi/TEAM_QUANTUM_CODERS-SU-.git",
+    live: "#", // Placeholder for demo
   },
   {
     name: "Nexus Feed",
@@ -88,6 +92,7 @@ const projects: Project[] = [
     description: "Browser‑based multiplayer quiz game with real-time score tracking. Engineered for responsive state management across multiple clients.",
     tech: ["HTML", "CSS", "JavaScript"],
     github: "https://github.com/TrikamDevasi/quiz-game.git",
+    live: "#", // Placeholder for demo
   },
 ];
 
