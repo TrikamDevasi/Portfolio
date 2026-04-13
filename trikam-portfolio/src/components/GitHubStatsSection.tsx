@@ -5,12 +5,26 @@ import SectionWrapper from "./SectionWrapper";
 
 const USERNAME = "TrikamDevasi";
 
-/* ─── URL builder (cache-busting + custom theme) ─── */
-// Using tokyonight + explicit bg_color prevents blank SVG responses from the CDN
-const STATS_URL = `https://github-readme-stats.vercel.app/api?username=${USERNAME}&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0a090f&include_all_commits=true&count_private=true&rank_icon=github&title_color=06DF8C&icon_color=06DF8C&text_color=939aff`;
-const LANGS_URL = `https://github-readme-stats.vercel.app/api/top-langs/?username=${USERNAME}&layout=compact&langs_count=8&theme=tokyonight&hide_border=true&bg_color=0a090f&title_color=06DF8C&text_color=939aff`;
-// streak-stats.demolab.com is the current active fork — herokuapp is frequently offline
-const STREAK_URL = `https://streak-stats.demolab.com?user=${USERNAME}&theme=tokyonight&hide_border=true&background=0a090f&ring=06DF8C&fire=06DF8C&currStreakLabel=06DF8C&sideNums=06DF8C&sideLabels=939aff`;
+/* ─── High-Availability Mirror Configuration ─── */
+const STATS_MIRRORS = [
+  "https://github-readme-stats.vercel.app/api",
+  "https://github-readme-stats-alpha.vercel.app/api",
+  "https://github-readme-stats-one.vercel.app/api",
+];
+
+const LANGS_MIRRORS = [
+  "https://github-readme-stats.vercel.app/api/top-langs/",
+  "https://github-readme-stats-alpha.vercel.app/api/top-langs/",
+  "https://github-readme-stats-one.vercel.app/api/top-langs/",
+];
+
+const STREAK_MIRRORS = [
+  "https://streak-stats.demolab.com",
+  "https://github-readme-streak-stats.herokuapp.com",
+  "https://streak-stats-alpha.vercel.app",
+];
+
+const COMMON_PARAMS = "theme=tokyonight&hide_border=true&bg_color=0a090f&title_color=06DF8C&icon_color=06DF8C&text_color=939aff";
 
 /* ─── Skeleton placeholder ─── */
 const Skeleton = ({ width, height }: { width: string; height: number }) => (
@@ -41,17 +55,20 @@ const FallbackCard = ({
     className="flex flex-col items-center justify-center gap-3 rounded-xl border border-border bg-card/40 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 group"
     style={{ width, minHeight: height }}
   >
-    <Icon size={28} className="text-primary/50 group-hover:text-primary transition-colors" />
-    <span className="text-xs text-muted-foreground text-center px-4">
+    <div className="p-3 rounded-full bg-primary/5 border border-primary/10">
+      <Icon size={24} className="text-primary/50 group-hover:text-primary transition-colors" />
+    </div>
+    <span className="text-[10px] text-muted-foreground text-center px-6 leading-relaxed">
       {label}
     </span>
-    <span className="text-[10px] text-primary/60 font-mono">Click to view on GitHub →</span>
+    <span className="text-[9px] text-primary/40 font-mono uppercase tracking-widest mt-2 border-t border-white/5 pt-2">View Live Source →</span>
   </a>
 );
 
-/* ─── Single stat image with skeleton + fallback ─── */
+/* ─── Resilient Stat Image with Sequential Failover ─── */
 interface StatImageProps {
-  src: string;
+  mirrors: string[];
+  params: string;
   alt: string;
   fallbackLabel: string;
   fallbackIcon: React.ElementType;
@@ -63,7 +80,8 @@ interface StatImageProps {
 }
 
 const StatImage = ({
-  src,
+  mirrors,
+  params,
   alt,
   fallbackLabel,
   fallbackIcon,
@@ -73,15 +91,27 @@ const StatImage = ({
   className = "",
   reloadKey,
 }: StatImageProps) => {
-  const [state, setState] = useState<"loading" | "loaded" | "error">("loading");
+  const [mirrorIndex, setMirrorIndex] = useState(0);
+  const [status, setStatus] = useState<"loading" | "loaded" | "error">("loading");
 
-  // Reset state when reloadKey changes
-  const imgSrc = `${src}&t=${reloadKey}`;
+  const currentSrc = `${mirrors[mirrorIndex]}?username=${USERNAME}&${params}&t=${reloadKey}`;
+  const isFinalMirror = mirrorIndex >= mirrors.length - 1;
+
+  const handleError = () => {
+    if (!isFinalMirror) {
+      // Attempt next mirror
+      setMirrorIndex((prev) => prev + 1);
+      setStatus("loading");
+    } else {
+      // All mirrors failed
+      setStatus("error");
+    }
+  };
 
   return (
-    <div style={{ width }}>
-      {state === "loading" && <Skeleton width={width} height={height} />}
-      {state === "error" && (
+    <div style={{ width }} className="relative">
+      {status === "loading" && <Skeleton width={width} height={height} />}
+      {status === "error" && (
         <FallbackCard
           label={fallbackLabel}
           icon={fallbackIcon}
@@ -91,20 +121,22 @@ const StatImage = ({
         />
       )}
       <img
-        key={reloadKey}
-        src={imgSrc}
+        key={`${mirrorIndex}-${reloadKey}`}
+        src={currentSrc}
         alt={alt}
-        loading="lazy"
-        className={`rounded-xl border border-border max-w-full transition-opacity duration-500 ${
-          state === "loaded" ? "opacity-100" : "opacity-0 absolute pointer-events-none"
+        loading="eager"
+        decoding="async"
+        className={`rounded-xl border border-border max-w-full transition-all duration-500 ${
+          status === "loaded" ? "opacity-100 scale-100" : "opacity-0 scale-95 absolute pointer-events-none"
         } ${className}`}
         style={{ width, height }}
-        onLoad={() => setState("loaded")}
-        onError={() => setState("error")}
+        onLoad={() => setStatus("loaded")}
+        onError={handleError}
       />
     </div>
   );
 };
+
 
 /* ─── Main section ─── */
 const GitHubStatsSection = () => {
@@ -148,9 +180,10 @@ const GitHubStatsSection = () => {
           className="flex flex-wrap justify-center gap-5 w-full"
         >
           <StatImage
-            src={STATS_URL}
+            mirrors={STATS_MIRRORS}
+            params={`${COMMON_PARAMS}&show_icons=true&include_all_commits=true&count_private=true&rank_icon=github`}
             alt="GitHub Stats"
-            fallbackLabel="GitHub Stats unavailable — service may be rate-limited. Click to view on GitHub."
+            fallbackLabel="GitHub Stats service is currently offline. Viewing remote data via secondary nodes failed."
             fallbackIcon={BarChart2}
             fallbackLink={`https://github.com/${USERNAME}`}
             width="495px"
@@ -158,9 +191,10 @@ const GitHubStatsSection = () => {
             reloadKey={reloadKey}
           />
           <StatImage
-            src={LANGS_URL}
+            mirrors={LANGS_MIRRORS}
+            params={`${COMMON_PARAMS}&layout=compact&langs_count=8`}
             alt="Top Languages"
-            fallbackLabel="Top Languages unavailable — service may be rate-limited. Click to view on GitHub."
+            fallbackLabel="Top Languages service is currently offline. Secondary nodes unreachable."
             fallbackIcon={Code2}
             fallbackLink={`https://github.com/${USERNAME}?tab=repositories`}
             width="350px"
@@ -178,9 +212,10 @@ const GitHubStatsSection = () => {
           className="flex justify-center w-full"
         >
           <StatImage
-            src={STREAK_URL}
+            mirrors={STREAK_MIRRORS}
+            params={`${COMMON_PARAMS}&ring=06DF8C&fire=06DF8C&currStreakLabel=06DF8C&sideNums=06DF8C&sideLabels=939aff`}
             alt="GitHub Streak Stats"
-            fallbackLabel="GitHub Streak unavailable — click to view contribution history."
+            fallbackLabel="Streak Stats unavailable. Contribution telemetry disrupted."
             fallbackIcon={GitCommit}
             fallbackLink={`https://github.com/${USERNAME}`}
             width="495px"
