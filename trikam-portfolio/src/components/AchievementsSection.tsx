@@ -4,32 +4,32 @@ import SectionWrapper from "./SectionWrapper";
 
 const achievements = [
   {
-    title: "Hackathon Winner",
-    organization: "Swaminarayan University",
-    date: "2024",
-    description: "Secured 1st place in the university-level hackathon for developing an AI-driven resource management tool.",
+    title: "3rd Place Overall",
+    organization: "SU Hackathon 2026",
+    date: "Jan 2026",
+    description: "Secured a top 3 position among 50+ competing teams at Sangam University for developing SkillSense AI.",
     icon: Award,
   },
   {
-    title: "100+ Days Coding Streak",
-    organization: "LeetCode",
+    title: "Hackathon Champion",
+    organization: "Odoo Hackathon",
     date: "2024",
-    description: "Maintained a consistent coding streak, solving 200+ problems across various data structures and algorithms.",
-    icon: TrendingUp,
-  },
-  {
-    title: "Top 1% Contributor",
-    organization: "Open Source Project",
-    date: "2023",
-    description: "Recognized for significant contributions to a major React-based open-source library.",
+    description: "Awarded first place at Gujarat Vidyapith for engineering a high-integrity Expense Management system.",
     icon: Star,
   },
   {
-    title: "Global Rank < 500",
-    organization: "SoloLearn Contest",
-    date: "2023",
-    description: "Achieved a top 500 global rank in the monthly JavaScript logic challenge.",
+    title: "Top Innovation Award",
+    organization: "SkillSense AI",
+    date: "2025",
+    description: "Recognized for excellence in LLM orchestration and efficient AI integration in a production-ready ecosystem.",
     icon: Zap,
+  },
+  {
+    title: "Technical Specialist",
+    organization: "Sololearn Certified",
+    date: "2023-2024",
+    description: "Verified expertise across 7+ core technical domains including Python, JavaScript, and C++ architectures.",
+    icon: TrendingUp,
   },
 ];
 
