@@ -9,9 +9,9 @@ const GitHubAvatar = () => {
   const [imgError, setImgError] = useState(false);
 
   return (
-    <div className="relative inline-flex flex-col items-center">
+    <div className="relative w-full h-full flex flex-col items-center">
       {/* ── Avatar container ── */}
-      <div className="relative p-1 rounded-full border border-white/10 bg-gradient-to-br from-primary/20 via-transparent to-accent/20">
+      <div className="relative w-full h-full p-1.5 rounded-full border border-white/10 bg-gradient-to-br from-primary/20 via-transparent to-accent/20">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -37,10 +37,10 @@ const GitHubAvatar = () => {
         </motion.div>
 
         {/* ── Availability badge ── */}
-        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full border border-white/10 bg-background/90 backdrop-blur-sm text-[8px] font-bold uppercase tracking-[0.15em] text-foreground/80 shadow-xl flex items-center gap-1.5 whitespace-nowrap">
-          <span className="relative flex h-1.5 w-1.5">
+        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full border border-white/10 bg-background/90 backdrop-blur-md text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-foreground/80 shadow-2xl flex items-center gap-2.5 whitespace-nowrap">
+          <span className="relative flex h-2 sm:h-2.5 w-2 sm:w-2.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
-            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary" />
+            <span className="relative inline-flex rounded-full h-2 sm:h-2.5 w-2 sm:w-2.5 bg-primary" />
           </span>
           Available
         </div>

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, ExternalLink, Trophy, Construction, Layout, Code2, Cpu } from "lucide-react";
+import { Github, ExternalLink, Trophy, Construction, Layout, Code2, Cpu, Youtube, MessageSquare, Figma } from "lucide-react";
 
 export interface Project {
   name: string;
@@ -15,6 +15,9 @@ export interface Project {
   architectureDetails?: string[];
   architectureSchema?: string;
   deploymentNote?: string;
+  youtube?: string;
+  postman?: string;
+  figma?: string;
 }
 
 interface ProjectCardProps {
@@ -111,6 +114,39 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                 title="View Source"
               >
                 <Github size={18} />
+              </a>
+            )}
+            {project.youtube && (
+              <a
+                href={project.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-red-500/10 text-red-500 hover:bg-red-500/20 transition-all border border-red-500/20"
+                title="YouTube Demo"
+              >
+                <Youtube size={18} />
+              </a>
+            )}
+            {project.postman && (
+              <a
+                href={project.postman}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-orange-500/10 text-orange-500 hover:bg-orange-500/20 transition-all border border-orange-500/20"
+                title="Postman API Docs"
+              >
+                <MessageSquare size={18} />
+              </a>
+            )}
+            {project.figma && (
+              <a
+                href={project.figma}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-[#F24E1E]/10 text-[#F24E1E] hover:bg-[#F24E1E]/20 transition-all border border-[#F24E1E]/20"
+                title="Figma Design"
+              >
+                <Figma size={18} />
               </a>
             )}
           </div>

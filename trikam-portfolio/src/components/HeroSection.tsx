@@ -2,8 +2,12 @@ import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Twitter, ChevronRight, Trophy, Star, Activity, Briefcase, Layout } from "lucide-react";
 import GitHubAvatar from "./GitHubAvatar";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import ResumeModal from "./ResumeModal";
+import { FileText } from "lucide-react";
 
 const HeroSection = () => {
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
   return (
     <section className="relative min-h-[min(100vh,1000px)] flex items-center justify-center pt-24 pb-12 overflow-hidden">
       {/* ── Background Orbs ── */}
@@ -63,19 +67,19 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto">
               <Link
                 to="/projects"
-                className="btn-primary w-full sm:w-auto flex items-center justify-center gap-3 group px-8 py-4"
+                className="btn-primary w-full sm:w-auto flex items-center justify-center gap-3 group px-8 py-4 text-sm"
               >
                 View Architecture
                 <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Link>
               
-              <Link
-                to="/contact"
-                className="btn-secondary w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4"
+              <button
+                onClick={() => setIsResumeOpen(true)}
+                className="btn-secondary w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 text-sm"
               >
-                <Mail size={16} />
-                Discuss Impact
-              </Link>
+                <FileText size={16} />
+                View Resume
+              </button>
             </div>
           </motion.div>
 
@@ -89,9 +93,9 @@ const HeroSection = () => {
             <div className="glass-card p-8 sm:p-10 relative z-10 transition-all duration-500 hover:shadow-[0_20px_80px_-20px_rgba(var(--primary),0.15)] glow-border group">
               {/* Card Header */}
               <div className="flex flex-col items-center text-center mb-10">
-                <div className="w-24 h-24 sm:w-32 sm:h-32 mb-6 relative">
+                <div className="w-64 h-64 sm:w-[320px] sm:h-[320px] lg:w-[380px] lg:h-[380px] mb-10 relative">
                   {/* Decorative focus ring */}
-                  <div className="absolute -inset-4 rounded-full bg-gradient-to-tr from-primary/20 via-transparent to-accent/20 animate-spin-slow opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  <div className="absolute -inset-8 rounded-full bg-gradient-to-tr from-primary/30 via-transparent to-accent/30 animate-spin-slow opacity-30 group-hover:opacity-100 transition-opacity duration-700" />
                   <GitHubAvatar />
                 </div>
                 <div>
@@ -157,6 +161,11 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </div>
+      
+      <ResumeModal 
+        isOpen={isResumeOpen} 
+        onClose={() => setIsResumeOpen(false)} 
+      />
     </section>
   );
 };

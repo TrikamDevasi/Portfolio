@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, FileText } from "lucide-react";
 import { NavLink, Link } from "react-router-dom";
 import Logo from "./Logo";
+import ResumeModal from "./ResumeModal";
 
 
 const navLinks = [
@@ -10,12 +11,16 @@ const navLinks = [
   { label: "Skills", href: "/skills" },
   { label: "Projects", href: "/projects" },
   { label: "Certifications", href: "/certifications" },
+  { label: "Hackathons", href: "/hackathons" },
+  { label: "Achievements", href: "/achievements" },
+  { label: "Figma", href: "/figma" },
   { label: "Contact", href: "/contact" },
 ];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -59,15 +64,13 @@ const Navbar = () => {
           <div className="h-4 w-px bg-white/10 mx-2" />
 
           <div className="flex items-center gap-4">
-            <a
-              href="/resume/Trikam_Devasi_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => setIsResumeOpen(true)}
               className="flex items-center gap-2 px-4 py-2 text-xs font-bold uppercase tracking-widest text-foreground/70 hover:text-primary transition-colors"
             >
               <FileText size={14} />
               Resume
-            </a>
+            </button>
             <NavLink
               to="/contact"
               className="px-5 py-2 rounded-full bg-primary text-primary-foreground text-xs font-bold uppercase tracking-widest transition-all hover:shadow-[0_4px_20px_rgba(var(--primary),0.2)] active:scale-95"
@@ -113,16 +116,16 @@ const Navbar = () => {
               ))}
               <div className="h-px bg-white/5 w-full" />
               <div className="flex flex-col gap-4">
-                <a
-                  href="/resume/Trikam_Devasi_Resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMobileOpen(false)}
+                <button
+                  onClick={() => {
+                    setIsResumeOpen(true);
+                    setMobileOpen(false);
+                  }}
                   className="flex items-center gap-2 text-foreground/80 font-medium"
                 >
                   <FileText size={20} />
                   Resume
-                </a>
+                </button>
                 <NavLink
                   to="/contact"
                   onClick={() => setMobileOpen(false)}
@@ -135,6 +138,8 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
     </motion.nav>
   );
 };

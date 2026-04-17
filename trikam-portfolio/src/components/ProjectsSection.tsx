@@ -7,9 +7,7 @@ const projects: Project[] = [
   /* ─── TIER 1: Core Infrastructure & AI ─── */
   {
     name: "SkillSense AI",
-    category: "hackathon",
-    hackathonName: "AI Integration Build",
-    badgeText: "🏆 Top Innovation",
+    category: "full-stack",
     tier: 1,
     architectureSchema: "LLM Orchestration · Async Task Queue · Email Pipeline",
     architectureDetails: [
@@ -27,10 +25,12 @@ const projects: Project[] = [
     status: "In Development",
     github: "https://github.com/TrikamDevasi/SkillSense_AI",
     live: "#",
+    youtube: "https://youtube.com/demo-placeholder",
+    postman: "https://documenter.getpostman.com/view/placeholder",
   },
   {
     name: "Game Hub",
-    category: "personal",
+    category: "games",
     tier: 1,
     architectureSchema: "Real-Time Concurrency · WebSocket Room Architecture · State Sync",
     architectureDetails: [
@@ -47,68 +47,70 @@ const projects: Project[] = [
     tech: ["React", "Node.js", "Socket.io", "Express"],
     live: "https://trikamdevasi.github.io/game-portal",
     github: "https://github.com/TrikamDevasi/game-portal",
+    youtube: "https://youtube.com/demo-placeholder",
   },
   
   /* ─── TIER 2: Full-Stack & Data Layers ─── */
   {
     name: "E-Commerce — Tic Tech Toe",
-    category: "hackathon",
-    hackathonName: "Tic Tech Toe Hackathon",
-    badgeText: "🏆 Tic Tech Toe",
+    category: "full-stack",
     tier: 2,
     description: "Full-stack e-commerce platform with ML-powered product recommendations via Gemini API. Implements Redis caching for session management and product catalog, Google OAuth 2.0 for authentication, and transactional integrity for cart and order operations. Deployed with Docker Compose.",
     deploymentNote: "Redis caching layer · Google OAuth · Dockerized services",
     tech: ["React", "PostgreSQL", "Express", "Redis", "Docker", "Styled Components"],
     github: "https://github.com/TrikamDevasi/tic_tech_toe-ecommerce-website-.git",
     live: "#",
+    youtube: "https://youtube.com/demo-placeholder",
+    postman: "https://documenter.getpostman.com/view/placeholder",
+    figma: "https://figma.com/design-placeholder",
   },
   {
     name: "Expense Manager",
-    category: "hackathon",
-    hackathonName: "Odoo Hackathon (Gujarat Vidyapith)",
-    badgeText: "🏆 Odoo Hackathon",
+    category: "full-stack",
     tier: 2,
     description: "Full-stack tracker with categories, tracking history, and a structured dashboard. Features JWT-based auth, complex data aggregation pipelines for reporting, and multi-category budget tracking with time-series visualization.",
     tech: ["Node.js", "Express", "MongoDB", "JWT", "JavaScript"],
     live: "https://expense-management-odoo.netlify.app/",
     github: "https://github.com/Trikamcg/expense_management/tree/main/project",
+    youtube: "https://youtube.com/demo-placeholder",
+    postman: "https://documenter.getpostman.com/view/placeholder",
   },
   {
     name: "Cinephiles Watch – React",
-    category: "personal",
+    category: "frontend",
     tier: 2,
     description: "Movie discovery platform with a search-first UI, filters, and detail pages. Features debounced search, genre/rating filters, and a fully responsive design.",
     tech: ["React", "Tailwind CSS", "TMDB API", "React Router"],
     live: "https://cinephiles-watch-react-js.onrender.com/",
     github: "https://github.com/TrikamDevasi/cinephiles-watch-react.js-.git",
+    youtube: "https://youtube.com/demo-placeholder",
+    figma: "https://www.figma.com/proto/ZRRy0ASHhexMkGPwNhUDQK/Untitled?page-id=0%3A1&team_id=1583156995664834349&node-id=1003-43&t=m9PW1ljhrDRXTmxL-1",
   },
 
   /* ─── TIER 3: Specialty / Edge ─── */
   {
-    name: "Team Quantum Coders",
-    category: "hackathon",
-    hackathonName: "SU Hackathon",
-    badgeText: "🏆 SU Hackathon",
+    name: "Netflix Clone",
+    category: "clones",
     tier: 3,
-    description: "A collaborative resource management tool for rapid emergency response coordination. Optimized for high-concurrency access and mobile performance.",
-    tech: ["React Native", "Firebase", "Google Maps SDK", "Node.js"],
-    github: "https://github.com/TrikamDevasi/TEAM_QUANTUM_CODERS-SU-.git",
-    live: "#",
+    description: "High-fidelity Netflix clone featuring dynamic trailer previews, user profiles, and TMDB API integration. Optimized for mobile and desktop viewing.",
+    tech: ["React", "Firebase", "TheMovieDB API", "Tailwind CSS"],
+    github: "https://github.com/TrikamDevasi/netflix-clone",
+    live: "https://trikam-netflix-clone.netlify.app/",
+    youtube: "https://youtube.com/demo-placeholder",
   },
   {
-    name: "ArtPark",
-    category: "hackathon",
-    hackathonName: "CodeForge Hackathon",
-    badgeText: "🏆 CodeForge Hackathon",
+    name: "Amazon Clone",
+    category: "clones",
     tier: 3,
-    description: "A collaborative digital art park where users can create, share, and showcase generative art. Features real-time rendering and gallery management.",
-    tech: ["React", "Canvas API", "Firebase", "Framer Motion", "Material UI"],
-    github: "https://github.com/TrikamDevasi/ArtPark_CodeForge_Hackathon.git",
-    live: "#",
+    description: "A full-featured Amazon clone with product listings, user authentication, and a functional shopping cart using React Context API.",
+    tech: ["React", "Firebase", "Context API", "CSS Grid"],
+    github: "https://github.com/TrikamDevasi/amazon-clone",
+    live: "https://trikam-amazon-clone.netlify.app/",
+    youtube: "https://youtube.com/demo-placeholder",
   },
 ];
 
-const categories = ["all", "hackathon", "personal", "open-source"] as const;
+const categories = ["all", "games", "clones", "full-stack", "frontend"] as const;
 type Category = typeof categories[number];
 
 const ProjectsSection = () => {

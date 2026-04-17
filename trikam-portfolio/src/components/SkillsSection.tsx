@@ -79,16 +79,31 @@ const SkillsSection = () => (
           </h3>
           <div className="flex flex-wrap gap-2">
             {cat.skills.map((skill) => (
-              <span
-                key={skill.name}
-                className={`px-3 py-1.5 text-xs font-medium rounded-full border transition-all duration-200 cursor-default ${
-                  skill.level === 'Applied' 
-                    ? 'bg-primary/10 text-primary border-primary/30 hover:border-primary/60 hover:bg-primary/20' 
-                    : 'bg-secondary text-foreground border-border hover:border-primary/50 hover:bg-primary/10'
-                }`}
-              >
-                {skill.name}
-              </span>
+              <div key={skill.name} className="w-full">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs font-medium text-foreground">{skill.name}</span>
+                  {skill.level && (
+                    <span className="text-[10px] font-mono text-primary uppercase tracking-tighter">
+                      {skill.level}
+                    </span>
+                  )}
+                </div>
+                {skill.level ? (
+                  <div className="h-1.5 w-full bg-secondary rounded-full overflow-hidden border border-border/30 mb-3">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: skill.level === 'Expert' ? '95%' : skill.level === 'Advanced' ? '85%' : '70%' }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1, ease: "easeOut" }}
+                      className="h-full bg-primary shadow-[0_0_10px_rgba(0,217,255,0.5)]"
+                    />
+                  </div>
+                ) : (
+                  <span className="inline-block px-2 py-0.5 text-[10px] bg-secondary text-muted-foreground rounded-md border border-border/30 mb-3">
+                    {skill.name}
+                  </span>
+                )}
+              </div>
             ))}
           </div>
         </motion.div>
