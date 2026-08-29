@@ -1,9 +1,8 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Github, Linkedin, Youtube, Mail, Twitter, Code2, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { Send, Github, Linkedin, Youtube, Mail, Twitter, Code2, CheckCircle2, AlertCircle, Loader2, MapPin, Clock, MessageSquare } from "lucide-react";
 import SectionWrapper from "./SectionWrapper";
 import emailjs from "@emailjs/browser";
-import contactGif from "@/assets/paftdrunk-sun-3392_512.gif";
 
 const socials = [
   { icon: Github, href: "https://github.com/TrikamDevasi", label: "GitHub" },
@@ -28,11 +27,19 @@ const ContactSection = () => {
     setStatus("loading");
 
     try {
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || "";
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "";
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "";
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error("Email service is not configured.");
+      }
+
       await emailjs.sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID || "",
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID || "",
+        serviceId,
+        templateId,
         formRef.current!,
-        import.meta.env.VITE_EMAILJS_PUBLIC_KEY || ""
+        publicKey
       );
 
       setStatus("success");
@@ -41,41 +48,45 @@ const ContactSection = () => {
     } catch (error) {
       console.error("EmailJS Error:", error);
       setStatus("error");
-      setTimeout(() => setStatus("idle"), 4000);
+      setTimeout(() => setStatus("idle"), 5000);
     }
   };
 
   return (
-    <SectionWrapper id="contact" title="Get In Touch" subtitle="Let's build something great together">
-      <div className="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+    <SectionWrapper id="contact" title="Get In Touch" subtitle="Let's connect and build something impactful">
+      <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto items-start">
+        {/* Form Container */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="relative"
+          transition={{ duration: 0.5 }}
+          className="glass-card p-6 sm:p-8 rounded-2xl glow-border relative"
         >
-          {/* Success Toast */}
+          {/* Success / Error Alerts */}
           <AnimatePresence>
             {status === "success" && (
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                role="alert"
+                initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                className="absolute -top-12 left-0 right-0 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center gap-2 text-emerald-400 text-sm z-10"
+                exit={{ opacity: 0, y: -10 }}
+                className="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-3 text-emerald-400 text-sm"
               >
-                <CheckCircle2 size={16} />
-                Message sent! I'll reply within 24 hours.
+                <CheckCircle2 size={18} className="shrink-0" />
+                <span>Message sent successfully! I'll get back to you within 24 hours.</span>
               </motion.div>
             )}
             {status === "error" && (
               <motion.div
-                initial={{ opacity: 0, y: 10 }}
+                role="alert"
+                initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                className="absolute -top-12 left-0 right-0 p-3 rounded-lg bg-rose-500/10 border border-rose-500/20 flex items-center gap-2 text-rose-400 text-sm z-10"
+                exit={{ opacity: 0, y: -10 }}
+                className="mb-6 p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center gap-3 text-rose-400 text-sm"
               >
-                <AlertCircle size={16} />
-                Failed to send. Please email me directly.
+                <AlertCircle size={18} className="shrink-0" />
+                <span>Unable to send through the form. Please reach out directly at <a href="mailto:trikam.devasi.cg@gmail.com" className="underline font-semibold text-rose-300">trikam.devasi.cg@gmail.com</a></span>
               </motion.div>
             )}
           </AnimatePresence>
@@ -83,54 +94,74 @@ const ContactSection = () => {
           <form
             ref={formRef}
             onSubmit={handleSubmit}
-            className="space-y-4"
+            className="space-y-5"
           >
-            <input
-              type="text"
-              name="from_name" // Match EmailJS template variable
-              placeholder="Your Name"
-              required
-              disabled={status === "loading"}
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all disabled:opacity-50"
-            />
-            <input
-              type="email"
-              name="from_email" // Match EmailJS template variable
-              placeholder="Your Email"
-              required
-              disabled={status === "loading"}
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all disabled:opacity-50"
-            />
-            <textarea
-              name="message"
-              placeholder="Your Message (min 10 characters)"
-              rows={5}
-              required
-              disabled={status === "loading"}
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-all resize-none disabled:opacity-50"
-            />
+            <div>
+              <label htmlFor="from_name" className="block text-xs font-semibold uppercase tracking-wider text-foreground/80 mb-2">
+                Your Name <span className="text-primary">*</span>
+              </label>
+              <input
+                id="from_name"
+                type="text"
+                name="from_name"
+                placeholder="Trikam Devasi"
+                required
+                disabled={status === "loading"}
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                className="w-full px-4 py-3 rounded-lg bg-secondary/60 border border-border text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50 text-sm"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="from_email" className="block text-xs font-semibold uppercase tracking-wider text-foreground/80 mb-2">
+                Your Email <span className="text-primary">*</span>
+              </label>
+              <input
+                id="from_email"
+                type="email"
+                name="from_email"
+                placeholder="name@example.com"
+                required
+                disabled={status === "loading"}
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                className="w-full px-4 py-3 rounded-lg bg-secondary/60 border border-border text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50 text-sm"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="message" className="block text-xs font-semibold uppercase tracking-wider text-foreground/80 mb-2">
+                Your Message <span className="text-primary">*</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                placeholder="Hi Trikam, I'd like to discuss an opportunity..."
+                rows={5}
+                required
+                minLength={10}
+                disabled={status === "loading"}
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+                className="w-full px-4 py-3 rounded-lg bg-secondary/60 border border-border text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none disabled:opacity-50 text-sm"
+              />
+            </div>
+
             <button
               type="submit"
               disabled={status === "loading"}
-              className={`btn-glow w-full px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-all ${
-                status === "loading" ? "bg-primary/50 cursor-not-allowed" : "bg-primary text-primary-foreground"
+              aria-label="Send message"
+              className={`w-full px-6 py-3.5 rounded-lg font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2.5 transition-all ${
+                status === "loading"
+                  ? "bg-primary/50 text-primary-foreground cursor-not-allowed"
+                  : "bg-primary text-primary-foreground hover:brightness-110 hover:shadow-[0_0_25px_rgba(var(--primary),0.3)] active:scale-[0.98]"
               }`}
             >
               {status === "loading" ? (
                 <>
                   <Loader2 size={16} className="animate-spin" />
-                  Sending...
-                </>
-              ) : status === "success" ? (
-                <>
-                  <CheckCircle2 size={16} />
-                  Message Sent!
+                  Sending Message...
                 </>
               ) : (
                 <>
@@ -142,39 +173,72 @@ const ContactSection = () => {
           </form>
         </motion.div>
 
+        {/* Developer Contact Info & Status Card */}
         <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-col justify-center"
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="flex flex-col gap-6"
         >
-          <div className="mb-8 rounded-2xl overflow-hidden border border-border/50 shadow-2xl glow-border">
-            <img 
-              src={contactGif} 
-              alt="Contact Illustration" 
-              className="w-full h-auto object-cover opacity-80 hover:opacity-100 transition-opacity duration-500" 
-            />
+          {/* Info Card */}
+          <div className="glass-card p-6 sm:p-8 rounded-2xl glow-border">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-3 rounded-xl bg-primary/10 text-primary border border-primary/20">
+                <MessageSquare size={24} />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-foreground">Direct Contact</h3>
+                <p className="text-xs text-muted-foreground font-mono">Open for opportunities</p>
+              </div>
+            </div>
+
+            <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+              I am actively seeking software engineering internships, collaborative open-source projects, and full-stack development opportunities.
+            </p>
+
+            <div className="space-y-4 border-t border-border/40 pt-6">
+              <div className="flex items-center gap-3 text-sm text-foreground/80">
+                <MapPin size={18} className="text-primary shrink-0" />
+                <span>Ahmedabad, Gujarat, India</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-foreground/80">
+                <Clock size={18} className="text-primary shrink-0" />
+                <span>IST (UTC+5:30) · Quick Response Guaranteed</span>
+              </div>
+              <div className="flex items-center gap-3 text-sm text-foreground/80">
+                <Mail size={18} className="text-primary shrink-0" />
+                <a
+                  href="mailto:trikam.devasi.cg@gmail.com"
+                  className="text-primary hover:underline font-mono text-xs sm:text-sm font-medium"
+                >
+                  trikam.devasi.cg@gmail.com
+                </a>
+              </div>
+            </div>
           </div>
-          <p className="text-muted-foreground mb-6 leading-relaxed text-sm md:text-base">
-            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-            Feel free to reach out via the form or my social handles!
-          </p>
-          <a href="mailto:trikam.devasi.cg@gmail.com" className="text-primary font-mono text-sm mb-8 hover:underline">
-            trikam.devasi.cg@gmail.com
-          </a>
-          <div className="flex flex-wrap gap-4">
-            {socials.map(({ icon: Icon, href, label }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={label}
-                className="p-3 rounded-lg border border-border bg-secondary/50 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all duration-300"
-              >
-                <Icon size={20} />
-              </a>
-            ))}
+
+          {/* Social Profiles Grid */}
+          <div className="glass-card p-6 rounded-2xl glow-border">
+            <h4 className="text-xs font-bold uppercase tracking-widest text-foreground/70 mb-4">
+              Connect Across Platforms
+            </h4>
+            <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+              {socials.map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  title={label}
+                  className="flex flex-col items-center justify-center p-3 rounded-xl border border-border/50 bg-secondary/30 hover:border-primary/50 hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all group"
+                >
+                  <Icon size={20} className="group-hover:scale-110 transition-transform" />
+                  <span className="text-[10px] font-mono mt-1.5 opacity-80 group-hover:opacity-100">{label}</span>
+                </a>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>

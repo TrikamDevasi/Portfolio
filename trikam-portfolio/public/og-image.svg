@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#07060B"/>
+      <stop offset="50%" stop-color="#0E0C17"/>
+      <stop offset="100%" stop-color="#07060B"/>
+    </linearGradient>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06DF8C"/>
+      <stop offset="100%" stop-color="#939AFF"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="950" cy="200" r="280" fill="#06DF8C" opacity="0.06"/>
+  <circle cx="200" cy="500" r="240" fill="#939AFF" opacity="0.05"/>
+  <rect x="80" y="80" width="1040" height="470" rx="24" fill="#141124" fill-opacity="0.5" stroke="#2B2640" stroke-width="2"/>
+  
+  <text x="140" y="180" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" fill="#06DF8C" letter-spacing="4">PORTFOLIO &amp; SYSTEMS</text>
+  <text x="140" y="270" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="900" fill="#FFFFFF">Trikam Devasi</text>
+  <text x="140" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="700" fill="url(#grad)">Full-Stack Developer · B.Tech CSE</text>
+  <text x="140" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="400" fill="#A0A0B8">React · Next.js · Node.js · Express · MongoDB · Socket.io · C++</text>
+  
+  <line x1="140" y1="465" x2="1060" y2="465" stroke="#2B2640" stroke-width="1"/>
+  <text x="140" y="505" font-family="monospace" font-size="16" fill="#06DF8C">https://trikam-portfolio.vercel.app</text>
+</svg>

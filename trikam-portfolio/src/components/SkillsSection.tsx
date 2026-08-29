@@ -1,109 +1,77 @@
 import { motion } from "framer-motion";
+import { Code, Layout, Server, Database, Wrench, Sparkles } from "lucide-react";
 import SectionWrapper from "./SectionWrapper";
 
 interface SkillCategory {
   title: string;
-  skills: { name: string; level?: string }[];
+  icon: React.ElementType;
+  skills: string[];
 }
 
-const categories: SkillCategory[] = [
+const skillCategories: SkillCategory[] = [
   {
-    title: "Frontend",
-    skills: [
-      { name: "React", level: "Expert" },
-      { name: "JavaScript", level: "Expert" },
-      { name: "Tailwind CSS", level: "Expert" },
-      { name: "HTML/CSS", level: "Expert" },
-      { name: "Next.js", level: "Advanced" },
-      { name: "TypeScript", level: "Advanced" },
-      { name: "Framer Motion" },
-    ],
+    title: "Core Languages",
+    icon: Code,
+    skills: ["C++", "JavaScript (ES6+)", "TypeScript", "HTML5", "CSS3"],
   },
   {
-    title: "Backend",
-    skills: [
-      { name: "Node.js", level: "Advanced" },
-      { name: "Express", level: "Advanced" },
-      { name: "MongoDB", level: "Advanced" },
-      { name: "REST APIs" },
-      { name: "JWT Auth" },
-      { name: "Socket.io" },
-    ],
+    title: "Frontend Engineering",
+    icon: Layout,
+    skills: ["React.js", "Next.js", "Tailwind CSS", "Framer Motion", "Responsive Design"],
   },
   {
-    title: "DevOps & Quality Engineering",
-    skills: [
-      { name: "GitHub Actions", level: "Applied" },
-      { name: "Docker", level: "Applied" },
-      { name: "AWS EC2 / S3", level: "Applied" },
-      { name: "Jest", level: "Applied" },
-      { name: "Cypress / Playwright", level: "Applied" },
-      { name: "Redis Pub/Sub", level: "Applied" },
-    ],
+    title: "Backend & APIs",
+    icon: Server,
+    skills: ["Node.js", "Express.js", "RESTful APIs", "Socket.io (WebSockets)", "JWT Authentication"],
   },
   {
-    title: "Tools & Learning",
-    skills: [
-      { name: "Git/GitHub" },
-      { name: "Postman" },
-      { name: "VS Code" },
-      { name: "Netlify" },
-      { name: "Render" },
-      { name: "System Design", level: "Learning" },
-    ],
+    title: "Databases & Caching",
+    icon: Database,
+    skills: ["MongoDB & Mongoose", "PostgreSQL", "Redis (Pub/Sub & Caching)"],
   },
   {
-    title: "AI & APIs",
-    skills: [
-      { name: "OpenAI API" },
-      { name: "Perplexity API" },
-      { name: "TMDB API" },
-    ],
+    title: "DevOps & Tooling",
+    icon: Wrench,
+    skills: ["Git & GitHub", "Docker (Compose)", "Postman API Testing", "VS Code", "Vercel & Netlify"],
+  },
+  {
+    title: "AI & External Integrations",
+    icon: Sparkles,
+    skills: ["OpenAI API", "Google Gemini API", "TMDB API", "EmailJS"],
   },
 ];
 
 const SkillsSection = () => (
-  <SectionWrapper id="skills" title="Skills" subtitle="Technologies I work with">
-    <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-      {categories.map((cat, i) => (
+  <SectionWrapper id="skills" title="Technical Skills" subtitle="Technologies and tools I use to build scalable products">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {skillCategories.map((cat, i) => (
         <motion.div
           key={cat.title}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: i * 0.1 }}
-          className="glass-card glow-border rounded-xl p-6"
+          transition={{ duration: 0.4, delay: i * 0.08 }}
+          className="glass-card glow-border rounded-2xl p-6 flex flex-col h-full hover:border-primary/40 transition-all"
         >
-          <h3 className="text-primary font-mono text-sm mb-4 font-semibold tracking-wide">
-            {`// ${cat.title}`}
-          </h3>
-          <div className="flex flex-wrap gap-2">
+          {/* Category Header */}
+          <div className="flex items-center gap-3 mb-5 pb-3 border-b border-border/50">
+            <div className="p-2.5 rounded-xl bg-primary/10 text-primary border border-primary/20">
+              <cat.icon size={18} />
+            </div>
+            <h3 className="text-base font-bold text-foreground tracking-tight">
+              {cat.title}
+            </h3>
+          </div>
+
+          {/* Skill Badges */}
+          <div className="flex flex-wrap gap-2 mt-auto">
             {cat.skills.map((skill) => (
-              <div key={skill.name} className="w-full">
-                <div className="flex justify-between items-center mb-1">
-                  <span className="text-xs font-medium text-foreground">{skill.name}</span>
-                  {skill.level && (
-                    <span className="text-[10px] font-mono text-primary uppercase tracking-tighter">
-                      {skill.level}
-                    </span>
-                  )}
-                </div>
-                {skill.level ? (
-                  <div className="h-1.5 w-full bg-secondary rounded-full overflow-hidden border border-border/30 mb-3">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: skill.level === 'Expert' ? '95%' : skill.level === 'Advanced' ? '85%' : '70%' }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 1, ease: "easeOut" }}
-                      className="h-full bg-primary shadow-[0_0_10px_rgba(0,217,255,0.5)]"
-                    />
-                  </div>
-                ) : (
-                  <span className="inline-block px-2 py-0.5 text-[10px] bg-secondary text-muted-foreground rounded-md border border-border/30 mb-3">
-                    {skill.name}
-                  </span>
-                )}
-              </div>
+              <span
+                key={skill}
+                className="px-3 py-1.5 rounded-lg bg-secondary/60 text-foreground/90 hover:text-primary hover:border-primary/50 text-xs font-mono border border-border/60 transition-all"
+              >
+                {skill}
+              </span>
             ))}
           </div>
         </motion.div>

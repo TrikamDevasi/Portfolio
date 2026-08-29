@@ -1,135 +1,123 @@
 import { motion } from "framer-motion";
-import { Rocket, BookOpen, Users, Calendar, GraduationCap, Briefcase, Code } from "lucide-react";
+import { GraduationCap, Code2, Trophy, Terminal, Laptop, BookOpen } from "lucide-react";
 import SectionWrapper from "./SectionWrapper";
 
-const codeBlock = `const trikam = {
-  location: "Ahmedabad, Gujarat, India",
-  education: "B.Tech CSE @ Swaminarayan University",
-  semester: "2nd Sem (2025-2029)",
-  passions: ["Building", "Learning", "Shipping"],
-  currentlyArchitecting: "SkillSense AI",
-  infrastructure: ["AWS", "Docker", "CI/CD"],
-  openTo: ["Freelance", "Internships", "Collabs"],
-  coffee: true ☕
-};`;
-
-const highlights = [
-  { icon: Rocket, label: "Currently Building", value: "SkillSense AI" },
-  { icon: BookOpen, label: "Learning", value: "System Design, AWS, Docker" },
-  { icon: Users, label: "Open To", value: "Freelance & Collaborations" },
+const keyHighlights = [
+  { icon: Laptop, title: "What I Build", description: "Full-stack web applications, real-time WebSocket platforms, and AI-assisted software." },
+  { icon: BookOpen, title: "What I'm Learning", description: "Advanced Data Structures & Algorithms in C++, distributed caching, and containerized deployments." },
+  { icon: GraduationCap, title: "Education", description: "B.Tech in Computer Science & Engineering (2025–2029) @ Swaminarayan University." },
 ];
 
 const timeline = [
   {
-    year: "2025 - 2029",
-    title: "B.Tech in CSE @ Swaminarayan University",
-    description: "Currently in 2nd Semester. Focusing on Core CS fundamentals, AI integration, and Scalable Web Architectures.",
+    period: "2025 — 2029",
+    title: "B.Tech in Computer Science & Engineering",
+    institution: "Swaminarayan University, Kalol",
+    description: "Focusing on core CS fundamentals: Data Structures & Algorithms, Object-Oriented Programming, Database Management Systems, and Software Engineering principles.",
     icon: GraduationCap,
   },
   {
-    year: "2024 - 2025",
-    title: "Freelance & Real-World Projects",
-    description: "Built and shipped production-ready web apps, expense trackers, and professional portfolios for clients.",
-    icon: Briefcase,
+    period: "2024 — 2025",
+    title: "Full-Stack Development & Hackathons",
+    institution: "Skill Building & Competitions",
+    description: "Built and shipped production-ready web applications including SkillSense AI (awarded 3rd place at SU Hackathon 2026), Game Hub multiplayer portal, and full-stack dashboards.",
+    icon: Trophy,
   },
   {
-    year: "2024",
-    title: "Full-Stack Specialization",
-    description: "Mastered React, Node.js, and MongoDB. Built over 10+ projects including Cinephiles and Game Hub.",
-    icon: Code,
-  },
-  {
-    year: "2023",
-    title: "Coding Foundation",
-    description: "Started with the basics of HTML, CSS, and JavaScript. Developed a passion for building for the web.",
-    icon: Calendar,
+    period: "2023 — 2024",
+    title: "Programming Fundamentals & Web Basics",
+    institution: "Foundational Learning",
+    description: "Mastered core programming concepts in C++ and JavaScript. Developed frontend web interfaces using HTML, CSS, React, and RESTful API integrations.",
+    icon: Code2,
   },
 ];
 
 const AboutSection = () => {
   return (
-    <SectionWrapper id="about" title="About Me" subtitle="A little about who I am">
-      <div className="space-y-16">
-        {/* ── Bio & Code Block ── */}
-        <div className="grid md:grid-cols-2 gap-10 items-start">
+    <SectionWrapper id="about" title="About Me" subtitle="Background, engineering focus, and learning journey">
+      <div className="space-y-16 max-w-6xl mx-auto">
+        {/* ── Bio & Engineering Highlights ── */}
+        <div className="grid md:grid-cols-12 gap-8 items-stretch">
+          {/* Left: Bio Narrative */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
+            className="md:col-span-7 glass-card p-6 sm:p-8 rounded-2xl glow-border flex flex-col justify-between"
           >
-            <p className="text-muted-foreground leading-relaxed mb-6">
-              I'm a passionate Full-Stack Architect and B.Tech CSE student at Swaminarayan University, Kalol (2nd Sem, 2025-29).
-              I love building web applications that solve real problems, with a focus on system design, observability, and building infrastructure that survives scale.
-            </p>
-            <p className="text-muted-foreground leading-relaxed mb-8">
-              From hackathon-winning distributed systems to containerized AI-powered assessment platforms, I thrive on turning complex ideas into shipped, resilient products.
-              When I'm not coding, you'll find me exploring architecture patterns, optimizing CI/CD pipelines, or contributing to open source.
-            </p>
+            <div>
+              <div className="flex items-center gap-2.5 mb-5 text-primary">
+                <Terminal size={20} />
+                <h3 className="text-lg font-bold text-foreground">Engineering Profile</h3>
+              </div>
 
-            <div className="space-y-4">
-              {highlights.map(({ icon: Icon, label, value }) => (
-                <div key={label} className="flex items-center gap-3 glass-card p-3 rounded-lg">
-                  <div className="p-2 rounded-md bg-primary/10 text-primary">
-                    <Icon size={18} />
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">{label}</p>
-                    <p className="text-sm font-medium text-foreground">{value}</p>
-                  </div>
-                </div>
-              ))}
+              <p className="text-muted-foreground leading-relaxed mb-4 text-sm sm:text-base">
+                I am a 2nd-semester Computer Science undergraduate with a deep passion for building practical, resilient web software. I focus on connecting well-crafted user interfaces with scalable backend APIs and real-time event engines.
+              </p>
+
+              <p className="text-muted-foreground leading-relaxed mb-4 text-sm sm:text-base">
+                My recent work centers on asynchronous task pipelines, WebSocket state management in browser games, and integrating LLMs into web platforms to deliver intelligent, automated user workflows.
+              </p>
+            </div>
+
+            <div className="border-t border-border/40 pt-4 mt-2">
+              <span className="text-xs font-mono text-primary font-semibold">
+                📍 Based in Ahmedabad, India · Open to Software Engineering Internships
+              </span>
             </div>
           </motion.div>
 
+          {/* Right: Quick Pillars */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="glass-card glow-border rounded-xl p-6 overflow-hidden md:sticky md:top-24"
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="md:col-span-5 flex flex-col gap-4"
           >
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-3 h-3 rounded-full bg-destructive/80" />
-              <div className="w-3 h-3 rounded-full bg-primary/60" />
-              <div className="w-3 h-3 rounded-full bg-accent/80" />
-              <span className="text-xs text-muted-foreground ml-2 font-mono">about.ts</span>
-            </div>
-            <pre className="text-sm font-mono text-muted-foreground leading-relaxed overflow-x-auto">
-              <code>{codeBlock}</code>
-            </pre>
+            {keyHighlights.map(({ icon: Icon, title, description }) => (
+              <div key={title} className="glass-card p-5 rounded-xl glow-border flex-1 flex items-start gap-4">
+                <div className="p-2.5 rounded-lg bg-primary/10 text-primary border border-primary/20 shrink-0 mt-0.5">
+                  <Icon size={18} />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-foreground mb-1">{title}</h4>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{description}</p>
+                </div>
+              </div>
+            ))}
           </motion.div>
         </div>
 
         {/* ── Journey Timeline ── */}
-        <div className="pt-8">
-          <h3 className="text-2xl font-bold mb-10 text-center lg:text-left flex items-center gap-3">
-            <Calendar className="text-primary" /> My Journey
+        <div>
+          <h3 className="text-xl font-bold mb-8 text-center sm:text-left flex items-center justify-center sm:justify-start gap-2.5 text-foreground">
+            <span className="text-primary font-mono">//</span> Timeline &amp; Experience
           </h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-3 gap-6">
             {timeline.map((item, i) => (
               <motion.div
-                key={item.year}
+                key={item.period}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="relative group h-full"
+                className="glass-card glow-border p-6 rounded-2xl flex flex-col h-full hover:border-primary/40 transition-all"
               >
-                <div className="glass-card glow-border p-6 rounded-2xl h-full flex flex-col bg-secondary/20 hover:bg-secondary/40 transition-colors">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="p-2.5 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all">
-                      <item.icon size={20} />
-                    </div>
-                    <span className="text-xl font-bold font-mono text-primary/40 group-hover:text-primary transition-colors">
-                      {item.year}
-                    </span>
+                <div className="flex items-center justify-between mb-4">
+                  <div className="p-2.5 rounded-xl bg-primary/10 text-primary border border-primary/20">
+                    <item.icon size={20} />
                   </div>
-                  <h4 className="font-bold text-foreground mb-2">{item.title}</h4>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    {item.description}
-                  </p>
+                  <span className="text-xs font-mono font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/20">
+                    {item.period}
+                  </span>
                 </div>
+                <h4 className="font-bold text-foreground text-sm mb-1">{item.title}</h4>
+                <p className="text-xs font-mono text-muted-foreground mb-3">{item.institution}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed mt-auto">
+                  {item.description}
+                </p>
               </motion.div>
             ))}
           </div>

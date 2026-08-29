@@ -5,74 +5,75 @@ import SectionWrapper from "./SectionWrapper";
 const figmaProjects = [
   {
     name: "Comfort Nest",
-    description: "A premium real estate and interior design platform focusing on minimalist aesthetics and user-centric property discovery.",
+    description: "Real estate & interior design prototype with modern discovery layouts and property card interactions.",
     link: "https://www.figma.com/proto/Tcep5K8ePwpXfeuoOmXmGm/Untitled?page-id=0%3A1&team_id=1583156995664834349&node-id=2-2&starting-point-node-id=2%3A2&t=NAofM2Xgy3vvdlle-1",
-    tag: "Real Estate",
+    tag: "Real Estate UI",
   },
   {
     name: "Cinephiles Watch",
-    description: "Modern UI for movie streaming and discovery, featuring dynamic genre filtering and detailed cinematic layouts.",
+    description: "Cinematic interface prototype for movie streaming, dynamic genre filtering, and modal video previews.",
     link: "https://www.figma.com/proto/ZRRy0ASHhexMkGPwNhUDQK/Untitled?page-id=0%3A1&team_id=1583156995664834349&node-id=1003-43&t=m9PW1ljhrDRXTmxL-1",
-    tag: "Streaming UI",
+    tag: "Streaming Media",
   },
   {
-    name: "Poco Design — Movie Website",
-    description: "High-fidelity prototype for a movie database and community platform, optimized for engagement and smooth transitions.",
+    name: "Poco Design — Movie Hub",
+    description: "High-fidelity prototype with fluid transitions, community feedback panels, and trailer carousels.",
     link: "https://www.figma.com/proto/crvd8JlvwBClPBBdkkx9nM/poco--design?page-id=10%3A69&team_id=1583156995664834349&node-id=390-139&starting-point-node-id=391%3A297&t=NabvmsqNwTZokCT3-1",
     tag: "Design System",
   },
   {
-    name: "Futuristic Portal Design",
-    description: "Experimental UI design exploring glassmorphism, depth, and futuristic interactive elements for portfolio experiences.",
+    name: "Interactive Portfolio Portal",
+    description: "Dark-mode UI concept exploring glassmorphism, responsive grid hierarchies, and interactive typography.",
     link: "https://www.figma.com/design/w1OosMc1LrcJHz8npGkic1/Untitled--1-?node-id=38-22&t=eLgVIidY18mygV83-1",
     tag: "UI Experiment",
   },
 ];
 
 const FigmaSection = () => (
-  <SectionWrapper id="figma" title="Figma Designs" subtitle="UI/UX Prototypes & Layouts">
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <SectionWrapper id="figma" title="UI/UX Prototyping" subtitle="Figma wireframes, design systems, and user flow explorations">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
       {figmaProjects.map((project, i) => (
         <motion.div
           key={project.name}
-          initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: i * 0.1 }}
-          className="glass-card glow-border p-8 rounded-3xl relative overflow-hidden group hover:bg-secondary/20 transition-all"
+          transition={{ duration: 0.4, delay: i * 0.08 }}
+          className="glass-card glow-border p-6 sm:p-8 rounded-2xl relative overflow-hidden group hover:border-primary/40 transition-all flex flex-col justify-between"
         >
-          <div className="flex flex-col h-full">
-            <div className="flex items-start justify-between mb-6">
-              <div className="p-3 rounded-2xl bg-[#F24E1E]/10 text-[#F24E1E]">
-                <Figma size={28} />
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <div className="p-2.5 rounded-xl bg-[#F24E1E]/10 text-[#F24E1E] border border-[#F24E1E]/20">
+                <Figma size={22} />
               </div>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2.5 py-1 rounded-full border border-primary/20">
                 {project.tag}
               </span>
             </div>
             
-            <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
+            <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
               {project.name}
             </h3>
             
-            <p className="text-sm text-muted-foreground leading-relaxed mb-8 flex-1">
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-6">
               {project.description}
             </p>
-            
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-foreground hover:text-primary transition-all group/link"
-            >
-              <ExternalLink size={16} className="group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
-              View Prototype
-            </a>
           </div>
 
-          {/* Decorative background element */}
-          <div className="absolute -bottom-6 -right-6 text-foreground/[0.02] -rotate-12 transition-transform group-hover:scale-110 hidden sm:block">
-            <Layout size={160} />
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open ${project.name} prototype in Figma`}
+            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary hover:underline group/link pt-3 border-t border-border/40"
+          >
+            <ExternalLink size={14} className="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+            Open Interactive Prototype
+          </a>
+
+          {/* Subtle background decoration */}
+          <div className="absolute -bottom-4 -right-4 text-foreground/[0.02] -rotate-12 pointer-events-none hidden sm:block">
+            <Layout size={120} />
           </div>
         </motion.div>
       ))}

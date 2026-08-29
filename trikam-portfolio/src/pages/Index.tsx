@@ -5,9 +5,9 @@ import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import SkillsSection from "@/components/SkillsSection";
 import ProjectsSection from "@/components/ProjectsSection";
-import CertificationsSection from "@/components/CertificationsSection";
 import HackathonsSection from "@/components/HackathonsSection";
 import AchievementsSection from "@/components/AchievementsSection";
+import CertificationsSection from "@/components/CertificationsSection";
 import FigmaSection from "@/components/FigmaSection";
 import GitHubStatsSection from "@/components/GitHubStatsSection";
 import ContactSection from "@/components/ContactSection";
@@ -25,24 +25,25 @@ const Index = () => {
         element.scrollIntoView({ behavior: "smooth" });
       }
     } else {
-      // If we're at home, scroll to top
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [pathname]);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background text-foreground selection:bg-primary/20 selection:text-foreground">
       <Navbar />
-      <HeroSection />
-      <AboutSection />
-      <SkillsSection />
-      <ProjectsSection />
-      <CertificationsSection />
-      <HackathonsSection />
-      <AchievementsSection />
-      <FigmaSection />
-      <GitHubStatsSection />
-      <ContactSection />
+      <main id="main-content">
+        <HeroSection />
+        <AboutSection />
+        <SkillsSection />
+        <ProjectsSection />
+        <HackathonsSection />
+        <AchievementsSection />
+        <CertificationsSection />
+        <FigmaSection />
+        <GitHubStatsSection />
+        <ContactSection />
+      </main>
       <Footer />
     </div>
   );

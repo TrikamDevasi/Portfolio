@@ -1,81 +1,81 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, Twitter, ChevronRight, Trophy, Star, Activity, Briefcase, Layout } from "lucide-react";
+import { Github, Linkedin, Twitter, ChevronRight, Trophy, Star, Code2, Briefcase, FileText } from "lucide-react";
 import GitHubAvatar from "./GitHubAvatar";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import ResumeModal from "./ResumeModal";
-import { FileText } from "lucide-react";
 
 const HeroSection = () => {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
+
   return (
-    <section className="relative min-h-[min(100vh,1000px)] flex items-center justify-center pt-24 pb-12 overflow-hidden">
-      {/* ── Background Orbs ── */}
+    <section className="relative min-h-[min(100vh,950px)] flex items-center justify-center pt-28 pb-16 overflow-hidden">
+      {/* ── Background Subtle Glow ── */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(var(--primary),0.02)_0,transparent_75%)]" />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/[0.04] rounded-full blur-[140px]" />
       </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.3fr,1fr] items-center gap-12 lg:gap-16 xl:gap-24">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.25fr,1fr] items-center gap-12 lg:gap-16 xl:gap-20">
           
-          {/* ── Left Column: Architectural Messaging ── */}
+          {/* ── Left Column: Value Proposition & Intro ── */}
           <motion.div
-            initial={{ opacity: 0, x: -25 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="flex flex-col items-center lg:items-start text-center lg:text-left"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-[10px] font-bold uppercase tracking-[0.25em] mb-8 text-primary animate-pulse-glow">
-              <Activity size={12} />
-              Engineering Scale & Intelligence
+            {/* Status Chip */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-[11px] font-mono font-semibold uppercase tracking-wider mb-6 text-primary">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              B.Tech CSE Student · 2025–2029
             </div>
 
-            <h1 className="fluid-heading font-black font-display tracking-tighter text-foreground mb-8 leading-[0.95]">
-              Architecting <br />
-              <span className="text-gradient">High-Performance</span> <br />
-              AI Ecosystems.
+            <h1 className="fluid-heading font-extrabold font-display tracking-tight text-foreground mb-6 leading-[1.05]">
+              Building Modern <br />
+              <span className="text-gradient">Full-Stack &amp; AI</span> <br />
+              Web Systems.
             </h1>
 
-            <p className="fluid-body text-foreground/60 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              Full-Stack Architect specializing in AI-integrated systems and scalable web infrastructure.
-              I build production-ready <span className="text-primary font-mono">distributed systems</span> and <span className="text-primary font-mono">intelligent LLM pipelines</span>, supported by robust CI/CD and containerized deployments.
+            <p className="fluid-body text-muted-foreground mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed text-sm sm:text-base">
+              Hi, I'm <strong className="text-foreground font-semibold">Trikam Devasi</strong>. I develop responsive web applications, real-time WebSocket platforms, and intelligent LLM-integrated APIs using React, Node.js, and TypeScript.
             </p>
 
-            {/* Credibility Signals: Architect Focus */}
-            <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-8 mb-12 border-t border-white/[0.05] pt-10 items-center lg:items-start text-center lg:text-left">
-              <div className="flex flex-col gap-2">
-                <span className="text-3xl font-bold text-foreground tracking-tighter decoration-primary/30 underline underline-offset-8">Lead</span>
-                <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-foreground/40 flex items-center justify-center lg:justify-start gap-1.5">
-                  <Star size={12} className="text-primary" /> SkillSense AI
+            {/* Credible Milestone Signals */}
+            <div className="w-full grid grid-cols-3 gap-4 sm:gap-6 mb-10 border-y border-border/50 py-6 items-center text-center lg:text-left">
+              <div className="flex flex-col gap-1">
+                <span className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">3rd</span>
+                <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center justify-center lg:justify-start gap-1">
+                  <Trophy size={13} className="text-primary shrink-0" /> SU Hackathon '26
                 </span>
               </div>
-              <div className="flex flex-col gap-2">
-                <span className="text-3xl font-bold text-foreground tracking-tighter">4x</span>
-                <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-foreground/40 flex items-center justify-center lg:justify-start gap-1.5">
-                  <Trophy size={12} className="text-primary" /> Major Hackathons
+              <div className="flex flex-col gap-1">
+                <span className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">250+</span>
+                <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center justify-center lg:justify-start gap-1">
+                  <Code2 size={13} className="text-primary shrink-0" /> LeetCode DSA
                 </span>
               </div>
-              <div className="flex flex-col gap-2">
-                <span className="text-3xl font-bold text-foreground tracking-tighter">12+</span>
-                <span className="text-[10px] font-bold uppercase tracking-[0.15em] text-foreground/40 flex items-center justify-center lg:justify-start gap-1.5">
-                  <Layout size={12} className="text-primary" /> Systems Deployed
+              <div className="flex flex-col gap-1">
+                <span className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">6+</span>
+                <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center justify-center lg:justify-start gap-1">
+                  <Star size={13} className="text-primary shrink-0" /> Web Apps Shipped
                 </span>
               </div>
             </div>
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto">
+            {/* Action CTAs */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
               <Link
                 to="/projects"
-                className="btn-primary w-full sm:w-auto flex items-center justify-center gap-3 group px-8 py-4 text-sm"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-lg bg-primary text-primary-foreground font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 hover:brightness-110 transition-all hover:shadow-[0_0_20px_rgba(var(--primary),0.3)] active:scale-[0.98]"
               >
-                View Architecture
-                <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                View Projects
+                <ChevronRight size={16} />
               </Link>
               
               <button
                 onClick={() => setIsResumeOpen(true)}
-                className="btn-secondary w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 text-sm"
+                className="w-full sm:w-auto px-7 py-3.5 rounded-lg bg-secondary/80 border border-border text-foreground hover:border-primary/50 hover:text-primary font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all active:scale-[0.98]"
               >
                 <FileText size={16} />
                 View Resume
@@ -83,81 +83,80 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* ── Right Column: The "Identity" Card ── */}
+          {/* ── Right Column: Identity Card ── */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-            className="relative w-full max-w-[460px] mx-auto lg:ml-auto"
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
+            className="relative w-full max-w-[420px] mx-auto lg:ml-auto"
           >
-            <div className="glass-card p-8 sm:p-10 relative z-10 transition-all duration-500 hover:shadow-[0_20px_80px_-20px_rgba(var(--primary),0.15)] glow-border group">
-              {/* Card Header */}
-              <div className="flex flex-col items-center text-center mb-10">
-                <div className="w-64 h-64 sm:w-[320px] sm:h-[320px] lg:w-[380px] lg:h-[380px] mb-10 relative">
-                  {/* Decorative focus ring */}
-                  <div className="absolute -inset-8 rounded-full bg-gradient-to-tr from-primary/30 via-transparent to-accent/30 animate-spin-slow opacity-30 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="glass-card p-6 sm:p-8 rounded-3xl glow-border">
+              {/* Profile Avatar Header */}
+              <div className="flex flex-col items-center text-center mb-6">
+                <div className="w-36 h-36 sm:w-44 sm:h-44 mb-5 relative">
                   <GitHubAvatar />
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-foreground mb-1 font-display tracking-tight">Trikam Devasi</h2>
-                  <div className="text-[12px] font-mono text-primary flex items-center justify-center gap-2 font-bold uppercase tracking-widest">
-                    <Briefcase size={12} />
-                    Full-Stack Lead
+                  <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1 font-display tracking-tight">
+                    Trikam Devasi
+                  </h2>
+                  <div className="text-xs font-mono text-primary flex items-center justify-center gap-1.5 font-bold uppercase tracking-wider">
+                    <Briefcase size={13} />
+                    Full-Stack Developer
                   </div>
                   
-                  <div className="flex justify-center gap-4 mt-6">
+                  {/* Social Profile Links */}
+                  <div className="flex justify-center gap-3 mt-4">
                     {[
-                      { icon: Github, href: "https://github.com/TrikamDevasi" },
-                      { icon: Linkedin, href: "https://www.linkedin.com/in/trikam-devasi-3975573a2/" },
-                      { icon: Twitter, href: "https://x.com/TrikamDevasi16" },
-                    ].map(({ icon: Icon, href }) => (
+                      { icon: Github, href: "https://github.com/TrikamDevasi", label: "GitHub Profile" },
+                      { icon: Linkedin, href: "https://www.linkedin.com/in/trikam-devasi-3975573a2/", label: "LinkedIn Profile" },
+                      { icon: Twitter, href: "https://x.com/TrikamDevasi16", label: "Twitter Profile" },
+                    ].map(({ icon: Icon, href, label }) => (
                       <a
                         key={href}
                         href={href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-foreground/20 hover:text-primary transition-all p-2 hover:bg-primary/5 rounded-lg border border-transparent hover:border-primary/20"
+                        aria-label={label}
+                        className="text-muted-foreground hover:text-primary transition-all p-2 rounded-lg bg-secondary/50 border border-border/60 hover:border-primary/40 hover:bg-primary/10"
                       >
-                        <Icon size={18} />
+                        <Icon size={16} />
                       </a>
                     ))}
                   </div>
                 </div>
               </div>
 
-              {/* Strategic Expertise */}
-              <div className="mb-10">
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-foreground/30 block mb-4">Architectural Stack</span>
-                <div className="grid grid-cols-2 gap-3">
+              {/* Core Skill Focus */}
+              <div className="mb-6 border-t border-border/40 pt-5">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground block mb-3">
+                  Core Technologies
+                </span>
+                <div className="grid grid-cols-2 gap-2.5">
                   {[
-                    { name: "MERN Stack", level: "Expert" },
-                    { name: "LLM Orchestration", level: "Advanced" },
-                    { name: "System Design", level: "Lead" },
-                    { name: "Cloud Infra", level: "Scaling" }
+                    { name: "React & Next.js", status: "Proficient" },
+                    { name: "Node.js & Express", status: "Proficient" },
+                    { name: "MongoDB & Postgres", status: "Applied" },
+                    { name: "WebSocket & Redis", status: "Applied" }
                   ].map((tech) => (
-                    <div key={tech.name} className="flex flex-col p-3 rounded-xl border border-white/[0.03] bg-white/[0.01] hover:border-primary/20 transition-all">
-                      <span className="text-[11px] font-bold text-foreground/80">{tech.name}</span>
-                      <span className="text-[9px] font-mono text-primary uppercase tracking-tighter">{tech.level}</span>
+                    <div key={tech.name} className="p-2.5 rounded-xl border border-border/50 bg-secondary/30">
+                      <p className="text-xs font-bold text-foreground/90 leading-tight">{tech.name}</p>
+                      <p className="text-[10px] font-mono text-primary/80 mt-0.5">{tech.status}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Current Mission */}
-              <div className="p-5 rounded-2xl bg-gradient-to-br from-primary/10 via-transparent to-accent/5 border border-white/5 backdrop-blur-sm relative overflow-hidden group/mission">
-                <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover/mission:opacity-100 transition-opacity" />
-                <div className="flex items-center gap-3 mb-3">
-                  <Activity size={16} className="text-primary animate-pulse" />
-                  <span className="text-[12px] font-bold text-foreground/90 uppercase tracking-wide">Impact Mission</span>
+              {/* Current Goal Banner */}
+              <div className="p-4 rounded-xl bg-primary/5 border border-primary/20">
+                <div className="text-xs font-bold text-foreground mb-1">
+                  🎯 Current Focus
                 </div>
-                <p className="text-[11px] text-foreground/50 leading-relaxed font-medium">
-                  Designing a high-throughput AI assessment engine that automates multi-dimensional code evaluation at scale.
+                <p className="text-[11px] text-muted-foreground leading-relaxed">
+                  Building SkillSense AI and advancing data structures &amp; algorithmic problem solving in C++.
                 </p>
               </div>
             </div>
-
-            {/* Background Atmosphere */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/[0.03] blur-[120px] -z-10 animate-pulse" />
           </motion.div>
         </div>
       </div>

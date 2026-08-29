@@ -9,119 +9,108 @@ interface Hackathon {
   description: string;
   project: string;
   github: string;
-  live: string;
-  images: string[];
+  live?: string;
+  images: { src: string; alt: string }[];
 }
 
 const hackathons: Hackathon[] = [
   {
     name: "SU Hackathon 2026",
     location: "Sangam University, Bhilwara",
-    rank: "3rd Place",
-    description: "Participated in the SU Hackathon 2026 with my team, delivering an innovative solution that secured us the 3rd position overall.",
+    rank: "3rd Place Overall",
+    description: "Competed in an intensive 36-hour hackathon with Team Quantum Coders. Designed and developed SkillSense AI—an automated skill assessment pipeline with asynchronous evaluation workflows—securing 3rd position among 50+ participating teams.",
     project: "SkillSense AI",
     github: "https://github.com/TrikamDevasi/TEAM_QUANTUM_CODERS-SU-",
     live: "https://skillsense-ai-seven.vercel.app/",
     images: [
-      "https://priyansh-new-portfolio.netlify.app/assets/image1-DC4pr3BN.png",
-      "https://priyansh-new-portfolio.netlify.app/assets/image2-BKYI4gIV.jpg",
-      "https://priyansh-new-portfolio.netlify.app/assets/image6-Bf2ZaOz8.jpg",
-      "https://priyansh-new-portfolio.netlify.app/assets/image5-BK8_KkEo.png",
+      { src: "/hackathons/hackathon-1.png", alt: "Team Quantum Coders presenting SkillSense AI at SU Hackathon 2026" },
+      { src: "/hackathons/hackathon-2.jpg", alt: "Hackathon project evaluation and jury interaction" },
+      { src: "/hackathons/hackathon-3.jpg", alt: "Award ceremony receiving 3rd prize" },
+      { src: "/hackathons/hackathon-4.png", alt: "Team celebration with certificate and trophy" },
     ],
   },
 ];
 
 const HackathonsSection = () => (
-  <SectionWrapper id="hackathons" title="Hackathons" subtitle="Building under pressure">
+  <SectionWrapper id="hackathons" title="Hackathons &amp; Competitions" subtitle="Building functional solutions under tight time constraints">
     <div className="max-w-5xl mx-auto space-y-12">
       {hackathons.map((h, i) => (
         <motion.div
           key={h.name}
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: i * 0.2 }}
-          className="glass-card overflow-hidden border border-white/10 rounded-2xl hover:border-accent/20 transition-colors duration-500"
+          transition={{ duration: 0.5, delay: i * 0.1 }}
+          className="glass-card overflow-hidden border border-border/60 rounded-2xl hover:border-accent/40 transition-colors"
         >
-          <div className="p-8 md:p-10">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="p-3 rounded-xl bg-accent/10 text-accent">
-                <Trophy size={32} />
+          <div className="p-6 sm:p-10">
+            {/* Header info */}
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+              <div className="flex items-center gap-3.5">
+                <div className="p-3 rounded-xl bg-accent/10 text-accent border border-accent/20">
+                  <Trophy size={28} />
+                </div>
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-foreground">{h.name}</h3>
+                  <p className="text-xs sm:text-sm font-mono text-accent font-semibold">{h.rank} · {h.location}</p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white">{h.name}</h3>
-                <p className="text-sm font-mono text-accent">{h.rank}</p>
+
+              <div className="flex items-center gap-3">
+                <a 
+                  href={h.github} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  aria-label={`View ${h.name} submission repository on GitHub`}
+                  className="flex items-center gap-2 text-xs font-mono text-muted-foreground hover:text-foreground transition-colors border border-border px-3.5 py-2 rounded-lg bg-secondary/50 hover:border-primary/40"
+                >
+                  <Github size={14} /> Repository
+                </a>
+                {h.live && (
+                  <a 
+                    href={h.live} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    aria-label={`View live demo of ${h.project}`}
+                    className="flex items-center gap-2 text-xs font-mono text-primary hover:brightness-110 transition-colors border border-primary/30 px-3.5 py-2 rounded-lg bg-primary/10"
+                  >
+                    <ExternalLink size={14} /> Live Prototype
+                  </a>
+                )}
               </div>
             </div>
             
-            <p className="text-slate-400 font-mono text-sm mb-6 flex items-center gap-2">
-              <span>@</span> {h.location}
-            </p>
-            
-            <p className="text-slate-300 leading-relaxed max-w-2xl text-lg mb-8">
+            <p className="text-muted-foreground leading-relaxed text-sm sm:text-base mb-6">
               {h.description}
             </p>
             
-            <div className="text-sm font-mono text-accent mb-6 flex items-center gap-2">
-              <span className="text-white/40">Project:</span> {h.project}
-            </div>
-            
-            <div className="flex flex-wrap items-center gap-4">
-              <a 
-                href={h.github} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition-colors border border-white/10 px-4 py-2 rounded hover:border-accent/30 bg-white/[0.02]"
-              >
-                <Github size={14} /> GitHub Repo
-              </a>
-              <a 
-                href={h.live} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition-colors border border-white/10 px-4 py-2 rounded hover:border-accent/30 bg-white/[0.02]"
-              >
-                <ExternalLink size={14} /> Live Demo
-              </a>
+            <div className="text-xs font-mono text-foreground/80 flex items-center gap-2 bg-secondary/40 px-3 py-2 rounded-lg border border-border/40 w-fit">
+              <span className="text-primary font-bold">Awarded Project:</span> {h.project}
             </div>
           </div>
 
-          {/* ── Event Gallery Grid ── */}
-          <div className="mt-4 px-8 pb-8">
-            <div className="flex items-center gap-2 text-white/50 mb-6 font-mono text-sm border-t border-white/5 pt-8">
-              <ImageIcon size={16} /> Event Gallery
+          {/* ── Local Event Gallery Grid ── */}
+          <div className="px-6 sm:px-10 pb-8">
+            <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground mb-4 border-t border-border/40 pt-6">
+              <ImageIcon size={15} /> Event Gallery (SU Hackathon 2026)
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {/* Feature Image */}
-              <motion.div 
-                whileHover={{ scale: 1.02 }}
-                className="relative overflow-hidden rounded-xl border border-white/10 group/img bg-black/50 cursor-pointer sm:col-span-2 lg:col-span-2 lg:row-span-2 min-h-[300px]"
-              >
-                <div className="absolute inset-0 bg-black/20 group-hover/img:bg-transparent transition-colors duration-500 z-10" />
-                <img 
-                  alt={`${h.name} image 1`} 
-                  className="absolute inset-0 w-full h-full object-cover group-hover/img:scale-110 transition-transform duration-700" 
-                  src={h.images[0]} 
-                  onError={(e) => (e.currentTarget.src = "/placeholder.svg")}
-                />
-              </motion.div>
-
-              {/* Complementary Images */}
-              {h.images.slice(1).map((img, idx) => (
-                <motion.div 
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {h.images.map((img, idx) => (
+                <div 
                   key={idx}
-                  whileHover={{ scale: 1.05 }}
-                  className="relative overflow-hidden rounded-xl border border-white/10 group/img bg-black/50 cursor-pointer aspect-video"
+                  className="relative overflow-hidden rounded-xl border border-border/60 bg-secondary/40 aspect-video group"
                 >
-                  <div className="absolute inset-0 bg-black/20 group-hover/img:bg-transparent transition-colors duration-500 z-10" />
                   <img 
-                    alt={`${h.name} image ${idx + 2}`} 
-                    className="absolute inset-0 w-full h-full object-cover group-hover/img:scale-110 transition-transform duration-700" 
-                    src={img} 
-                    onError={(e) => (e.currentTarget.src = "/placeholder.svg")}
+                    src={img.src} 
+                    alt={img.alt}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                    onError={(e) => {
+                      e.currentTarget.src = "/placeholder.svg";
+                    }}
                   />
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>

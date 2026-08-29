@@ -4,160 +4,178 @@ import SectionWrapper from "./SectionWrapper";
 import ProjectCard, { type Project } from "./ProjectCard";
 
 const projects: Project[] = [
-  /* ─── TIER 1: Core Infrastructure & AI ─── */
+  /* ─── TIER 1: Flagship Engineering Projects ─── */
   {
     name: "SkillSense AI",
+    tagline: "AI-Assisted Skill Assessment & Career Intelligence Platform",
     category: "full-stack",
     tier: 1,
-    architectureSchema: "LLM Orchestration · Async Task Queue · Email Pipeline",
+    architectureSchema: "Next.js · Express API · Redis Queue · LLM Inference",
     architectureDetails: [
-      "Next.js Frontend",
-      "↓ REST API",
-      "Node.js Backend (Express)",
-      "↓ Redis Pub/Sub Queue",
-      "LLM Inference Worker (Groq/Gemini)",
-      "↓ SMTP Email Service",
-      "MongoDB Atlas (User/Session Store)",
+      "Next.js Interactive Client",
+      "↓ RESTful Endpoints",
+      "Node.js & Express API Gateway",
+      "↓ Redis Message Broker",
+      "LLM Evaluation Worker Pipeline",
+      "↓ MongoDB Atlas Storage",
+      "Structured Report Synthesis",
     ],
-    deploymentNote: "Containerized Node.js backend · Redis Pub/Sub for async AI processing · Decoupled email pipeline",
-    description: "AI-powered career assessment platform orchestrating multi-LLM inference pipelines. Implements Redis Pub/Sub to decouple asynchronous AI processing from the request lifecycle, enabling non-blocking email delivery and background scoring. Built with Next.js, Node.js, and MongoDB Atlas.",
-    tech: ["Next.js", "Node.js", "MongoDB", "Redis", "OpenAI API", "JWT"],
-    status: "In Development",
+    deploymentNote: "Node.js backend with async Redis queuing to prevent request timeouts during multi-stage LLM evaluation.",
+    description: "Full-stack career assessment platform that conducts automated technical diagnostic tests and synthesizes multi-dimensional skill evaluations via LLM pipelines.",
+    keyFeatures: [
+      "Asynchronous background task processing via Redis queue architecture",
+      "Dynamic prompt engineering with structured JSON schema outputs",
+      "JWT-based secure session management and profile progress tracking",
+      "Awarded 3rd Place at SU Hackathon 2026",
+    ],
+    tech: ["Next.js", "Node.js", "Express", "MongoDB", "Redis", "OpenAI API", "TypeScript"],
+    status: "Active Development · Hackathon Winner",
     github: "https://github.com/TrikamDevasi/SkillSense_AI",
-    live: "#",
-    youtube: "https://youtube.com/demo-placeholder",
-    postman: "https://documenter.getpostman.com/view/placeholder",
   },
   {
     name: "Game Hub",
+    tagline: "Real-Time Multiplayer Gaming Portal & WebSocket Room Engine",
     category: "games",
     tier: 1,
-    architectureSchema: "Real-Time Concurrency · WebSocket Room Architecture · State Sync",
+    architectureSchema: "WebSocket Room Namespaces · Server-Authoritative State",
     architectureDetails: [
-      "React Client",
-      "↓ Socket.io Events",
-      "Node.js Socket Server",
+      "React Client (Browser Canvas)",
+      "↓ Socket.io Event Stream",
+      "Node.js Socket Gateway",
       "↓ Room-Based Namespacing",
-      "Game State Machine",
-      "↓ Broadcast to Room",
-      "Connected Clients (N players)",
+      "Server State Machine",
+      "↓ Low-Latency Broadcast",
+      "Connected Players (Synchronized)",
     ],
-    deploymentNote: "Socket.io room-based event architecture · Stateful server-side game logic · Real-time client sync",
-    description: "Real-time multiplayer gaming platform handling concurrent WebSocket connections via Socket.io room-based architecture. Server-side game state machine ensures consistency across N simultaneous players with sub-50ms broadcast latency.",
-    tech: ["React", "Node.js", "Socket.io", "Express"],
+    deploymentNote: "Socket.io room architecture maintaining consistent game state across concurrent multiplayer sessions.",
+    description: "Real-time multiplayer browser gaming platform supporting simultaneous player rooms with synchronized state management and sub-50ms event latency.",
+    keyFeatures: [
+      "Room-based matchmaking and instant lobby creation",
+      "Server-authoritative state machine preventing client-side desync",
+      "Responsive interactive game board with real-time turn notifications",
+      "Deployed and playable online via GitHub Pages",
+    ],
+    tech: ["React", "Node.js", "Socket.io", "Express", "Tailwind CSS"],
     live: "https://trikamdevasi.github.io/game-portal",
     github: "https://github.com/TrikamDevasi/game-portal",
-    youtube: "https://youtube.com/demo-placeholder",
   },
-  
-  /* ─── TIER 2: Full-Stack & Data Layers ─── */
+
+  /* ─── TIER 2: Full-Stack & Frontend Applications ─── */
   {
-    name: "E-Commerce — Tic Tech Toe",
-    category: "full-stack",
+    name: "Cinephiles Watch",
+    tagline: "Movie Discovery & Cinematic Exploration Web App",
+    category: "frontend",
     tier: 2,
-    description: "Full-stack e-commerce platform with ML-powered product recommendations via Gemini API. Implements Redis caching for session management and product catalog, Google OAuth 2.0 for authentication, and transactional integrity for cart and order operations. Deployed with Docker Compose.",
-    deploymentNote: "Redis caching layer · Google OAuth · Dockerized services",
-    tech: ["React", "PostgreSQL", "Express", "Redis", "Docker", "Styled Components"],
-    github: "https://github.com/TrikamDevasi/tic_tech_toe-ecommerce-website-.git",
-    live: "#",
-    youtube: "https://youtube.com/demo-placeholder",
-    postman: "https://documenter.getpostman.com/view/placeholder",
-    figma: "https://figma.com/design-placeholder",
+    description: "Feature-packed movie exploration platform integrating TMDB API to deliver fast movie discovery, category browsing, and trailer details.",
+    keyFeatures: [
+      "Debounced real-time search with instant query results",
+      "Dynamic genre and rating filtering across thousands of titles",
+      "Fully responsive mobile-friendly UI crafted from custom Figma designs",
+      "Live deployment hosted on Render cloud platform",
+    ],
+    tech: ["React", "Tailwind CSS", "TMDB API", "React Router", "Figma"],
+    live: "https://cinephiles-watch-react-js.onrender.com/",
+    github: "https://github.com/TrikamDevasi/cinephiles-watch-react.js-.git",
+    figma: "https://www.figma.com/proto/ZRRy0ASHhexMkGPwNhUDQK/Untitled?page-id=0%3A1&team_id=1583156995664834349&node-id=1003-43&t=m9PW1ljhrDRXTmxL-1",
   },
   {
     name: "Expense Manager",
+    tagline: "Full-Stack Financial Dashboard & Budget Tracking Application",
     category: "full-stack",
     tier: 2,
-    description: "Full-stack tracker with categories, tracking history, and a structured dashboard. Features JWT-based auth, complex data aggregation pipelines for reporting, and multi-category budget tracking with time-series visualization.",
-    tech: ["Node.js", "Express", "MongoDB", "JWT", "JavaScript"],
+    description: "Secure budget management system with category-wise expenditure analytics, MongoDB persistence, and responsive transaction logging.",
+    keyFeatures: [
+      "JWT authentication with protected RESTful API routes",
+      "MongoDB aggregation pipeline for category summaries and historical analysis",
+      "Interactive data visualizations for spending breakdown",
+      "Live production deployment on Netlify",
+    ],
+    tech: ["Node.js", "Express", "MongoDB", "JWT", "JavaScript", "CSS3"],
     live: "https://expense-management-odoo.netlify.app/",
     github: "https://github.com/Trikamcg/expense_management/tree/main/project",
-    youtube: "https://youtube.com/demo-placeholder",
-    postman: "https://documenter.getpostman.com/view/placeholder",
   },
   {
-    name: "Cinephiles Watch – React",
-    category: "frontend",
+    name: "Tic Tech Toe (E-Commerce)",
+    tagline: "Full-Stack Tech Storefront with PostgreSQL & Docker",
+    category: "full-stack",
     tier: 2,
-    description: "Movie discovery platform with a search-first UI, filters, and detail pages. Features debounced search, genre/rating filters, and a fully responsive design.",
-    tech: ["React", "Tailwind CSS", "TMDB API", "React Router"],
-    live: "https://cinephiles-watch-react-js.onrender.com/",
-    github: "https://github.com/TrikamDevasi/cinephiles-watch-react.js-.git",
-    youtube: "https://youtube.com/demo-placeholder",
-    figma: "https://www.figma.com/proto/ZRRy0ASHhexMkGPwNhUDQK/Untitled?page-id=0%3A1&team_id=1583156995664834349&node-id=1003-43&t=m9PW1ljhrDRXTmxL-1",
+    description: "Comprehensive e-commerce application featuring product catalog indexing, cart operations, user authentication, and containerized Docker setup.",
+    keyFeatures: [
+      "Relational PostgreSQL database schema design for products and orders",
+      "Google OAuth 2.0 social sign-in integration",
+      "Docker Compose containerization for isolated development and deployment",
+      "Modular REST backend architecture with Express",
+    ],
+    tech: ["React", "PostgreSQL", "Express", "Docker", "Node.js"],
+    github: "https://github.com/TrikamDevasi/tic_tech_toe-ecommerce-website-.git",
   },
 
-  /* ─── TIER 3: Specialty / Edge ─── */
+  /* ─── TIER 3: Recreations & Practice Projects ─── */
   {
-    name: "Netflix Clone",
-    category: "clones",
+    name: "Netflix Web Interface",
+    tagline: "UI Recreation with Dynamic Previews & TMDB Data",
+    category: "other",
     tier: 3,
-    description: "High-fidelity Netflix clone featuring dynamic trailer previews, user profiles, and TMDB API integration. Optimized for mobile and desktop viewing.",
-    tech: ["React", "Firebase", "TheMovieDB API", "Tailwind CSS"],
+    description: "Frontend recreation of the Netflix streaming interface focusing on cinematic layouts, trailer modals, and TMDB media feeds.",
+    keyFeatures: [
+      "Dynamic banner backdrop and row-based movie carousels",
+      "Trailer preview integration and responsive video modals",
+      "State persistence with Firebase and React Hooks",
+    ],
+    tech: ["React", "Firebase", "TMDB API", "Tailwind CSS"],
     github: "https://github.com/TrikamDevasi/netflix-clone",
     live: "https://trikam-netflix-clone.netlify.app/",
-    youtube: "https://youtube.com/demo-placeholder",
   },
   {
-    name: "Amazon Clone",
-    category: "clones",
+    name: "Amazon Storefront UI",
+    tagline: "E-Commerce Shopping Cart & Checkout Interface",
+    category: "other",
     tier: 3,
-    description: "A full-featured Amazon clone with product listings, user authentication, and a functional shopping cart using React Context API.",
+    description: "Frontend store implementation simulating the Amazon shopping flow, user authentication state, and cart subtotal calculation.",
+    keyFeatures: [
+      "Cart state management using React Context API",
+      "Firebase authentication and user profile session handling",
+      "Responsive product grid with pricing calculations",
+    ],
     tech: ["React", "Firebase", "Context API", "CSS Grid"],
     github: "https://github.com/TrikamDevasi/amazon-clone",
     live: "https://trikam-amazon-clone.netlify.app/",
-    youtube: "https://youtube.com/demo-placeholder",
   },
 ];
 
-const categories = ["all", "games", "clones", "full-stack", "frontend"] as const;
-type Category = typeof categories[number];
+const categories = [
+  { id: "all", label: "All Projects" },
+  { id: "full-stack", label: "Full-Stack" },
+  { id: "games", label: "Real-Time / Games" },
+  { id: "frontend", label: "Frontend" },
+  { id: "other", label: "UI Recreations" },
+] as const;
+
+type CategoryId = typeof categories[number]["id"];
 
 const ProjectsSection = () => {
-  const [activeFilter, setActiveFilter] = useState<Category>("all");
+  const [activeFilter, setActiveFilter] = useState<CategoryId>("all");
 
   const filteredProjects = projects.filter(
     (p) => activeFilter === "all" || p.category === activeFilter
   );
 
   return (
-    <SectionWrapper id="projects" title="Projects" subtitle="Things I've built with passion">
-      <style dangerouslySetInnerHTML={{__html: `
-        .tier-label {
-          font-size: var(--text-xs);
-          font-weight: 600;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: hsl(var(--muted-foreground));
-          margin-bottom: 1.5rem;
-          padding-bottom: 0.5rem;
-          border-bottom: 1px solid hsl(var(--border));
-        }
-        .tier-section { margin-bottom: 4rem; }
-        .grid-tier-1 { display: grid; grid-template-columns: 1fr; gap: 2rem; }
-        .grid-tier-2 { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(400px, 100%), 1fr)); gap: 1.5rem; }
-        .grid-tier-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr)); gap: 1rem; }
-      `}} />
-
+    <SectionWrapper id="projects" title="Featured Projects" subtitle="Real-world applications and engineering experiments">
       {/* ── Filter Tabs ── */}
-      <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+      <div className="flex flex-wrap items-center justify-center gap-2.5 mb-12">
         {categories.map((cat) => (
           <button
-            key={cat}
-            onClick={() => setActiveFilter(cat)}
-            className={`px-5 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all relative ${
-              activeFilter === cat
-                ? "text-primary border-primary bg-primary/10"
-                : "text-muted-foreground border-border hover:border-primary/40 hover:bg-secondary"
+            key={cat.id}
+            onClick={() => setActiveFilter(cat.id)}
+            aria-pressed={activeFilter === cat.id}
+            className={`px-4 sm:px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all relative ${
+              activeFilter === cat.id
+                ? "text-primary border-primary bg-primary/10 shadow-[0_0_15px_rgba(var(--primary),0.2)]"
+                : "text-muted-foreground border-border hover:border-primary/40 hover:bg-secondary/60"
             } border`}
           >
-            {cat}
-            {activeFilter === cat && (
-               <motion.div
-                layoutId="activeFilter"
-                className="absolute -bottom-px left-1/4 right-1/4 h-px bg-primary shadow-[0_0_10px_rgba(0,217,255,0.8)]"
-              />
-            )}
+            {cat.label}
           </button>
         ))}
       </div>
@@ -167,39 +185,54 @@ const ProjectsSection = () => {
         <AnimatePresence mode="popLayout">
           {filteredProjects.length > 0 ? (
             activeFilter === "all" ? (
-              <motion.div layout className="w-full">
-                {/* Tier 1: Case Studies */}
-                <div className="tier-section">
-                  <h3 className="tier-label">Core Infrastructure & AI</h3>
-                  <div className="grid-tier-1">
+              <div className="w-full space-y-12">
+                {/* Flagship Projects */}
+                <div>
+                  <div className="flex items-center gap-3 mb-6 pb-2 border-b border-border/50">
+                    <span className="text-xs font-bold uppercase tracking-widest text-primary font-mono">
+                      // Flagship Architecture Projects
+                    </span>
+                    <span className="text-xs text-muted-foreground/60 font-mono">
+                      (Deep Technical Implementation)
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 gap-8">
                     {filteredProjects.filter(p => p.tier === 1).map((project, i) => (
                       <ProjectCard key={project.name} project={project} index={i} />
                     ))}
                   </div>
                 </div>
 
-                {/* Tier 2: Growth Assets */}
-                <div className="tier-section">
-                  <h3 className="tier-label">Full-Stack & Data Layers</h3>
-                  <div className="grid-tier-2">
+                {/* Core Full-Stack & Frontend Projects */}
+                <div>
+                  <div className="flex items-center gap-3 mb-6 pb-2 border-b border-border/50">
+                    <span className="text-xs font-bold uppercase tracking-widest text-foreground/80 font-mono">
+                      // Full-Stack & Web Applications
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredProjects.filter(p => p.tier === 2).map((project, i) => (
                       <ProjectCard key={project.name} project={project} index={i} />
                     ))}
                   </div>
                 </div>
 
-                {/* Tier 3: Specialty */}
-                <div className="tier-section">
-                  <h3 className="tier-label">Specialty / Edge</h3>
-                  <div className="grid-tier-3">
+                {/* Other Practice & Recreations */}
+                <div>
+                  <div className="flex items-center gap-3 mb-6 pb-2 border-b border-border/50">
+                    <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground font-mono">
+                      // UI Recreations & Practice
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {filteredProjects.filter(p => p.tier === 3).map((project, i) => (
                       <ProjectCard key={project.name} project={project} index={i} />
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ) : (
-              <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredProjects.map((project, i) => (
                   <ProjectCard key={project.name} project={project} index={i} />
                 ))}
@@ -209,10 +242,10 @@ const ProjectsSection = () => {
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="py-20 text-center w-full"
+              className="py-16 text-center w-full"
             >
-              <p className="text-muted-foreground font-mono">
-                No projects found in this category yet.
+              <p className="text-muted-foreground font-mono text-sm">
+                No projects found in this category.
               </p>
             </motion.div>
           )}
