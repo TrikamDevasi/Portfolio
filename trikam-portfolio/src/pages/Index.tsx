@@ -17,13 +17,22 @@ const Index = () => {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // If we're at a sub-route (e.g., /about), scroll to that section
+    // If we're at a sub-route (e.g., /about, /hackathons, /achievements), scroll to that section
     if (pathname !== "/" && pathname !== "") {
       const sectionId = pathname.slice(1);
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+      const scrollToTarget = () => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      };
+
+      // Immediate scroll attempt
+      scrollToTarget();
+
+      // Second attempt after layout stabilizes on initial page load / asset render
+      const timer = setTimeout(scrollToTarget, 100);
+      return () => clearTimeout(timer);
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }

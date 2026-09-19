@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Award, Code2, Layers, BookCheck, ExternalLink } from "lucide-react";
 import SectionWrapper from "./SectionWrapper";
 
@@ -36,7 +37,7 @@ const achievements = [
     date: "2023 — 2024",
     description: "Completed fundamental certification tracks in JavaScript, HTML5/CSS3, Python Core, and C++ programming.",
     icon: BookCheck,
-    link: "#certifications",
+    link: "/certifications",
     linkLabel: "View Certificates Below",
   },
 ];
@@ -62,16 +63,26 @@ const AchievementsSection = () => (
             {achievement.description}
           </p>
           {achievement.link && (
-            <a
-              href={achievement.link}
-              target={achievement.link.startsWith("http") ? "_blank" : undefined}
-              rel={achievement.link.startsWith("http") ? "noopener noreferrer" : undefined}
-              aria-label={`${achievement.linkLabel} for ${achievement.title}`}
-              className="text-[11px] font-mono font-semibold text-primary hover:underline inline-flex items-center gap-1 mt-auto"
-            >
-              {achievement.linkLabel}
-              {achievement.link.startsWith("http") && <ExternalLink size={11} />}
-            </a>
+            achievement.link.startsWith("http") ? (
+              <a
+                href={achievement.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${achievement.linkLabel} for ${achievement.title}`}
+                className="text-[11px] font-mono font-semibold text-primary hover:underline inline-flex items-center gap-1 mt-auto"
+              >
+                {achievement.linkLabel}
+                <ExternalLink size={11} />
+              </a>
+            ) : (
+              <Link
+                to={achievement.link}
+                aria-label={`${achievement.linkLabel} for ${achievement.title}`}
+                className="text-[11px] font-mono font-semibold text-primary hover:underline inline-flex items-center gap-1 mt-auto"
+              >
+                {achievement.linkLabel}
+              </Link>
+            )
           )}
         </motion.div>
       ))}

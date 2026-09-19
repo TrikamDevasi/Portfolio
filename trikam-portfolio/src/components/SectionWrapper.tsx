@@ -10,7 +10,7 @@ interface SectionWrapperProps {
 }
 
 const SectionWrapper = ({ id, title, subtitle, children, sectionIndex }: SectionWrapperProps) => (
-  <section id={id} className="section-padding">
+  <section id={id} className="section-padding scroll-mt-20">
     <div className="container mx-auto max-w-6xl">
       <motion.div
         initial={{ opacity: 0, y: 20 }}

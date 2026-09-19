@@ -19,7 +19,11 @@ const App = () => (
           <Route path="/about" element={<Index />} />
           <Route path="/skills" element={<Index />} />
           <Route path="/projects" element={<Index />} />
+          <Route path="/hackathons" element={<Index />} />
+          <Route path="/achievements" element={<Index />} />
           <Route path="/certifications" element={<Index />} />
+          <Route path="/figma" element={<Index />} />
+          <Route path="/github" element={<Index />} />
           <Route path="/contact" element={<Index />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
