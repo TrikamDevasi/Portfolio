@@ -30,7 +30,7 @@ const figmaProjects = [
 ];
 
 const FigmaSection = () => (
-  <SectionWrapper id="figma" title="UI/UX Prototyping" subtitle="Figma wireframes, design systems, and user flow explorations">
+  <SectionWrapper id="figma" title="UI/UX Prototyping" subtitle="Figma wireframes, design systems, and user flow explorations" sectionIndex={7}>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
       {figmaProjects.map((project, i) => (
         <motion.div

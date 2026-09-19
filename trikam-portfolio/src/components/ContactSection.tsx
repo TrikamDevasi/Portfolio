@@ -53,7 +53,7 @@ const ContactSection = () => {
   };
 
   return (
-    <SectionWrapper id="contact" title="Get In Touch" subtitle="Let's connect and build something impactful">
+    <SectionWrapper id="contact" title="Get In Touch" subtitle="Let's connect and build something impactful" sectionIndex={9}>
       <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto items-start">
         {/* Form Container */}
         <motion.div

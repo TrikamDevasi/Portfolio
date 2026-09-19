@@ -332,6 +332,7 @@ const CertificationsSection = () => {
       id="certifications"
       title="Certifications & Competitions"
       subtitle="Official certificates from hackathons, national competitions, and verified technical coursework"
+      sectionIndex={6}
     >
       <div className="max-w-6xl mx-auto">
         {/* Filter Pills */}

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { GraduationCap, Code2, Trophy, Terminal, Laptop, BookOpen } from "lucide-react";
+import { GraduationCap, Code2, Trophy, Terminal, Laptop, BookOpen, MapPin, Briefcase } from "lucide-react";
 import SectionWrapper from "./SectionWrapper";
 
 const keyHighlights = [
@@ -34,7 +34,7 @@ const timeline = [
 
 const AboutSection = () => {
   return (
-    <SectionWrapper id="about" title="About Me" subtitle="Background, engineering focus, and learning journey">
+    <SectionWrapper id="about" title="About Me" subtitle="Background, engineering focus, and learning journey" sectionIndex={1}>
       <div className="space-y-16 max-w-6xl mx-auto">
         {/* ── Bio & Engineering Highlights ── */}
         <div className="grid md:grid-cols-12 gap-8 items-stretch">
@@ -61,9 +61,15 @@ const AboutSection = () => {
               </p>
             </div>
 
-            <div className="border-t border-border/40 pt-4 mt-2">
-              <span className="text-xs font-mono text-primary font-semibold">
-                📍 Based in Ahmedabad, India · Open to Software Engineering Internships
+            <div className="border-t border-border/40 pt-4 mt-2 flex flex-wrap items-center gap-3">
+              <span className="flex items-center gap-1.5 text-xs font-mono text-primary font-semibold">
+                <MapPin size={13} className="shrink-0" />
+                Based in Ahmedabad, India
+              </span>
+              <span className="text-border/80">·</span>
+              <span className="flex items-center gap-1.5 text-xs font-mono text-muted-foreground font-medium">
+                <Briefcase size={13} className="text-primary shrink-0" />
+                Open to Software Engineering Internships
               </span>
             </div>
           </motion.div>

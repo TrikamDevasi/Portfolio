@@ -136,6 +136,7 @@ const GitHubStatsSection = () => {
       id="github"
       title="GitHub Activity"
       subtitle="Open-source contributions and development frequency"
+      sectionIndex={8}
     >
       {/* Refresh button */}
       <div className="flex justify-center mb-8">

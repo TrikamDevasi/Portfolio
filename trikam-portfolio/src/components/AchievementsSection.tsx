@@ -42,7 +42,7 @@ const achievements = [
 ];
 
 const AchievementsSection = () => (
-  <SectionWrapper id="achievements" title="Milestones &amp; Highlights" subtitle="Competitions, problem-solving progress, and project milestones">
+  <SectionWrapper id="achievements" title="Milestones & Highlights" subtitle="Competitions, problem-solving progress, and project milestones" sectionIndex={5}>
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
       {achievements.map((achievement, i) => (
         <motion.div

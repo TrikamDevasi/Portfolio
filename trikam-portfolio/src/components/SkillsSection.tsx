@@ -42,7 +42,7 @@ const skillCategories: SkillCategory[] = [
 ];
 
 const SkillsSection = () => (
-  <SectionWrapper id="skills" title="Technical Skills" subtitle="Technologies and tools I use to build scalable products">
+  <SectionWrapper id="skills" title="Technical Skills" subtitle="Technologies and tools I use to build scalable products" sectionIndex={2}>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {skillCategories.map((cat, i) => (
         <motion.div
@@ -66,10 +66,7 @@ const SkillsSection = () => (
           {/* Skill Badges */}
           <div className="flex flex-wrap gap-2 mt-auto">
             {cat.skills.map((skill) => (
-              <span
-                key={skill}
-                className="px-3 py-1.5 rounded-lg bg-secondary/60 text-foreground/90 hover:text-primary hover:border-primary/50 text-xs font-mono border border-border/60 transition-all"
-              >
+              <span key={skill} className="skill-badge">
                 {skill}
               </span>
             ))}

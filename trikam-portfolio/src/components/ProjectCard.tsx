@@ -54,8 +54,8 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
-      className={`relative glass-card flex flex-col group h-full transition-all duration-300 overflow-hidden p-6 glow-border ${
-        tier === 1 ? "lg:flex-row gap-8 border-primary/30" : ""
+      className={`relative glass-card flex flex-col group h-full transition-all duration-300 overflow-hidden p-6 glow-border shine-hover ${
+        tier === 1 ? "lg:flex-row gap-8 border-primary/30" : "cursor-pointer"
       }`}
     >
       {/* ── Tier 1: Case Study Tag ── */}

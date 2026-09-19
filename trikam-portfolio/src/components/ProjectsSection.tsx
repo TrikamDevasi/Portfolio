@@ -161,7 +161,7 @@ const ProjectsSection = () => {
   );
 
   return (
-    <SectionWrapper id="projects" title="Featured Projects" subtitle="Real-world applications and engineering experiments">
+    <SectionWrapper id="projects" title="Featured Projects" subtitle="Real-world applications and engineering experiments" sectionIndex={3}>
       {/* ── Filter Tabs ── */}
       <div className="flex flex-wrap items-center justify-center gap-2.5 mb-12">
         {categories.map((cat) => (
@@ -169,11 +169,9 @@ const ProjectsSection = () => {
             key={cat.id}
             onClick={() => setActiveFilter(cat.id)}
             aria-pressed={activeFilter === cat.id}
-            className={`px-4 sm:px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all relative ${
-              activeFilter === cat.id
-                ? "text-primary border-primary bg-primary/10 shadow-[0_0_15px_rgba(var(--primary),0.2)]"
-                : "text-muted-foreground border-border hover:border-primary/40 hover:bg-secondary/60"
-            } border`}
+            className={`filter-pill ${
+              activeFilter === cat.id ? "filter-pill-active" : "filter-pill-inactive"
+            }`}
           >
             {cat.label}
           </button>

@@ -52,7 +52,7 @@ const hackathons: Hackathon[] = [
 ];
 
 const HackathonsSection = () => (
-  <SectionWrapper id="hackathons" title="Hackathons &amp; Competitions" subtitle="Building functional solutions under tight time constraints">
+  <SectionWrapper id="hackathons" title="Hackathons & Competitions" subtitle="Building functional solutions under tight time constraints" sectionIndex={4}>
     <div className="max-w-5xl mx-auto space-y-12">
       {hackathons.map((h, i) => (
         <motion.div
