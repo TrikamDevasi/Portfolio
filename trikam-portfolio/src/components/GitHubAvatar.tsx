@@ -13,7 +13,7 @@ const GitHubAvatar = () => {
   return (
     <div className="relative w-full h-full flex flex-col items-center">
       {/* ── Avatar container ── */}
-      <div className="relative w-full h-full p-1.5 rounded-full border border-white/10 bg-gradient-to-br from-primary/20 via-transparent to-accent/20">
+      <div className="relative w-full h-full p-1 rounded-full border border-border bg-surface">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -49,7 +49,7 @@ const GitHubAvatar = () => {
         </motion.div>
 
         {/* ── Availability badge ── */}
-        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full border border-white/10 bg-background/90 backdrop-blur-md text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-foreground/80 shadow-2xl flex items-center gap-2.5 whitespace-nowrap">
+        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full border border-border bg-background text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-[0.18em] text-muted-foreground flex items-center gap-2 whitespace-nowrap">
           <span className="relative flex h-2 sm:h-2.5 w-2 sm:w-2.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
             <span className="relative inline-flex rounded-full h-2 sm:h-2.5 w-2 sm:w-2.5 bg-primary" />

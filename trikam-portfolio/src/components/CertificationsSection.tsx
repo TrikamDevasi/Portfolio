@@ -208,7 +208,7 @@ const CertCard = ({ cert, onPreview }: CertCardProps) => {
       layout
       className={`group relative rounded-2xl overflow-hidden border bg-card/40 backdrop-blur-xl transition-all duration-300 flex flex-col h-full ${
         cert.category === "hackathon"
-          ? "border-primary/40 hover:border-primary hover:shadow-[0_0_24px_rgba(var(--primary),0.15)]"
+          ? "border-primary/40 hover:border-primary/60"
           : "border-border/60 hover:border-primary/40"
       }`}
     >
@@ -341,7 +341,7 @@ const CertificationsSection = () => {
             onClick={() => setActiveFilter("all")}
             className={`px-4 py-2 rounded-xl text-xs font-mono font-semibold transition-all flex items-center gap-2 ${
               activeFilter === "all"
-                ? "bg-primary text-primary-foreground shadow-[0_0_20px_rgba(var(--primary),0.35)]"
+                ? "bg-primary text-primary-foreground"
                 : "bg-secondary/60 text-muted-foreground hover:text-foreground border border-border/50"
             }`}
           >
@@ -353,7 +353,7 @@ const CertificationsSection = () => {
             onClick={() => setActiveFilter("hackathon")}
             className={`px-4 py-2 rounded-xl text-xs font-mono font-semibold transition-all flex items-center gap-2 ${
               activeFilter === "hackathon"
-                ? "bg-primary text-primary-foreground shadow-[0_0_20px_rgba(var(--primary),0.35)]"
+                ? "bg-primary text-primary-foreground"
                 : "bg-secondary/60 text-muted-foreground hover:text-foreground border border-border/50"
             }`}
           >
@@ -365,7 +365,7 @@ const CertificationsSection = () => {
             onClick={() => setActiveFilter("foundational")}
             className={`px-4 py-2 rounded-xl text-xs font-mono font-semibold transition-all flex items-center gap-2 ${
               activeFilter === "foundational"
-                ? "bg-primary text-primary-foreground shadow-[0_0_20px_rgba(var(--primary),0.35)]"
+                ? "bg-primary text-primary-foreground"
                 : "bg-secondary/60 text-muted-foreground hover:text-foreground border border-border/50"
             }`}
           >

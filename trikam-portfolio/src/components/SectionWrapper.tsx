@@ -29,8 +29,8 @@ const SectionWrapper = ({ id, title, subtitle, children, sectionIndex }: Section
           )}
         </div>
 
-        <h2 className="text-3xl md:text-4xl font-bold font-display mb-3">
-          <span className="text-gradient">{title}</span>
+        <h2 className="text-foreground font-bold mb-3">
+          {title}
         </h2>
         {subtitle && (
           <p className="text-muted-foreground text-sm md:text-base max-w-xl">

@@ -74,7 +74,7 @@ const Navbar = () => {
             </button>
             <NavLink
               to="/contact"
-              className="px-4 py-2 rounded-full bg-primary text-primary-foreground text-xs font-bold uppercase tracking-wider transition-all hover:brightness-110 active:scale-95 shadow-[0_0_15px_rgba(var(--primary),0.2)]"
+              className="px-4 py-2 rounded bg-primary text-primary-foreground text-xs font-semibold uppercase tracking-wide transition-colors hover:bg-[hsl(var(--primary-hover))] active:scale-95"
             >
               Let's Connect
             </NavLink>
@@ -132,7 +132,7 @@ const Navbar = () => {
                 <NavLink
                   to="/contact"
                   onClick={() => setMobileOpen(false)}
-                  className="w-full py-3 rounded-xl bg-primary text-primary-foreground text-center font-bold text-sm shadow-[0_0_15px_rgba(var(--primary),0.2)]"
+                  className="w-full py-3 rounded bg-primary text-primary-foreground text-center font-semibold text-sm hover:bg-[hsl(var(--primary-hover))] transition-colors"
                 >
                   Let's Connect
                 </NavLink>

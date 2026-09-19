@@ -18,16 +18,12 @@ const HeroSection = () => {
     <section className="relative min-h-[min(100vh,950px)] flex items-center justify-center pt-28 pb-16 overflow-hidden">
       {/* ── Background layers ── */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none select-none">
-        {/* Primary glow blob */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-primary/[0.05] rounded-full blur-[160px] animate-glow-pulse" />
-        {/* Accent glow blob */}
-        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent/[0.04] rounded-full blur-[120px]" />
-        {/* Dot grid */}
+        {/* Subtle dot grid */}
         <div
-          className="absolute inset-0 opacity-[0.025]"
+          className="absolute inset-0 opacity-[0.018]"
           style={{
             backgroundImage: "radial-gradient(hsl(var(--foreground)) 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
+            backgroundSize: "44px 44px",
           }}
         />
       </div>
@@ -51,10 +47,10 @@ const HeroSection = () => {
               B.Tech CSE Student · 2025–2029
             </div>
 
-            <h1 className="fluid-heading font-extrabold font-display tracking-tight text-foreground mb-6">
+            <h1 className="fluid-heading font-bold text-foreground mb-6">
               Building Modern{" "}
               <br />
-              <span className="text-gradient">Full-Stack &amp; AI</span>{" "}
+              <span className="text-primary">Full-Stack &amp; AI</span>{" "}
               <br />
               Web Systems.
             </h1>

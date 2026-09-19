@@ -71,9 +71,9 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       {/* ── Hackathon Tag ── */}
       {isHackathon && (
         <div className="absolute top-3 right-3 z-10">
-          <div className="px-2.5 py-1 rounded-full bg-accent/15 border border-accent/30 backdrop-blur-md">
-            <span className="text-[10px] font-bold text-accent uppercase tracking-widest flex items-center gap-1.5">
-              <Trophy size={11} className="text-accent" />
+          <div className="px-2.5 py-1 rounded bg-surface-elevated border border-border">
+            <span className="text-[10px] font-mono font-semibold text-muted-foreground uppercase tracking-widest flex items-center gap-1.5">
+              <Trophy size={11} className="text-muted-foreground" />
               {project.badgeText || "Hackathon Project"}
             </span>
           </div>
@@ -94,7 +94,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               </p>
             )}
             {project.hackathonName && (
-              <p className="text-[11px] font-mono text-accent/80 mt-1 uppercase tracking-wider">
+              <p className="text-[11px] font-mono text-muted-foreground mt-1 uppercase tracking-wider">
                 {project.hackathonName}
               </p>
             )}
@@ -190,7 +190,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-primary-foreground text-xs font-bold uppercase tracking-widest transition-all hover:brightness-110 hover:shadow-[0_0_20px_rgba(var(--primary),0.3)] active:scale-[0.98]"
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded bg-primary text-primary-foreground text-xs font-semibold uppercase tracking-widest transition-colors hover:bg-[hsl(var(--primary-hover))] active:scale-[0.98]"
             >
               <ExternalLink size={15} />
               Launch Live Demo

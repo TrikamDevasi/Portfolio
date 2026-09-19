@@ -61,18 +61,18 @@ const HackathonsSection = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: i * 0.1 }}
-          className="glass-card overflow-hidden border border-border/60 rounded-2xl hover:border-accent/40 transition-colors"
+          className="glass-card overflow-hidden border border-border rounded-2xl hover:border-[hsl(var(--border-hover))] transition-colors"
         >
           <div className="p-6 sm:p-10">
             {/* Header info */}
             <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
               <div className="flex items-center gap-3.5">
-                <div className="p-3 rounded-xl bg-accent/10 text-accent border border-accent/20">
+                <div className="p-3 rounded-lg bg-surface-elevated border border-border text-muted-foreground">
                   <Trophy size={28} />
                 </div>
                 <div>
                   <h3 className="text-xl sm:text-2xl font-bold text-foreground">{h.name}</h3>
-                  <p className="text-xs sm:text-sm font-mono text-accent font-semibold">{h.rank} · {h.location}</p>
+                  <p className="text-xs sm:text-sm font-mono text-muted-foreground font-medium">{h.rank} · {h.location}</p>
                 </div>
               </div>
 

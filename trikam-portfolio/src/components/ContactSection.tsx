@@ -155,7 +155,7 @@ const ContactSection = () => {
               className={`w-full px-6 py-3.5 rounded-lg font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2.5 transition-all ${
                 status === "loading"
                   ? "bg-primary/50 text-primary-foreground cursor-not-allowed"
-                  : "bg-primary text-primary-foreground hover:brightness-110 hover:shadow-[0_0_25px_rgba(var(--primary),0.3)] active:scale-[0.98]"
+                  : "bg-primary text-primary-foreground hover:bg-[hsl(var(--primary-hover))] active:scale-[0.98]"
               }`}
             >
               {status === "loading" ? (

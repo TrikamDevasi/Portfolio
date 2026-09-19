@@ -24,23 +24,18 @@ const Logo: React.FC<LogoProps> = ({ className = "", size = "md" }) => {
       <motion.div
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className={`${containerSizes[size]} relative flex items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 via-primary/10 to-accent/20 border border-white/10 group-hover:border-primary/40 transition-all duration-300 shadow-lg shadow-black/20 overflow-hidden`}
+        className={`${containerSizes[size]} relative flex items-center justify-center rounded-lg bg-surface-elevated border border-border group-hover:border-border-hover transition-all duration-200 overflow-hidden`}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        
-        {/* Animated background glow */}
-        <div className="absolute -inset-2 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-20 blur-md transition-opacity duration-500" />
-        
-        <span className={`${sizes[size]} font-display font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-primary via-white to-accent`}>
+        <span className={`${sizes[size]} font-bold tracking-tight text-foreground`}>
           T
         </span>
-        <span className={`${sizes[size]} font-display font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-accent/80 to-accent -ml-0.5`}>
+        <span className={`${sizes[size]} font-bold tracking-tight text-primary -ml-0.5`}>
           D
         </span>
       </motion.div>
       
-      <span className="font-display font-bold tracking-tight text-foreground/90 group-hover:text-primary transition-colors hidden sm:inline-block">
-        Trikam<span className="text-muted-foreground group-hover:text-accent transition-colors">.</span>Devasi
+      <span className="font-semibold tracking-tight text-foreground/90 group-hover:text-foreground transition-colors hidden sm:inline-block">
+        Trikam<span className="text-muted-foreground">.</span>Devasi
       </span>
     </div>
   );
