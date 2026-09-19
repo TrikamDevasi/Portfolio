@@ -10,7 +10,7 @@ interface Hackathon {
   project: string;
   github: string;
   live?: string;
-  images: { src: string; alt: string }[];
+  images: { src: string; alt: string; width: number; height: number }[];
 }
 
 const hackathons: Hackathon[] = [
@@ -23,10 +23,30 @@ const hackathons: Hackathon[] = [
     github: "https://github.com/TrikamDevasi/TEAM_QUANTUM_CODERS-SU-",
     live: "https://skillsense-ai-seven.vercel.app/",
     images: [
-      { src: "/hackathons/hackathon-1.png", alt: "Team Quantum Coders presenting SkillSense AI at SU Hackathon 2026" },
-      { src: "/hackathons/hackathon-2.jpg", alt: "Hackathon project evaluation and jury interaction" },
-      { src: "/hackathons/hackathon-3.jpg", alt: "Award ceremony receiving 3rd prize" },
-      { src: "/hackathons/hackathon-4.png", alt: "Team celebration with certificate and trophy" },
+      {
+        src: "/hackathons/trikam-devasi-su-hackathon-2026-winner.png",
+        alt: "Trikam Devasi and Team Quantum Coders receiving 3rd prize award at SU Hackathon 2026",
+        width: 800,
+        height: 600,
+      },
+      {
+        src: "/hackathons/trikam-devasi-su-hackathon-team-certificates.jpg",
+        alt: "Trikam Devasi with teammates holding winner certificates at Sangam University Hackathon 2026",
+        width: 800,
+        height: 600,
+      },
+      {
+        src: "/hackathons/trikam-devasi-su-hackathon-stage-presentation.jpg",
+        alt: "SU Hackathon 2026 presentation stage at Sangam University Bhilwara",
+        width: 768,
+        height: 1024,
+      },
+      {
+        src: "/hackathons/trikam-devasi-su-hackathon-trophy.png",
+        alt: "Trikam Devasi SU Hackathon 2026 Third Position Trophy",
+        width: 576,
+        height: 1024,
+      },
     ],
   },
 ];
@@ -104,7 +124,10 @@ const HackathonsSection = () => (
                   <img 
                     src={img.src} 
                     alt={img.alt}
+                    width={img.width}
+                    height={img.height}
                     loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
                     onError={(e) => {
                       e.currentTarget.src = "/placeholder.svg";

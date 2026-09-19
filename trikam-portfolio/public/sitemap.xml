@@ -1,9 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://trikam-portfolio.vercel.app/</loc>
-    <lastmod>2026-08-29</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://trikam-portfolio.vercel.app/trikam-devasi-profile.jpg</image:loc>
+      <image:title>Trikam Devasi — Full-Stack Developer &amp; B.Tech CSE Student</image:title>
+      <image:caption>Trikam Devasi developer profile photo</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://trikam-portfolio.vercel.app/og-image.jpg</image:loc>
+      <image:title>Trikam Devasi Portfolio — Web Systems &amp; AI Integration</image:title>
+      <image:caption>Trikam Devasi software engineering portfolio banner</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://trikam-portfolio.vercel.app/hackathons/trikam-devasi-su-hackathon-2026-winner.png</image:loc>
+      <image:title>Trikam Devasi winning 3rd Prize at SU Hackathon 2026</image:title>
+      <image:caption>Trikam Devasi and Team Quantum Coders receiving award cheque at Sangam University</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://trikam-portfolio.vercel.app/hackathons/trikam-devasi-su-hackathon-team-certificates.jpg</image:loc>
+      <image:title>Trikam Devasi and Team with SU Hackathon Certificates</image:title>
+      <image:caption>Team Quantum Coders with winner certificates outside Sangam University</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://trikam-portfolio.vercel.app/hackathons/trikam-devasi-su-hackathon-stage-presentation.jpg</image:loc>
+      <image:title>SU Hackathon 2026 Stage Presentation</image:title>
+      <image:caption>Sangam University Hackathon 2026 keynote and evaluation stage</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://trikam-portfolio.vercel.app/hackathons/trikam-devasi-su-hackathon-trophy.png</image:loc>
+      <image:title>Trikam Devasi 3rd Position Trophy SU Hackathon 2026</image:title>
+      <image:caption>Third position award trophy won by Trikam Devasi at SU Hackathon</image:caption>
+    </image:image>
   </url>
 </urlset>

@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Logo from "./Logo";
+const LOCAL_AVATAR_URL = "/trikam-devasi-profile.jpg";
 const GITHUB_AVATAR_URL = "https://github.com/TrikamDevasi.png?size=400";
 
 const GitHubAvatar = () => {
+  const [currentSrc, setCurrentSrc] = useState(LOCAL_AVATAR_URL);
   const [imgError, setImgError] = useState(false);
 
   return (
@@ -21,10 +23,20 @@ const GitHubAvatar = () => {
         >
           {!imgError ? (
             <img
-              src={GITHUB_AVATAR_URL}
-              alt="Trikam Devasi — GitHub Profile"
+              src={currentSrc}
+              alt="Trikam Devasi — Full-Stack Developer Profile Headshot"
+              width={400}
+              height={400}
+              loading="eager"
+              decoding="async"
               className="w-full h-full object-cover grayscale-[10%] hover:grayscale-0 transition-all duration-700 hover:scale-110"
-              onError={() => setImgError(true)}
+              onError={() => {
+                if (currentSrc === LOCAL_AVATAR_URL) {
+                  setCurrentSrc(GITHUB_AVATAR_URL);
+                } else {
+                  setImgError(true);
+                }
+              }}
             />
           ) : (
 
