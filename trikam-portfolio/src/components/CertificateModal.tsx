@@ -69,15 +69,17 @@ const CertificateModal = ({
                 {title}
               </span>
               <div className="flex items-center gap-2 shrink-0">
-                <a
-                  href={certLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-xs text-primary hover:text-primary-foreground transition-colors px-3 py-1.5 rounded-lg bg-primary/10 hover:bg-primary/20 border border-primary/20"
-                >
-                  <ExternalLink size={12} />
-                  Open
-                </a>
+                {certLink && certLink !== "#" && (
+                  <a
+                    href={certLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 text-xs text-primary hover:text-primary-foreground transition-colors px-3 py-1.5 rounded-lg bg-primary/10 hover:bg-primary/20 border border-primary/20"
+                  >
+                    <ExternalLink size={12} />
+                    Open
+                  </a>
+                )}
                 <button
                   onClick={onClose}
                   className="p-1.5 rounded-lg text-white/50 hover:text-white hover:bg-white/10 transition-colors"

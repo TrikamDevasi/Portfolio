@@ -36,5 +36,30 @@
       <image:title>Trikam Devasi 3rd Position Trophy SU Hackathon 2026</image:title>
       <image:caption>Third position award trophy won by Trikam Devasi at SU Hackathon</image:caption>
     </image:image>
+    <image:image>
+      <image:loc>https://trikam-portfolio.vercel.app/certificates/su-hackathon-2026-certificate.jpg</image:loc>
+      <image:title>SU Hackathon 2026 Winner Certificate — Trikam Devasi</image:title>
+      <image:caption>Sangam University Hackathon 2026 3rd Position Certificate of Achievement</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://trikam-portfolio.vercel.app/certificates/artpark-codeforge-iisc-bangalore.jpg</image:loc>
+      <image:title>ArtPark CodeForge Hackathon Certificate — IISc Bangalore</image:title>
+      <image:caption>Indian Institute of Science Bangalore Hackathon Prototype Certificate</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://trikam-portfolio.vercel.app/certificates/finagent-iit-bombay.jpg</image:loc>
+      <image:title>FINAGENT Hackathon Certificate — IIT Bombay</image:title>
+      <image:caption>Indian Institute of Technology Bombay Hackathon Certificate</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://trikam-portfolio.vercel.app/certificates/craftathon-gandhinagar-university.jpg</image:loc>
+      <image:title>Craftathon Hackathon Certificate — IEEE CS &amp; Gandhinagar University</image:title>
+      <image:caption>IEEE Computer Society 36-Hour Hackathon Certificate of Participation</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://trikam-portfolio.vercel.app/certificates/electrosphere-2k26.jpg</image:loc>
+      <image:title>ElectroSphere 2K26 Certificate — Swaminarayan University</image:title>
+      <image:caption>Swaminarayan University Faculty of Engineering TechX Certificate</image:caption>
+    </image:image>
   </url>
 </urlset>
