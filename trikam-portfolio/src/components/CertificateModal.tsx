@@ -56,10 +56,10 @@ const CertificateModal = ({
           {/* Modal content */}
           <motion.div
             key="modal-content"
-            initial={{ opacity: 0, scale: 0.88, y: 24 }}
+            initial={{ opacity: 0, scale: 0.96, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.88, y: 24 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            exit={{ opacity: 0, scale: 0.96, y: 12 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="relative z-10 max-w-3xl w-full rounded-2xl overflow-hidden border border-border shadow-2xl shadow-black/40"
             onClick={(e) => e.stopPropagation()}
           >

@@ -114,7 +114,7 @@ const HackathonsSection = () => (
               {h.images.map((img, idx) => (
                 <div
                   key={idx}
-                  className="relative overflow-hidden rounded-lg border border-border bg-surface-elevated aspect-video group cursor-pointer"
+                  className="relative overflow-hidden rounded-lg border border-border bg-surface-elevated aspect-video group cursor-pointer shadow-sm hover:border-border-hover transition-colors"
                 >
                   <img
                     src={img.src}
@@ -123,11 +123,19 @@ const HackathonsSection = () => (
                     height={img.height}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.04]"
                     onError={(e) => {
                       e.currentTarget.src = "/placeholder.svg";
                     }}
                   />
+                  {/* Subtle dark overlay */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 pointer-events-none" />
+                  {/* Caption slide */}
+                  <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                    <p className="text-[9px] text-white/90 font-mono line-clamp-1 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                      {img.alt}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>

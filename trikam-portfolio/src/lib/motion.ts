@@ -7,10 +7,11 @@ export const EASING = {
 
 export const DURATION = {
   micro: 0.18,
-  fast: 0.25,
-  normal: 0.35,
-  medium: 0.5,
-  slow: 0.65,
+  fast: 0.15,
+  normal: 0.25,
+  medium: 0.4,
+  slow: 0.6,
+  cinematic: 0.8,
 };
 
 export const defaultTransition: Transition = {
@@ -43,7 +44,47 @@ export const fadeInVariant: Variants = {
   }),
 };
 
-export const staggerContainerVariant = (staggerChildren = 0.06, delayChildren = 0): Variants => ({
+export const maskRevealVariant: Variants = {
+  hidden: { y: "100%", opacity: 0 },
+  visible: (delay = 0) => ({
+    y: "0%",
+    opacity: 1,
+    transition: {
+      duration: DURATION.slow,
+      ease: EASING.easeOut,
+      delay,
+    },
+  }),
+};
+
+export const imageRevealVariant: Variants = {
+  hidden: { opacity: 0, scale: 0.97 },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: DURATION.slow,
+      ease: EASING.easeOut,
+      delay,
+    },
+  }),
+};
+
+export const cardStaggerVariant: Variants = {
+  hidden: { opacity: 0, y: 16, scale: 0.98 },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: DURATION.medium,
+      ease: EASING.easeOut,
+      delay,
+    },
+  }),
+};
+
+export const staggerContainerVariant = (staggerChildren = 0.05, delayChildren = 0): Variants => ({
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,

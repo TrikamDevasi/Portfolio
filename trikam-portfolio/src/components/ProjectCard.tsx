@@ -47,21 +47,31 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
   const hasPostman = isValidUrl(project.postman);
   const hasFigma = isValidUrl(project.figma);
 
+  const isFeatured = tier === 1;
+
   return (
     <motion.div
       layout
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.3, delay: index * 0.04 }}
-      className={`relative glass-card flex flex-col group h-full transition-all duration-200 hover:-translate-y-1 hover:border-border-hover overflow-hidden p-5 ${
-        tier === 1 ? "lg:flex-row gap-6 md:p-6" : ""
+      initial={{ opacity: 0, y: 16, scale: 0.98 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.35, delay: Math.min(index * 0.05, 0.2), ease: [0.22, 1, 0.36, 1] }}
+      className={`relative glass-card flex flex-col group h-full transition-all duration-300 hover:-translate-y-1 hover:border-border-hover overflow-hidden p-5 ${
+        isFeatured
+          ? "lg:flex-row gap-6 md:p-6 hover:border-primary/40 shadow-sm hover:shadow-lg"
+          : "shadow-sm hover:shadow-md"
       }`}
     >
+      {/* Subtle radial hover highlight inside card */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.06),transparent_65%)] -z-0"
+        aria-hidden="true"
+      />
+
       {/* ── Hackathon Tag ── */}
       {isHackathon && (
         <div className="absolute top-3 right-3 z-10">
-          <div className="px-2.5 py-1 rounded-md bg-surface-elevated border border-border">
+          <div className="px-2.5 py-1 rounded-md bg-surface-elevated border border-border group-hover:border-border-hover transition-colors">
             <span className="text-[10px] font-mono font-semibold text-muted-foreground uppercase tracking-widest flex items-center gap-1.5">
               <Trophy size={11} />
               {project.badgeText || "Hackathon"}

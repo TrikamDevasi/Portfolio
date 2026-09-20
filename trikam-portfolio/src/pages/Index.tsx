@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import ScrollProgress from "@/components/ScrollProgress";
 import IntroScreen from "@/components/IntroScreen";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
@@ -65,6 +66,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/20 selection:text-foreground">
+      <ScrollProgress />
       <AnimatePresence mode="wait">
         {showIntro && (
           <IntroScreen key="intro-screen" onComplete={() => setShowIntro(false)} />

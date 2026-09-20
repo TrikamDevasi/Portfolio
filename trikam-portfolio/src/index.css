@@ -237,13 +237,35 @@ html.theme-transitioning *::after {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.6875rem;
     font-weight: 500;
-    transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+    transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
     cursor: default;
   }
   .skill-badge:hover {
     color: hsl(var(--foreground));
-    border-color: hsl(var(--border));
-    background: hsl(var(--border));
+    border-color: hsl(var(--border-hover));
+    background: hsl(var(--surface-elevated));
+    transform: translateY(-1.5px) scale(1.04);
+  }
+
+  /* Growing underline on text links */
+  .link-grow {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.2s ease;
+  }
+  .link-grow::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: currentColor;
+    transition: width 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-grow:hover::after {
+    width: 100%;
   }
 
   .btn-primary {

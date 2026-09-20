@@ -31,7 +31,7 @@ const Footer = () => (
               rel="noopener noreferrer"
               aria-label={`Visit Trikam Devasi on ${label}`}
               title={label}
-              className="p-2 rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-border-hover transition-colors cursor-pointer"
+              className="p-2 rounded-md border border-border text-muted-foreground hover:text-foreground hover:border-border-hover hover:-translate-y-0.5 hover:bg-surface-elevated active:scale-95 transition-all duration-200 cursor-pointer"
             >
               <Icon size={15} />
             </a>
