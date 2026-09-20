@@ -209,7 +209,7 @@ const ContactSection = () => {
                   rel="noopener noreferrer"
                   aria-label={label}
                   title={label}
-                  className="flex items-center gap-2 px-3 py-2 rounded-md border border-border bg-surface-elevated text-muted-foreground hover:text-foreground hover:border-border-hover transition-colors text-xs font-mono"
+                  className="flex items-center gap-2 px-3 py-2 rounded-md border border-border bg-surface-elevated text-muted-foreground hover:text-foreground hover:border-border-hover hover:-translate-y-0.5 hover:bg-surface-hover active:scale-95 transition-all duration-150 text-xs font-mono"
                 >
                   <Icon size={14} />
                   {label}

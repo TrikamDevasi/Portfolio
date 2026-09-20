@@ -206,7 +206,7 @@ const CertCard = ({ cert, onPreview }: CertCardProps) => {
     <motion.div
       variants={cardVariants}
       layout
-      className="group relative rounded-xl overflow-hidden border border-border hover:border-border-hover bg-card transition-colors duration-200 flex flex-col h-full"
+      className="group relative rounded-xl overflow-hidden border border-border hover:border-border-hover hover:-translate-y-1 bg-card transition-all duration-200 flex flex-col h-full"
     >
       {/* Top Banner Tag */}
       {cert.badge && (
@@ -248,7 +248,7 @@ const CertCard = ({ cert, onPreview }: CertCardProps) => {
           src={cert.imageUrl}
           alt={`Certificate for ${cert.title} — ${cert.issuer}`}
           loading="lazy"
-          className={`w-full h-full object-cover transition-opacity duration-300 ${
+          className={`w-full h-full object-cover transition-all duration-300 ease-out group-hover:scale-105 ${
             imgState === "loaded" ? "opacity-100" : "opacity-0"
           }`}
           onLoad={() => setImgState("loaded")}
@@ -258,8 +258,8 @@ const CertCard = ({ cert, onPreview }: CertCardProps) => {
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <span className="text-[10px] font-medium text-white tracking-wider uppercase">
-                    Expand
-                  </span>
+            Expand
+          </span>
         </div>
       </div>
 
@@ -334,7 +334,7 @@ const CertificationsSection = () => {
         <div className="flex flex-wrap items-center gap-2 mb-6">
           <button
             onClick={() => setActiveFilter("all")}
-            className={`filter-pill ${
+            className={`filter-pill active:scale-95 ${
               activeFilter === "all" ? "filter-pill-active" : "filter-pill-inactive"
             }`}
           >
@@ -343,7 +343,7 @@ const CertificationsSection = () => {
 
           <button
             onClick={() => setActiveFilter("hackathon")}
-            className={`filter-pill ${
+            className={`filter-pill active:scale-95 ${
               activeFilter === "hackathon" ? "filter-pill-active" : "filter-pill-inactive"
             }`}
           >
@@ -352,7 +352,7 @@ const CertificationsSection = () => {
 
           <button
             onClick={() => setActiveFilter("foundational")}
-            className={`filter-pill ${
+            className={`filter-pill active:scale-95 ${
               activeFilter === "foundational" ? "filter-pill-active" : "filter-pill-inactive"
             }`}
           >

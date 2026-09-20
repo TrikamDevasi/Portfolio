@@ -96,7 +96,7 @@ const AboutSection = () => {
             {timeline.map((item) => (
               <div
                 key={item.period}
-                className="bg-background p-5 flex flex-col h-full"
+                className="bg-background p-5 flex flex-col h-full hover:bg-surface-elevated/40 transition-colors duration-200"
               >
                 <div className="flex items-center justify-between mb-2.5">
                   <item.icon size={16} className="text-muted-foreground" />

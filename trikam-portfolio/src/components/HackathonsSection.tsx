@@ -56,7 +56,7 @@ const HackathonsSection = () => (
       {hackathons.map((h) => (
         <div
           key={h.name}
-          className="glass-card overflow-hidden border border-border rounded-xl"
+          className="glass-card overflow-hidden border border-border hover:border-border-hover transition-colors duration-200 rounded-xl"
         >
           <div className="p-5 sm:p-7">
             {/* Header */}
@@ -78,9 +78,9 @@ const HackathonsSection = () => (
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`View ${h.name} submission repository on GitHub`}
-                  className="flex items-center gap-2 text-xs font-mono text-muted-foreground hover:text-foreground transition-colors border border-border px-3 py-1.5 rounded-md bg-surface-elevated hover:border-border-hover"
+                  className="flex items-center gap-2 text-xs font-mono text-muted-foreground hover:text-foreground transition-all duration-150 border border-border px-3 py-1.5 rounded-md bg-surface-elevated hover:border-border-hover active:scale-[0.98] group/btn"
                 >
-                  <Github size={13} /> Repository
+                  <Github size={13} className="transition-transform duration-150 group-hover/btn:-translate-y-0.5" /> Repository
                 </a>
                 {h.live && (
                   <a
@@ -88,9 +88,9 @@ const HackathonsSection = () => (
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`View live demo of ${h.project}`}
-                    className="flex items-center gap-2 text-xs font-mono text-primary hover:text-primary-hover transition-colors border border-accent-border px-3 py-1.5 rounded-md bg-accent-soft"
+                    className="flex items-center gap-2 text-xs font-mono text-primary hover:text-primary-hover transition-all duration-150 border border-accent-border px-3 py-1.5 rounded-md bg-accent-soft active:scale-[0.98] group/btn"
                   >
-                    <ExternalLink size={13} /> Live Demo
+                    <ExternalLink size={13} className="transition-transform duration-150 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" /> Live Demo
                   </a>
                 )}
               </div>
@@ -114,7 +114,7 @@ const HackathonsSection = () => (
               {h.images.map((img, idx) => (
                 <div
                   key={idx}
-                  className="relative overflow-hidden rounded-lg border border-border bg-surface-elevated aspect-video"
+                  className="relative overflow-hidden rounded-lg border border-border bg-surface-elevated aspect-video group cursor-pointer"
                 >
                   <img
                     src={img.src}
@@ -123,7 +123,7 @@ const HackathonsSection = () => (
                     height={img.height}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-cover transition-opacity duration-300"
+                    className="w-full h-full object-cover transition-transform duration-300 ease-out group-hover:scale-105"
                     onError={(e) => {
                       e.currentTarget.src = "/placeholder.svg";
                     }}

@@ -38,7 +38,7 @@ const SkillsSection = () => (
       {skillCategories.map((cat) => (
         <div
           key={cat.title}
-          className="bg-background p-5 flex flex-col"
+          className="bg-background p-5 flex flex-col hover:bg-surface-elevated/40 transition-colors duration-200"
         >
           <h3 className="text-sm font-bold text-foreground mb-3 pb-2 border-b border-border">
             {cat.title}

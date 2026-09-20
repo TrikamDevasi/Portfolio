@@ -54,7 +54,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3, delay: index * 0.04 }}
-      className={`relative glass-card flex flex-col group h-full transition-colors duration-200 overflow-hidden p-5 ${
+      className={`relative glass-card flex flex-col group h-full transition-all duration-200 hover:-translate-y-1 hover:border-border-hover overflow-hidden p-5 ${
         tier === 1 ? "lg:flex-row gap-6 md:p-6" : ""
       }`}
     >
@@ -180,9 +180,9 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded bg-primary text-primary-foreground text-xs font-semibold uppercase tracking-widest transition-colors hover:bg-primary-hover active:scale-[0.98]"
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded bg-primary text-primary-foreground text-xs font-semibold uppercase tracking-widest transition-all duration-200 hover:bg-primary-hover active:scale-[0.98] group/btn shadow-sm"
             >
-              <ExternalLink size={14} />
+              <ExternalLink size={14} className="transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
               Live Demo
             </a>
           ) : hasGithub ? (
@@ -190,9 +190,9 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded border border-border bg-surface-elevated text-foreground hover:border-border-hover text-xs font-semibold uppercase tracking-widest transition-colors"
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded border border-border bg-surface-elevated text-foreground hover:border-border-hover hover:bg-surface-hover text-xs font-semibold uppercase tracking-widest transition-all duration-200 active:scale-[0.98] group/btn"
             >
-              <Github size={14} />
+              <Github size={14} className="transition-transform duration-200 group-hover/btn:-translate-y-0.5" />
               GitHub
             </a>
           ) : (
@@ -207,7 +207,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           {project.tech.map((t) => (
             <span
               key={t}
-              className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-surface-hover text-muted-foreground border border-border"
+              className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-surface-hover text-muted-foreground border border-border hover:bg-surface-elevated hover:border-border-hover hover:text-foreground transition-all duration-150 cursor-default"
             >
               {t}
             </span>

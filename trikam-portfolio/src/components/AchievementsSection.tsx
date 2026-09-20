@@ -69,18 +69,19 @@ const AchievementsSection = () => (
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={achievement.linkLabel}
-                    className="text-xs font-mono font-semibold text-primary hover:underline inline-flex items-center gap-1"
+                    className="text-xs font-mono font-semibold text-primary hover:underline inline-flex items-center gap-1 group/link"
                   >
                     {achievement.linkLabel}
-                    <ExternalLink size={11} />
+                    <ExternalLink size={11} className="transition-transform duration-150 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
                   </a>
                 ) : (
                   <Link
                     to={achievement.link}
                     aria-label={achievement.linkLabel}
-                    className="text-xs font-mono font-semibold text-primary hover:underline inline-flex items-center gap-1"
+                    className="text-xs font-mono font-semibold text-primary hover:underline inline-flex items-center gap-1 group/link"
                   >
                     {achievement.linkLabel}
+                    <ExternalLink size={11} className="transition-transform duration-150 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
                   </Link>
                 )
               )}
