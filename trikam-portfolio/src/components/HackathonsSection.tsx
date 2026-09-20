@@ -126,7 +126,10 @@ const HackathonsSection = () => (
             {/* Asymmetrical 2-tier layout */}
             <div className="grid grid-cols-1 md:grid-cols-12 gap-3.5">
               {/* Main Feature: Ceremony Photo */}
-              <div className="md:col-span-8 relative overflow-hidden rounded-xl border border-border bg-surface-elevated aspect-[16/10] group cursor-pointer shadow-sm hover:border-border-hover transition-colors">
+              <div
+                data-cursor="image"
+                className="md:col-span-8 relative overflow-hidden rounded-xl border border-border bg-surface-elevated aspect-[16/10] group cursor-pointer shadow-sm hover:border-border-hover transition-colors"
+              >
                 <img
                   src={h.images[0].src}
                   alt={h.images[0].alt}
@@ -148,7 +151,10 @@ const HackathonsSection = () => (
               </div>
 
               {/* Side Accent: Trophy Photo */}
-              <div className="md:col-span-4 relative overflow-hidden rounded-xl border border-border bg-surface-elevated aspect-[16/10] md:aspect-auto group cursor-pointer shadow-sm hover:border-border-hover transition-colors">
+              <div
+                data-cursor="image"
+                className="md:col-span-4 relative overflow-hidden rounded-xl border border-border bg-surface-elevated aspect-[16/10] md:aspect-auto group cursor-pointer shadow-sm hover:border-border-hover transition-colors"
+              >
                 <img
                   src={h.images[1].src}
                   alt={h.images[1].alt}
@@ -170,7 +176,10 @@ const HackathonsSection = () => (
               </div>
 
               {/* Secondary Tier: Certificates and Stage Presentation */}
-              <div className="md:col-span-6 relative overflow-hidden rounded-xl border border-border bg-surface-elevated aspect-video group cursor-pointer shadow-sm hover:border-border-hover transition-colors">
+              <div
+                data-cursor="image"
+                className="md:col-span-6 relative overflow-hidden rounded-xl border border-border bg-surface-elevated aspect-video group cursor-pointer shadow-sm hover:border-border-hover transition-colors"
+              >
                 <img
                   src={h.images[2].src}
                   alt={h.images[2].alt}
@@ -191,7 +200,10 @@ const HackathonsSection = () => (
                 </div>
               </div>
 
-              <div className="md:col-span-6 relative overflow-hidden rounded-xl border border-border bg-surface-elevated aspect-video group cursor-pointer shadow-sm hover:border-border-hover transition-colors">
+              <div
+                data-cursor="image"
+                className="md:col-span-6 relative overflow-hidden rounded-xl border border-border bg-surface-elevated aspect-video group cursor-pointer shadow-sm hover:border-border-hover transition-colors"
+              >
                 <img
                   src={h.images[3].src}
                   alt={h.images[3].alt}

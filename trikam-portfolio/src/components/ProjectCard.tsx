@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useRef, MouseEvent } from "react";
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from "framer-motion";
 import { Github, ExternalLink, Trophy, Construction, Youtube, MessageSquare, Figma, CheckCircle } from "lucide-react";
 
 export interface Project {
@@ -40,6 +41,29 @@ const isValidUrl = (url?: string): boolean => {
 const ProjectCard = ({ project, index }: ProjectCardProps) => {
   const isHackathon = Boolean(project.hackathonName || project.badgeText);
   const tier = project.tier || 2;
+  const cardRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  // Subtle 3D tilt coordinates (±3deg max to stay editorial & precise)
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+
+  const rotateX = useSpring(useTransform(mouseY, [0, 1], [3, -3]), { stiffness: 260, damping: 25 });
+  const rotateY = useSpring(useTransform(mouseX, [0, 1], [-4, 4]), { stiffness: 260, damping: 25 });
+
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (shouldReduceMotion || !cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(0.5);
+    mouseY.set(0.5);
+  };
 
   const hasLive = isValidUrl(project.live);
   const hasGithub = isValidUrl(project.github);
@@ -51,14 +75,27 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
 
   return (
     <motion.div
+      ref={cardRef}
       layout
+      data-cursor="project"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
       initial={{ opacity: 0, y: 16, scale: 0.98 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.35, delay: Math.min(index * 0.05, 0.2), ease: [0.22, 1, 0.36, 1] }}
-      className={`relative glass-card flex flex-col group h-full transition-all duration-300 hover:-translate-y-1 hover:border-border-hover overflow-hidden p-5 ${
+      style={
+        shouldReduceMotion
+          ? {}
+          : {
+              rotateX,
+              rotateY,
+              transformStyle: "preserve-3d",
+            }
+      }
+      className={`relative glass-card flex flex-col group h-full transition-[border-color,box-shadow] duration-300 hover:border-border-hover overflow-hidden p-5 ${
         isFeatured
-          ? "lg:flex-row gap-6 md:p-6 hover:border-primary/40 shadow-sm hover:shadow-lg"
+          ? "lg:flex-row gap-6 md:p-6 hover:border-primary/40 shadow-sm hover:shadow-xl"
           : "shadow-sm hover:shadow-md"
       }`}
     >

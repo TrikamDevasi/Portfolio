@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Send, Github, Linkedin, Youtube, Mail, Twitter, Code2, CheckCircle2, AlertCircle, Loader2, MapPin, Clock } from "lucide-react";
 import SectionWrapper from "./SectionWrapper";
+import MagneticButton from "./MagneticButton";
 import emailjs from "@emailjs/browser";
 
 const socials = [
@@ -161,7 +162,7 @@ const ContactSection = () => {
                 disabled={status === "loading"}
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border text-foreground placeholder:text-subtle-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors disabled:opacity-50 text-sm"
+                className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border text-foreground placeholder:text-subtle-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:shadow-[0_0_15px_rgba(16,185,129,0.15)] transition-all duration-200 disabled:opacity-50 text-sm"
               />
             </div>
 
@@ -178,7 +179,7 @@ const ContactSection = () => {
                 disabled={status === "loading"}
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border text-foreground placeholder:text-subtle-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors disabled:opacity-50 text-sm"
+                className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border text-foreground placeholder:text-subtle-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:shadow-[0_0_15px_rgba(16,185,129,0.15)] transition-all duration-200 disabled:opacity-50 text-sm"
               />
             </div>
 
@@ -196,32 +197,34 @@ const ContactSection = () => {
                 disabled={status === "loading"}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border text-foreground placeholder:text-subtle-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none disabled:opacity-50 text-sm"
+                className="w-full px-4 py-2.5 rounded-lg bg-surface border border-border text-foreground placeholder:text-subtle-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:shadow-[0_0_15px_rgba(16,185,129,0.15)] transition-all duration-200 resize-none disabled:opacity-50 text-sm"
               />
             </div>
 
-            <button
-              type="submit"
-              disabled={status === "loading"}
-              aria-label="Send message"
-              className={`w-full px-6 py-3 rounded-lg font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all shadow-sm ${
-                status === "loading"
-                  ? "bg-primary/50 text-primary-foreground cursor-not-allowed"
-                  : "bg-primary text-primary-foreground hover:bg-primary-hover active:scale-[0.98]"
-              }`}
-            >
-              {status === "loading" ? (
-                <>
-                  <Loader2 size={15} className="animate-spin" />
-                  Sending…
-                </>
-              ) : (
-                <>
-                  <Send size={15} />
-                  Send Message
-                </>
-              )}
-            </button>
+            <MagneticButton distance={0.2} maxOffset={6} className="w-full">
+              <button
+                type="submit"
+                disabled={status === "loading"}
+                aria-label="Send message"
+                className={`w-full px-6 py-3 rounded-lg font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all shadow-sm ${
+                  status === "loading"
+                    ? "bg-primary/50 text-primary-foreground cursor-not-allowed"
+                    : "bg-primary text-primary-foreground hover:bg-primary-hover active:scale-[0.98]"
+                }`}
+              >
+                {status === "loading" ? (
+                  <>
+                    <Loader2 size={15} className="animate-spin" />
+                    Sending…
+                  </>
+                ) : (
+                  <>
+                    <Send size={15} />
+                    Send Message
+                  </>
+                )}
+              </button>
+            </MagneticButton>
           </form>
         </div>
       </div>

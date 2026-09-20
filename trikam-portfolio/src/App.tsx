@@ -4,6 +4,7 @@ import { ThemeProvider } from "next-themes";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import CustomCursor from "@/components/CustomCursor";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
@@ -19,6 +20,7 @@ const App = () => (
       suppressHydrationWarning
     >
       <TooltipProvider>
+        <CustomCursor />
         <Toaster />
         <Sonner />
         <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>

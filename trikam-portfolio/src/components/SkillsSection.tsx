@@ -40,13 +40,30 @@ const skillDomains: SkillDomain[] = [
   },
 ];
 
+const marqueeTechs = [
+  "REACT",
+  "NODE.JS",
+  "TYPESCRIPT",
+  "MONGODB",
+  "REDIS",
+  "WEBSOCKETS",
+  "NEXT.JS",
+  "EXPRESS.JS",
+  "DOCKER",
+  "POSTGRESQL",
+  "C++",
+  "SOCKET.IO",
+  "SYSTEM ARCHITECTURE",
+  "REST APIS",
+];
+
 const SkillsSection = () => (
   <SectionWrapper
     id="skills"
     title="Technical Capabilities"
     subtitle="Engineered with core Computer Science fundamentals and modern full-stack technologies"
   >
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-10">
       {skillDomains.map((domain) => (
         <div
           key={domain.title}
@@ -81,6 +98,18 @@ const SkillsSection = () => (
           </div>
         </div>
       ))}
+    </div>
+
+    {/* Continuous Horizontal Infinite Tech Marquee */}
+    <div className="max-w-5xl mx-auto overflow-hidden py-4 border-y border-border/40 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
+      <div className="flex w-max items-center gap-8 animate-[marquee_35s_linear_infinite] hover:[animation-play-state:paused]">
+        {[...marqueeTechs, ...marqueeTechs, ...marqueeTechs].map((tech, i) => (
+          <div key={i} className="flex items-center gap-8 text-xs font-mono tracking-widest text-muted-foreground/70 uppercase select-none">
+            <span className="hover:text-foreground transition-colors cursor-default">{tech}</span>
+            <span className="w-1 h-1 rounded-full bg-primary/40" aria-hidden="true" />
+          </div>
+        ))}
+      </div>
     </div>
   </SectionWrapper>
 );

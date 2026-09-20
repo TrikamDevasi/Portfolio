@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { EASING, DURATION } from "@/lib/motion";
 import ResumeModal from "./ResumeModal";
+import MagneticButton from "./MagneticButton";
 
 const HeroSection = () => {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
@@ -88,20 +89,20 @@ const HeroSection = () => {
           className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay [background-image:radial-gradient(rgba(255,255,255,0.1)_1px,transparent_0)] [background-size:3px_3px]"
         />
 
-        {/* Subtle Floating Technical Metadata Nodes */}
+        {/* Subtle Floating Technical Metadata Nodes with continuous oscillation */}
         <motion.div
           aria-hidden="true"
-          animate={shouldReduceMotion ? {} : { y: [-6, 6, -6] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-28 right-24 hidden lg:block text-[11px] font-mono font-medium text-foreground/[0.18] tracking-widest select-none pointer-events-none"
+          animate={shouldReduceMotion ? {} : { y: [-8, 8, -8] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-28 right-24 hidden lg:block text-[11px] font-mono font-medium text-foreground/[0.22] tracking-widest select-none pointer-events-none border border-border/40 px-2.5 py-1 rounded bg-surface/30 backdrop-blur-sm"
         >
           [01] ARCHITECTURE
         </motion.div>
         <motion.div
           aria-hidden="true"
-          animate={shouldReduceMotion ? {} : { y: [6, -6, 6] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-16 left-12 hidden lg:block text-[10px] font-mono text-foreground/[0.18] tracking-widest select-none pointer-events-none"
+          animate={shouldReduceMotion ? {} : { y: [8, -8, 8] }}
+          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-16 left-12 hidden lg:block text-[10px] font-mono text-foreground/[0.22] tracking-widest select-none pointer-events-none border border-border/40 px-2.5 py-1 rounded bg-surface/30 backdrop-blur-sm"
         >
           REACT · NODE · TS · AI
         </motion.div>
@@ -184,31 +185,35 @@ const HeroSection = () => {
               <span>Redis</span>
             </motion.div>
 
-            {/* Action CTAs */}
+            {/* Action CTAs with Magnetic Effect */}
             <motion.div
               {...getEntrance(0.52)}
               className="flex flex-wrap items-center gap-3 mb-6"
             >
-              <Link
-                to="/projects"
-                className="group btn-primary active:scale-[0.98] hover:-translate-y-px transition-all duration-200 shadow-sm"
-              >
-                <span>View Projects</span>
-                <ChevronRight
-                  size={15}
-                  className="transition-transform duration-200 group-hover:translate-x-1.5"
-                />
-              </Link>
-              <button
-                onClick={() => setIsResumeOpen(true)}
-                className="group btn-secondary active:scale-[0.98] hover:-translate-y-px transition-all duration-200"
-              >
-                <FileText
-                  size={15}
-                  className="transition-transform duration-200 group-hover:-translate-y-0.5"
-                />
-                <span>Resume</span>
-              </button>
+              <MagneticButton distance={0.25} maxOffset={8}>
+                <Link
+                  to="/projects"
+                  className="group btn-primary active:scale-[0.98] shadow-sm inline-flex items-center gap-2"
+                >
+                  <span>View Projects</span>
+                  <ChevronRight
+                    size={15}
+                    className="transition-transform duration-200 group-hover:translate-x-1.5"
+                  />
+                </Link>
+              </MagneticButton>
+              <MagneticButton distance={0.25} maxOffset={8}>
+                <button
+                  onClick={() => setIsResumeOpen(true)}
+                  className="group btn-secondary active:scale-[0.98] inline-flex items-center gap-2"
+                >
+                  <FileText
+                    size={15}
+                    className="transition-transform duration-200 group-hover:-translate-y-0.5"
+                  />
+                  <span>Resume</span>
+                </button>
+              </MagneticButton>
             </motion.div>
 
             {/* Social Links & Location */}
@@ -267,7 +272,7 @@ const HeroSection = () => {
             className="flex flex-col items-center md:items-end justify-center md:col-span-5"
           >
             {/* Multi-layered Physical Depth Stack */}
-            <div className="relative group">
+            <div className="relative group" data-cursor="image">
               {/* Layer 1: Dark surface offset backing */}
               <div
                 aria-hidden="true"
