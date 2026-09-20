@@ -10,9 +10,25 @@ interface SectionWrapperProps {
   sectionIndex?: number;
 }
 
-const SectionWrapper = ({ id, title, subtitle, children }: SectionWrapperProps) => {
+const sectionNumberMap: Record<string, string> = {
+  about: "01 / ABOUT",
+  skills: "02 / SKILLS",
+  projects: "03 / PROJECTS",
+  hackathons: "04 / HACKATHONS",
+  certifications: "05 / CERTIFICATIONS",
+  contact: "06 / CONTACT",
+  figma: "UI/UX LAB",
+  achievements: "MILESTONES",
+  github: "ENGINEERING METRICS",
+};
+
+const SectionWrapper = ({ id, title, subtitle, children, sectionIndex }: SectionWrapperProps) => {
   const shouldReduceMotion = useReducedMotion();
   const isEmeraldAmbient = id === "projects" || id === "contact";
+  const hasGrid = id === "projects" || id === "hackathons" || id === "contact";
+  const sectionLabel =
+    sectionNumberMap[id] ||
+    (sectionIndex ? `0${sectionIndex} / ${id.toUpperCase()}` : id.toUpperCase());
 
   return (
     <motion.section
@@ -26,12 +42,15 @@ const SectionWrapper = ({ id, title, subtitle, children }: SectionWrapperProps) 
       }}
       className="section-padding scroll-mt-20 relative overflow-hidden"
     >
-      {/* ── SUBTLE AMBIENT SECTION GLOW (2-4% opacity) ── */}
+      {/* ── SUBTLE CONTINUITY GRID & AMBIENT SECTION GLOW ── */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10" aria-hidden="true">
+        {hasGrid && (
+          <div className="absolute inset-0 [background-image:linear-gradient(to_right,currentColor_1px,transparent_1px),linear-gradient(to_bottom,currentColor_1px,transparent_1px)] bg-[size:44px_44px] text-foreground/[0.015] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+        )}
         {isEmeraldAmbient ? (
-          <div className="absolute top-4 left-1/4 -translate-x-1/2 w-[550px] h-[350px] rounded-full bg-emerald-500/[0.035] blur-[120px]" />
+          <div className="absolute top-0 left-1/4 -translate-x-1/2 w-[550px] h-[350px] rounded-full bg-emerald-500/[0.035] blur-[120px]" />
         ) : (
-          <div className="absolute top-4 right-1/4 translate-x-1/2 w-[450px] h-[300px] rounded-full bg-surface-elevated/35 blur-[100px]" />
+          <div className="absolute top-0 right-1/4 translate-x-1/2 w-[450px] h-[300px] rounded-full bg-surface-elevated/35 blur-[100px]" />
         )}
       </div>
 
@@ -44,7 +63,7 @@ const SectionWrapper = ({ id, title, subtitle, children }: SectionWrapperProps) 
               whileInView={shouldReduceMotion ? { opacity: 1 } : { scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: DURATION.fast, ease: EASING.easeOut }}
-              className="w-2 h-2 rounded-full bg-primary shrink-0"
+              className="w-1.5 h-1.5 rounded-full bg-primary shrink-0"
             />
             <motion.div
               initial={shouldReduceMotion ? { opacity: 0 } : { x: -10, opacity: 0 }}
@@ -55,13 +74,13 @@ const SectionWrapper = ({ id, title, subtitle, children }: SectionWrapperProps) 
             >
               <div className="section-accent-line" />
               <span className="text-[11px] font-mono font-semibold uppercase tracking-widest text-muted-foreground/80">
-                {id}
+                {sectionLabel}
               </span>
             </motion.div>
           </div>
 
           {/* Heading with Clean Mask Reveal */}
-          <div className="overflow-hidden mb-1.5">
+          <div className="overflow-hidden mb-2">
             <motion.h2
               initial={shouldReduceMotion ? { opacity: 0 } : { y: "100%", opacity: 0 }}
               whileInView={shouldReduceMotion ? { opacity: 1 } : { y: "0%", opacity: 1 }}
@@ -71,7 +90,7 @@ const SectionWrapper = ({ id, title, subtitle, children }: SectionWrapperProps) 
                 ease: EASING.easeOut,
                 delay: shouldReduceMotion ? 0 : 0.08,
               }}
-              className="text-foreground font-bold"
+              className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-foreground uppercase"
             >
               {title}
             </motion.h2>

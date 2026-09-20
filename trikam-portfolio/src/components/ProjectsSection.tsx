@@ -142,7 +142,7 @@ const projects: Project[] = [
 ];
 
 const categories = [
-  { id: "all", label: "All" },
+  { id: "all", label: "All Projects" },
   { id: "full-stack", label: "Full-Stack" },
   { id: "games", label: "Real-Time" },
   { id: "frontend", label: "Frontend" },
@@ -159,85 +159,157 @@ const ProjectsSection = () => {
   );
 
   return (
-    <SectionWrapper id="projects" title="Projects" subtitle="Real-world applications and engineering experiments">
-      {/* ── Filter Tabs ── */}
-      <div className="flex flex-wrap items-center gap-2 mb-6">
-        {categories.map((cat) => (
-          <button
-            key={cat.id}
-            onClick={() => setActiveFilter(cat.id)}
-            aria-pressed={activeFilter === cat.id}
-            className={`filter-pill ${
-              activeFilter === cat.id ? "filter-pill-active" : "filter-pill-inactive"
-            }`}
-          >
-            {cat.label}
-          </button>
-        ))}
+    <SectionWrapper
+      id="projects"
+      title="Selected Work"
+      subtitle="Engineering full-stack architectures, real-time multiplayer engines, and AI diagnostic pipelines"
+    >
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        {/* ── STICKY EDITORIAL LEFT RAIL (Desktop Sticky) ── */}
+        <aside className="lg:col-span-4 lg:sticky lg:top-28 flex flex-col items-start gap-6">
+          <div>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-primary font-bold block mb-1">
+              Architecture &amp; Code
+            </span>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Every project is constructed with strict separation of concerns, resilient data schemas,
+              and low-latency event channels.
+            </p>
+          </div>
+
+          {/* Interactive Category Filter Pills */}
+          <div className="flex flex-wrap lg:flex-col gap-2 w-full">
+            {categories.map((cat) => {
+              const count =
+                cat.id === "all"
+                  ? projects.length
+                  : projects.filter((p) => p.category === cat.id).length;
+              const isActive = activeFilter === cat.id;
+
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveFilter(cat.id)}
+                  aria-pressed={isActive}
+                  className={`flex items-center justify-between px-3.5 py-2 rounded-lg text-xs font-mono transition-all duration-200 active:scale-[0.98] ${
+                    isActive
+                      ? "bg-primary text-primary-foreground font-bold shadow-sm"
+                      : "bg-surface border border-border text-muted-foreground hover:text-foreground hover:border-border-hover"
+                  }`}
+                >
+                  <span>{cat.label}</span>
+                  <span
+                    className={`text-[10px] px-1.5 py-0.5 rounded-full ${
+                      isActive
+                        ? "bg-primary-foreground/20 text-primary-foreground"
+                        : "bg-surface-elevated text-muted-foreground"
+                    }`}
+                  >
+                    {count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Factual Supporting Stat */}
+          <div className="hidden lg:block pt-4 border-t border-border/40 w-full text-xs font-mono text-muted-foreground/80 space-y-1">
+            <p>Production Builds: 6 Deployed</p>
+            <p>Stack: Next.js · Node · Redis · MongoDB</p>
+          </div>
+        </aside>
+
+        {/* ── RIGHT RAIL: SHOWCASE PROJECT STREAM ── */}
+        <div className="lg:col-span-8 space-y-8">
+          <LayoutGroup>
+            <AnimatePresence mode="popLayout">
+              {filteredProjects.length > 0 ? (
+                activeFilter === "all" ? (
+                  <div className="space-y-8 w-full">
+                    {/* Featured Case Study 01 (SkillSense AI) */}
+                    <div>
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-xs font-mono font-bold uppercase tracking-widest text-primary flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          Featured Case Study
+                        </span>
+                        <span className="text-[10px] font-mono text-muted-foreground uppercase">
+                          Tier 1 Architecture
+                        </span>
+                      </div>
+                      <div className="grid grid-cols-1 gap-6">
+                        {filteredProjects
+                          .filter((p) => p.name === "SkillSense AI")
+                          .map((project, i) => (
+                            <ProjectCard key={project.name} project={project} index={i} />
+                          ))}
+                      </div>
+                    </div>
+
+                    {/* Secondary Tier 1 & Full-Stack Stream */}
+                    <div>
+                      <span className="text-xs font-mono font-bold uppercase tracking-widest text-muted-foreground block mb-3">
+                        Real-Time &amp; Distributed Platforms
+                      </span>
+                      <div className="grid grid-cols-1 gap-6">
+                        {filteredProjects
+                          .filter((p) => p.name === "Game Hub")
+                          .map((project, i) => (
+                            <ProjectCard key={project.name} project={project} index={i + 1} />
+                          ))}
+                      </div>
+                    </div>
+
+                    {/* Full-Stack & Frontend Applications */}
+                    <div>
+                      <span className="text-xs font-mono font-bold uppercase tracking-widest text-muted-foreground block mb-3">
+                        Web Applications &amp; Storefronts
+                      </span>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        {filteredProjects
+                          .filter((p) => p.tier === 2)
+                          .map((project, i) => (
+                            <ProjectCard key={project.name} project={project} index={i + 2} />
+                          ))}
+                      </div>
+                    </div>
+
+                    {/* UI Recreations */}
+                    <div>
+                      <span className="text-xs font-mono font-bold uppercase tracking-widest text-muted-foreground block mb-3">
+                        Interface Explorations
+                      </span>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        {filteredProjects
+                          .filter((p) => p.tier === 3)
+                          .map((project, i) => (
+                            <ProjectCard key={project.name} project={project} index={i + 5} />
+                          ))}
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
+                    {filteredProjects.map((project, i) => (
+                      <ProjectCard key={project.name} project={project} index={i} />
+                    ))}
+                  </motion.div>
+                )
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="py-16 text-center w-full bg-surface-elevated/30 rounded-xl border border-border"
+                >
+                  <p className="text-muted-foreground font-mono text-sm">
+                    No projects found in this category.
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </LayoutGroup>
+        </div>
       </div>
-
-      {/* ── Projects Grid ── */}
-      <LayoutGroup>
-        <AnimatePresence mode="popLayout">
-          {filteredProjects.length > 0 ? (
-            activeFilter === "all" ? (
-              <div className="w-full space-y-8">
-                {/* Tier 1: Deep technical projects */}
-                <div>
-                  <p className="text-xs font-mono font-semibold uppercase tracking-widest text-muted-foreground mb-3">
-                    Deep Dives
-                  </p>
-                  <div className="grid grid-cols-1 gap-5">
-                    {filteredProjects.filter(p => p.tier === 1).map((project, i) => (
-                      <ProjectCard key={project.name} project={project} index={i} />
-                    ))}
-                  </div>
-                </div>
-
-                {/* Tier 2 */}
-                <div>
-                  <p className="text-xs font-mono font-semibold uppercase tracking-widest text-muted-foreground mb-3">
-                    Full-Stack & Web Apps
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {filteredProjects.filter(p => p.tier === 2).map((project, i) => (
-                      <ProjectCard key={project.name} project={project} index={i} />
-                    ))}
-                  </div>
-                </div>
-
-                {/* Tier 3 */}
-                <div>
-                  <p className="text-xs font-mono font-semibold uppercase tracking-widest text-muted-foreground mb-3">
-                    UI Recreations
-                  </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    {filteredProjects.filter(p => p.tier === 3).map((project, i) => (
-                      <ProjectCard key={project.name} project={project} index={i} />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                {filteredProjects.map((project, i) => (
-                  <ProjectCard key={project.name} project={project} index={i} />
-                ))}
-              </motion.div>
-            )
-          ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="py-16 text-center w-full"
-            >
-              <p className="text-muted-foreground font-mono text-sm">
-                No projects in this category.
-              </p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </LayoutGroup>
     </SectionWrapper>
   );
 };
