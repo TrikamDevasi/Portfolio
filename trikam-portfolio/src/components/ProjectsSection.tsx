@@ -161,7 +161,7 @@ const ProjectsSection = () => {
   return (
     <SectionWrapper id="projects" title="Projects" subtitle="Real-world applications and engineering experiments">
       {/* ── Filter Tabs ── */}
-      <div className="flex flex-wrap items-center gap-2 mb-10">
+      <div className="flex flex-wrap items-center gap-2 mb-6">
         {categories.map((cat) => (
           <button
             key={cat.id}
@@ -181,13 +181,13 @@ const ProjectsSection = () => {
         <AnimatePresence mode="popLayout">
           {filteredProjects.length > 0 ? (
             activeFilter === "all" ? (
-              <div className="w-full space-y-10">
+              <div className="w-full space-y-8">
                 {/* Tier 1: Deep technical projects */}
                 <div>
-                  <p className="text-xs font-mono font-semibold uppercase tracking-widest text-muted-foreground mb-5">
+                  <p className="text-xs font-mono font-semibold uppercase tracking-widest text-muted-foreground mb-3">
                     Deep Dives
                   </p>
-                  <div className="grid grid-cols-1 gap-6">
+                  <div className="grid grid-cols-1 gap-5">
                     {filteredProjects.filter(p => p.tier === 1).map((project, i) => (
                       <ProjectCard key={project.name} project={project} index={i} />
                     ))}
@@ -196,10 +196,10 @@ const ProjectsSection = () => {
 
                 {/* Tier 2 */}
                 <div>
-                  <p className="text-xs font-mono font-semibold uppercase tracking-widest text-muted-foreground mb-5">
+                  <p className="text-xs font-mono font-semibold uppercase tracking-widest text-muted-foreground mb-3">
                     Full-Stack & Web Apps
                   </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                     {filteredProjects.filter(p => p.tier === 2).map((project, i) => (
                       <ProjectCard key={project.name} project={project} index={i} />
                     ))}
@@ -208,10 +208,10 @@ const ProjectsSection = () => {
 
                 {/* Tier 3 */}
                 <div>
-                  <p className="text-xs font-mono font-semibold uppercase tracking-widest text-muted-foreground mb-5">
+                  <p className="text-xs font-mono font-semibold uppercase tracking-widest text-muted-foreground mb-3">
                     UI Recreations
                   </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     {filteredProjects.filter(p => p.tier === 3).map((project, i) => (
                       <ProjectCard key={project.name} project={project} index={i} />
                     ))}
@@ -219,7 +219,7 @@ const ProjectsSection = () => {
                 </div>
               </div>
             ) : (
-              <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {filteredProjects.map((project, i) => (
                   <ProjectCard key={project.name} project={project} index={i} />
                 ))}

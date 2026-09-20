@@ -49,10 +49,10 @@ const ContactSection = () => {
 
   return (
     <SectionWrapper id="contact" title="Contact" subtitle="Reach out directly about opportunities or projects.">
-      <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto items-start">
+      <div className="grid md:grid-cols-2 gap-7 max-w-5xl mx-auto items-start">
 
         {/* Contact Form */}
-        <div className="glass-card p-6 sm:p-8 rounded-xl">
+        <div className="glass-card p-5 sm:p-6 rounded-xl">
           {/* Success / Error Alerts */}
           <AnimatePresence>
             {status === "success" && (
@@ -167,14 +167,14 @@ const ContactSection = () => {
         </div>
 
         {/* Contact Info */}
-        <div className="flex flex-col gap-6">
-          <div className="glass-card p-6 rounded-xl">
+        <div className="flex flex-col gap-4">
+          <div className="glass-card p-5 rounded-xl">
             <h3 className="text-sm font-bold text-foreground mb-1">Direct Contact</h3>
-            <p className="text-xs font-mono text-muted-foreground mb-5">
+            <p className="text-xs font-mono text-muted-foreground mb-4">
               Open to internships and collaborative projects.
             </p>
 
-            <div className="space-y-3">
+            <div className="space-y-2.5">
               <div className="flex items-center gap-3 text-sm text-foreground/80">
                 <MapPin size={14} className="text-muted-foreground shrink-0" />
                 <span className="text-sm text-muted-foreground">Ahmedabad, Gujarat, India</span>
@@ -196,8 +196,8 @@ const ContactSection = () => {
           </div>
 
           {/* Social links */}
-          <div className="glass-card p-6 rounded-xl">
-            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
+          <div className="glass-card p-5 rounded-xl">
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
               Profiles
             </p>
             <div className="flex flex-wrap gap-2">

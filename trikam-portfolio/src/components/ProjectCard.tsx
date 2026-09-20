@@ -54,8 +54,8 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3, delay: index * 0.04 }}
-      className={`relative glass-card flex flex-col group h-full transition-colors duration-200 overflow-hidden p-6 ${
-        tier === 1 ? "lg:flex-row gap-8" : ""
+      className={`relative glass-card flex flex-col group h-full transition-colors duration-200 overflow-hidden p-5 ${
+        tier === 1 ? "lg:flex-row gap-6 md:p-6" : ""
       }`}
     >
       {/* ── Hackathon Tag ── */}

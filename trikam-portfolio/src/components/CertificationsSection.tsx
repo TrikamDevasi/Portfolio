@@ -331,7 +331,7 @@ const CertificationsSection = () => {
     >
       <div className="max-w-6xl mx-auto">
         {/* Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2 mb-10">
+        <div className="flex flex-wrap items-center gap-2 mb-6">
           <button
             onClick={() => setActiveFilter("all")}
             className={`filter-pill ${

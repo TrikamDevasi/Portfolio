@@ -48,7 +48,7 @@ const AchievementsSection = () => (
         {achievements.map((achievement) => (
           <div
             key={achievement.title}
-            className="flex flex-col sm:flex-row sm:items-start gap-4 p-6 bg-background hover:bg-surface-hover transition-colors"
+            className="flex flex-col sm:flex-row sm:items-start gap-4 p-4.5 sm:p-5 bg-background hover:bg-surface-hover transition-colors"
           >
             {/* Icon — small, not in a box */}
             <achievement.icon size={16} className="text-muted-foreground mt-0.5 shrink-0 hidden sm:block" />
@@ -58,8 +58,8 @@ const AchievementsSection = () => (
                 <h3 className="font-bold text-foreground text-base">{achievement.title}</h3>
                 <span className="text-xs font-mono text-muted-foreground shrink-0">{achievement.date}</span>
               </div>
-              <p className="text-xs font-mono text-muted-foreground mb-2">{achievement.organization}</p>
-              <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+              <p className="text-xs font-mono text-muted-foreground mb-1.5">{achievement.organization}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-2">
                 {achievement.description}
               </p>
               {achievement.link && (

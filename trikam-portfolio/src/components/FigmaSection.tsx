@@ -34,21 +34,21 @@ const FigmaSection = () => (
       {figmaProjects.map((project) => (
         <div
           key={project.name}
-          className="glass-card p-6 rounded-xl flex flex-col justify-between hover:border-border-hover transition-colors"
+          className="glass-card p-5 rounded-xl flex flex-col justify-between hover:border-border-hover transition-colors"
         >
           <div>
-            <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center justify-between mb-2.5">
               <Figma size={16} className="text-muted-foreground" />
               <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-widest">
                 {project.type}
               </span>
             </div>
 
-            <h3 className="text-base font-bold text-foreground mb-2">
+            <h3 className="text-base font-bold text-foreground mb-1.5">
               {project.name}
             </h3>
 
-            <p className="text-xs text-muted-foreground leading-relaxed mb-5">
+            <p className="text-xs text-muted-foreground leading-relaxed mb-3.5">
               {project.description}
             </p>
           </div>
@@ -58,7 +58,7 @@ const FigmaSection = () => (
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`Open ${project.name} prototype in Figma`}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline border-t border-border/40 pt-4"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline border-t border-border/40 pt-3"
           >
             <ExternalLink size={13} />
             Open Prototype

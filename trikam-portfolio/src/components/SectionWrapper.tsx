@@ -11,13 +11,13 @@ interface SectionWrapperProps {
 const SectionWrapper = ({ id, title, subtitle, children }: SectionWrapperProps) => (
   <section id={id} className="section-padding scroll-mt-20">
     <div className="container mx-auto max-w-6xl">
-      <div className="mb-14">
+      <div className="mb-8 md:mb-10">
         {/* Section label row */}
-        <div className="flex items-center gap-4 mb-5">
+        <div className="flex items-center gap-4 mb-2.5">
           <div className="section-accent-line" />
         </div>
 
-        <h2 className="text-foreground font-bold mb-3">
+        <h2 className="text-foreground font-bold mb-1.5">
           {title}
         </h2>
         {subtitle && (

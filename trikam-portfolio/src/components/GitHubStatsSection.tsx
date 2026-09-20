@@ -41,7 +41,7 @@ const GitHubStatsSection = () => {
       <div className="max-w-3xl mx-auto">
         <div className="border border-border rounded-xl overflow-hidden">
           {/* Header row */}
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-6 border-b border-border">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 sm:p-5 border-b border-border">
             <div className="flex items-center gap-3">
               <Github size={20} className="text-foreground" />
               <div>
@@ -64,8 +64,8 @@ const GitHubStatsSection = () => {
           </div>
 
           {/* Content */}
-          <div className="p-6">
-            <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+          <div className="p-4 sm:p-5">
+            <p className="text-sm text-muted-foreground leading-relaxed mb-4">
               I maintain {githubUser.public_repos}+ public repositories spanning full-stack web applications,
               real-time systems, and learning projects. Most active work is in JavaScript, TypeScript,
               and C++. The best overview is to browse the repositories directly.

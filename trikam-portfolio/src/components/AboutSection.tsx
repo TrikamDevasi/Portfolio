@@ -28,23 +28,23 @@ const timeline = [
 const AboutSection = () => {
   return (
     <SectionWrapper id="about" title="About" subtitle="Background and engineering focus">
-      <div className="space-y-16 max-w-6xl mx-auto">
+      <div className="space-y-10 md:space-y-12 max-w-6xl mx-auto">
 
         {/* ── Bio ── */}
         <div className="grid md:grid-cols-12 gap-8">
           <div className="md:col-span-7">
-            <div className="flex items-center gap-2.5 mb-4 text-muted-foreground">
+            <div className="flex items-center gap-2.5 mb-3 text-muted-foreground">
               <Terminal size={16} />
               <span className="text-xs font-mono font-semibold uppercase tracking-wider">Engineering Profile</span>
             </div>
 
-            <p className="text-muted-foreground leading-relaxed mb-4">
+            <p className="text-muted-foreground leading-relaxed mb-3.5">
               I'm a first-year Computer Science undergraduate focused on building practical,
               resilient web software. My work connects well-crafted React interfaces with
               scalable Node.js backends and real-time event engines.
             </p>
 
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="text-muted-foreground leading-relaxed mb-5">
               Recent work spans asynchronous task pipelines with Redis, WebSocket state
               management in browser games, and integrating LLMs into web platforms for
               intelligent automated workflows.
@@ -64,7 +64,7 @@ const AboutSection = () => {
           </div>
 
           {/* ── What I Build / Learn / Education — plain text, no icon boxes ── */}
-          <div className="md:col-span-5 flex flex-col gap-5 border-l border-border pl-8">
+          <div className="md:col-span-5 flex flex-col gap-4 border-l border-border pl-7">
             <div>
               <h4 className="text-sm font-bold text-foreground mb-1">What I Build</h4>
               <p className="text-xs text-muted-foreground leading-relaxed">
@@ -88,7 +88,7 @@ const AboutSection = () => {
 
         {/* ── Timeline ── */}
         <div>
-          <h3 className="text-base font-bold text-foreground mb-8 flex items-center gap-2.5">
+          <h3 className="text-base font-bold text-foreground mb-4 flex items-center gap-2.5">
             <span className="text-muted-foreground font-mono text-sm">//</span>
             Timeline
           </h3>
@@ -96,16 +96,16 @@ const AboutSection = () => {
             {timeline.map((item) => (
               <div
                 key={item.period}
-                className="bg-background p-6 flex flex-col h-full"
+                className="bg-background p-5 flex flex-col h-full"
               >
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-2.5">
                   <item.icon size={16} className="text-muted-foreground" />
                   <span className="text-[10px] font-mono font-medium text-muted-foreground">
                     {item.period}
                   </span>
                 </div>
                 <h4 className="font-bold text-foreground text-sm mb-1 leading-tight">{item.title}</h4>
-                <p className="text-[11px] font-mono text-muted-foreground mb-3">{item.institution}</p>
+                <p className="text-[11px] font-mono text-muted-foreground mb-2">{item.institution}</p>
                 <p className="text-xs text-muted-foreground leading-relaxed mt-auto">
                   {item.description}
                 </p>

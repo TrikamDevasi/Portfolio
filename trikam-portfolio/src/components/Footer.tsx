@@ -10,7 +10,7 @@ const socialLinks = [
 ];
 
 const Footer = () => (
-  <footer className="pt-10 pb-8 px-6 bg-surface border-t border-border">
+  <footer className="pt-8 pb-6 px-6 bg-surface border-t border-border">
     <div className="container mx-auto max-w-6xl">
       <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mb-6">
         <div className="text-center sm:text-left">

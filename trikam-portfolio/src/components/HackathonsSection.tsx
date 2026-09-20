@@ -58,9 +58,9 @@ const HackathonsSection = () => (
           key={h.name}
           className="glass-card overflow-hidden border border-border rounded-xl"
         >
-          <div className="p-6 sm:p-10">
+          <div className="p-5 sm:p-7">
             {/* Header */}
-            <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
+            <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
               <div>
                 <div className="flex items-center gap-2 mb-1">
                   <Trophy size={15} className="text-muted-foreground" />
@@ -96,7 +96,7 @@ const HackathonsSection = () => (
               </div>
             </div>
 
-            <p className="text-muted-foreground leading-relaxed text-sm mb-5">
+            <p className="text-muted-foreground leading-relaxed text-sm mb-4">
               {h.description}
             </p>
 
@@ -106,8 +106,8 @@ const HackathonsSection = () => (
           </div>
 
           {/* Photo Gallery */}
-          <div className="px-6 sm:px-10 pb-8">
-            <p className="text-[10px] font-mono font-semibold uppercase tracking-widest text-muted-foreground mb-4 border-t border-border/40 pt-5">
+          <div className="px-5 sm:px-7 pb-6">
+            <p className="text-[10px] font-mono font-semibold uppercase tracking-widest text-muted-foreground mb-3 border-t border-border/40 pt-3.5">
               Event Gallery
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3">
