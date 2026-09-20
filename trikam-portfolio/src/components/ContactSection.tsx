@@ -71,7 +71,7 @@ const ContactSection = () => {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-3 text-emerald-400 text-sm"
+                className="mb-6 p-4 rounded-xl bg-accent-soft border border-accent-border flex items-center gap-3 text-primary text-sm"
               >
                 <CheckCircle2 size={18} className="shrink-0" />
                 <span>Message sent successfully! I'll get back to you within 24 hours.</span>
@@ -109,7 +109,7 @@ const ContactSection = () => {
                 disabled={status === "loading"}
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-secondary/60 border border-border text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50 text-sm"
+                className="w-full px-4 py-3 rounded-lg bg-surface border border-border text-foreground placeholder:text-subtle-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50 text-sm"
               />
             </div>
 
@@ -126,7 +126,7 @@ const ContactSection = () => {
                 disabled={status === "loading"}
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-secondary/60 border border-border text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50 text-sm"
+                className="w-full px-4 py-3 rounded-lg bg-surface border border-border text-foreground placeholder:text-subtle-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50 text-sm"
               />
             </div>
 
@@ -144,7 +144,7 @@ const ContactSection = () => {
                 disabled={status === "loading"}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-secondary/60 border border-border text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none disabled:opacity-50 text-sm"
+                className="w-full px-4 py-3 rounded-lg bg-surface border border-border text-foreground placeholder:text-subtle-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none disabled:opacity-50 text-sm"
               />
             </div>
 
@@ -155,7 +155,7 @@ const ContactSection = () => {
               className={`w-full px-6 py-3.5 rounded-lg font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2.5 transition-all ${
                 status === "loading"
                   ? "bg-primary/50 text-primary-foreground cursor-not-allowed"
-                  : "bg-primary text-primary-foreground hover:bg-[hsl(var(--primary-hover))] active:scale-[0.98]"
+                  : "bg-primary text-primary-foreground hover:bg-primary-hover active:scale-[0.98]"
               }`}
             >
               {status === "loading" ? (
@@ -184,7 +184,7 @@ const ContactSection = () => {
           {/* Info Card */}
           <div className="glass-card p-6 sm:p-8 rounded-2xl glow-border">
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 rounded-xl bg-primary/10 text-primary border border-primary/20">
+              <div className="p-3 rounded-xl bg-surface-elevated text-muted-foreground border border-border">
                 <MessageSquare size={24} />
               </div>
               <div>
@@ -199,15 +199,15 @@ const ContactSection = () => {
 
             <div className="space-y-4 border-t border-border/40 pt-6">
               <div className="flex items-center gap-3 text-sm text-foreground/80">
-                <MapPin size={18} className="text-primary shrink-0" />
+                <MapPin size={18} className="text-muted-foreground shrink-0" />
                 <span>Ahmedabad, Gujarat, India</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-foreground/80">
-                <Clock size={18} className="text-primary shrink-0" />
+                <Clock size={18} className="text-muted-foreground shrink-0" />
                 <span>IST (UTC+5:30) · Quick Response Guaranteed</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-foreground/80">
-                <Mail size={18} className="text-primary shrink-0" />
+                <Mail size={18} className="text-muted-foreground shrink-0" />
                 <a
                   href="mailto:trikam.devasi.cg@gmail.com"
                   className="text-primary hover:underline font-mono text-xs sm:text-sm font-medium"
@@ -232,7 +232,7 @@ const ContactSection = () => {
                   rel="noopener noreferrer"
                   aria-label={label}
                   title={label}
-                  className="flex flex-col items-center justify-center p-3 rounded-xl border border-border/50 bg-secondary/30 hover:border-primary/50 hover:bg-primary/10 text-muted-foreground hover:text-primary transition-all group"
+                  className="flex flex-col items-center justify-center p-3 rounded-xl border border-border bg-surface-elevated hover:border-border-hover text-muted-foreground hover:text-foreground transition-all group"
                 >
                   <Icon size={20} className="group-hover:scale-110 transition-transform" />
                   <span className="text-[10px] font-mono mt-1.5 opacity-80 group-hover:opacity-100">{label}</span>

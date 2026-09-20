@@ -206,16 +206,12 @@ const CertCard = ({ cert, onPreview }: CertCardProps) => {
     <motion.div
       variants={cardVariants}
       layout
-      className={`group relative rounded-2xl overflow-hidden border bg-card/40 backdrop-blur-xl transition-all duration-300 flex flex-col h-full ${
-        cert.category === "hackathon"
-          ? "border-primary/40 hover:border-primary/60"
-          : "border-border/60 hover:border-primary/40"
-      }`}
+      className="group relative rounded-2xl overflow-hidden border border-border hover:border-border-hover bg-card transition-all duration-300 flex flex-col h-full"
     >
       {/* Top Banner Tag */}
       {cert.badge && (
         <div className="absolute top-2.5 left-2.5 z-10">
-          <span className="px-2.5 py-0.5 rounded-full bg-background/90 backdrop-blur-md border border-primary/30 text-[10px] font-bold text-primary uppercase tracking-wider shadow-md">
+          <span className="px-2.5 py-0.5 rounded-full bg-surface-elevated/90 backdrop-blur-md border border-border text-[10px] font-medium text-muted-foreground uppercase tracking-wider shadow-sm">
             {cert.badge}
           </span>
         </div>
@@ -223,7 +219,7 @@ const CertCard = ({ cert, onPreview }: CertCardProps) => {
 
       {/* Certificate image preview */}
       <div
-        className="relative w-full h-44 bg-secondary/30 cursor-pointer overflow-hidden"
+        className="relative w-full h-44 bg-surface-elevated/30 cursor-pointer overflow-hidden"
         onClick={onPreview}
         role="button"
         tabIndex={0}
@@ -236,13 +232,13 @@ const CertCard = ({ cert, onPreview }: CertCardProps) => {
         }}
       >
         {imgState === "loading" && (
-          <div className="absolute inset-0 flex items-center justify-center bg-secondary/30">
-            <Loader2 size={24} className="text-primary/50 animate-spin" />
+          <div className="absolute inset-0 flex items-center justify-center bg-surface-elevated/30">
+            <Loader2 size={24} className="text-muted-foreground/50 animate-spin" />
           </div>
         )}
 
         {imgState === "error" && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-secondary/30 gap-2 p-4 text-center">
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-surface-elevated/30 gap-2 p-4 text-center">
             <ImageOff size={24} className="text-muted-foreground/40" />
             <p className="text-[10px] text-muted-foreground">Preview Available in Modal</p>
           </div>
@@ -271,7 +267,7 @@ const CertCard = ({ cert, onPreview }: CertCardProps) => {
       <div className="p-4 flex flex-col justify-between flex-1 gap-3">
         <div>
           <div className="flex items-center justify-between gap-2 mb-1.5">
-            <span className="text-[10px] font-mono font-semibold text-primary uppercase tracking-wider truncate">
+            <span className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider truncate">
               {cert.topic}
             </span>
             {cert.date && (
@@ -280,7 +276,7 @@ const CertCard = ({ cert, onPreview }: CertCardProps) => {
               </span>
             )}
           </div>
-          <h4 className="text-xs sm:text-sm font-bold text-foreground leading-snug group-hover:text-primary transition-colors">
+          <h4 className="text-xs sm:text-sm font-bold text-foreground leading-snug transition-colors">
             {cert.title}
           </h4>
           <p className="text-[11px] text-muted-foreground mt-1 line-clamp-1">
@@ -342,7 +338,7 @@ const CertificationsSection = () => {
             className={`px-4 py-2 rounded-xl text-xs font-mono font-semibold transition-all flex items-center gap-2 ${
               activeFilter === "all"
                 ? "bg-primary text-primary-foreground"
-                : "bg-secondary/60 text-muted-foreground hover:text-foreground border border-border/50"
+                : "bg-surface-elevated text-muted-foreground hover:text-foreground border border-border hover:border-border-hover"
             }`}
           >
             <Layers size={13} />
@@ -354,7 +350,7 @@ const CertificationsSection = () => {
             className={`px-4 py-2 rounded-xl text-xs font-mono font-semibold transition-all flex items-center gap-2 ${
               activeFilter === "hackathon"
                 ? "bg-primary text-primary-foreground"
-                : "bg-secondary/60 text-muted-foreground hover:text-foreground border border-border/50"
+                : "bg-surface-elevated text-muted-foreground hover:text-foreground border border-border hover:border-border-hover"
             }`}
           >
             <Trophy size={13} />
@@ -366,7 +362,7 @@ const CertificationsSection = () => {
             className={`px-4 py-2 rounded-xl text-xs font-mono font-semibold transition-all flex items-center gap-2 ${
               activeFilter === "foundational"
                 ? "bg-primary text-primary-foreground"
-                : "bg-secondary/60 text-muted-foreground hover:text-foreground border border-border/50"
+                : "bg-surface-elevated text-muted-foreground hover:text-foreground border border-border hover:border-border-hover"
             }`}
           >
             <BookOpen size={13} />

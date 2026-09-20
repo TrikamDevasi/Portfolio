@@ -61,7 +61,7 @@ const HackathonsSection = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: i * 0.1 }}
-          className="glass-card overflow-hidden border border-border rounded-2xl hover:border-[hsl(var(--border-hover))] transition-colors"
+          className="glass-card overflow-hidden border border-border rounded-2xl hover:border-border-hover transition-colors"
         >
           <div className="p-6 sm:p-10">
             {/* Header info */}
@@ -82,7 +82,7 @@ const HackathonsSection = () => (
                   target="_blank" 
                   rel="noopener noreferrer" 
                   aria-label={`View ${h.name} submission repository on GitHub`}
-                  className="flex items-center gap-2 text-xs font-mono text-muted-foreground hover:text-foreground transition-colors border border-border px-3.5 py-2 rounded-lg bg-secondary/50 hover:border-primary/40"
+                  className="flex items-center gap-2 text-xs font-mono text-muted-foreground hover:text-foreground transition-colors border border-border px-3.5 py-2 rounded-lg bg-surface-elevated hover:border-border-hover"
                 >
                   <Github size={14} /> Repository
                 </a>
@@ -92,7 +92,7 @@ const HackathonsSection = () => (
                     target="_blank" 
                     rel="noopener noreferrer" 
                     aria-label={`View live demo of ${h.project}`}
-                    className="flex items-center gap-2 text-xs font-mono text-primary hover:brightness-110 transition-colors border border-primary/30 px-3.5 py-2 rounded-lg bg-primary/10"
+                    className="flex items-center gap-2 text-xs font-mono text-primary hover:text-primary-foreground transition-colors border border-accent-border px-3.5 py-2 rounded-lg bg-accent-soft hover:bg-primary"
                   >
                     <ExternalLink size={14} /> Live Prototype
                   </a>
@@ -104,8 +104,8 @@ const HackathonsSection = () => (
               {h.description}
             </p>
             
-            <div className="text-xs font-mono text-foreground/80 flex items-center gap-2 bg-secondary/40 px-3 py-2 rounded-lg border border-border/40 w-fit">
-              <span className="text-primary font-bold">Awarded Project:</span> {h.project}
+            <div className="text-xs font-mono text-muted-foreground flex items-center gap-2 bg-surface-elevated px-3 py-2 rounded-lg border border-border w-fit">
+              <span className="text-foreground font-semibold">Awarded Project:</span> {h.project}
             </div>
           </div>
 

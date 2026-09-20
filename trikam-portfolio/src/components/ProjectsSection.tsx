@@ -187,7 +187,7 @@ const ProjectsSection = () => {
                 {/* Flagship Projects */}
                 <div>
                   <div className="flex items-center gap-3 mb-6 pb-2 border-b border-border/50">
-                    <span className="text-xs font-bold uppercase tracking-widest text-primary font-mono">
+                    <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground font-mono">
                       // Flagship Architecture Projects
                     </span>
                     <span className="text-xs text-muted-foreground/60 font-mono">

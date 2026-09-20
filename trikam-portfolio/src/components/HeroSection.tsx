@@ -39,7 +39,7 @@ const HeroSection = () => {
             className="flex flex-col items-center lg:items-start text-center lg:text-left"
           >
             {/* Status Chip */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-[11px] font-mono font-semibold uppercase tracking-wider mb-6 text-primary">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-accent-border bg-accent-soft text-[11px] font-mono font-semibold uppercase tracking-wider mb-6 text-primary">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
@@ -50,7 +50,7 @@ const HeroSection = () => {
             <h1 className="fluid-heading font-bold text-foreground mb-6">
               Building Modern{" "}
               <br />
-              <span className="text-primary">Full-Stack &amp; AI</span>{" "}
+              Full-Stack &amp; AI{" "}
               <br />
               Web Systems.
             </h1>
@@ -70,7 +70,7 @@ const HeroSection = () => {
                     {value}
                   </span>
                   <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center justify-center lg:justify-start gap-1">
-                    <Icon size={12} className="text-primary shrink-0" />
+                    <Icon size={12} className="text-muted-foreground shrink-0" />
                     {label}
                   </span>
                 </div>
@@ -100,7 +100,7 @@ const HeroSection = () => {
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
             className="relative w-full max-w-[420px] mx-auto lg:ml-auto"
           >
-            <div className="glass-card p-6 sm:p-8 rounded-3xl glow-border shine-hover">
+            <div className="glass-card p-6 sm:p-8 rounded-3xl glow-border">
               {/* Profile Avatar Header */}
               <div className="flex flex-col items-center text-center mb-6">
                 <div className="w-36 h-36 sm:w-44 sm:h-44 mb-5 relative">
@@ -110,7 +110,7 @@ const HeroSection = () => {
                   <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-1 font-display tracking-tight">
                     Trikam Devasi
                   </h2>
-                  <div className="text-xs font-mono text-primary flex items-center justify-center gap-1.5 font-bold uppercase tracking-wider">
+                  <div className="text-xs font-mono text-muted-foreground flex items-center justify-center gap-1.5 font-semibold uppercase tracking-wider">
                     <Briefcase size={13} />
                     Full-Stack Developer
                   </div>
@@ -128,7 +128,7 @@ const HeroSection = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={label}
-                        className="text-muted-foreground hover:text-primary transition-all p-2 rounded-lg bg-secondary/50 border border-border/60 hover:border-primary/40 hover:bg-primary/10 cursor-pointer"
+                        className="text-muted-foreground hover:text-foreground transition-all p-2 rounded-lg bg-surface-elevated border border-border hover:border-border-hover cursor-pointer"
                       >
                         <Icon size={16} />
                       </a>
@@ -149,16 +149,16 @@ const HeroSection = () => {
                     { name: "MongoDB & Postgres", status: "Applied" },
                     { name: "WebSocket & Redis", status: "Applied" },
                   ].map((tech) => (
-                    <div key={tech.name} className="p-2.5 rounded-xl border border-border/50 bg-secondary/30">
+                    <div key={tech.name} className="p-2.5 rounded-xl border border-border bg-surface-elevated">
                       <p className="text-xs font-bold text-foreground/90 leading-tight">{tech.name}</p>
-                      <p className="text-[10px] font-mono text-primary/80 mt-0.5">{tech.status}</p>
+                      <p className="text-[10px] font-mono text-muted-foreground mt-0.5">{tech.status}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Current Focus Banner */}
-              <div className="p-4 rounded-xl bg-primary/5 border border-primary/20 flex items-start gap-3">
+              <div className="p-4 rounded-xl bg-surface-elevated border border-border flex items-start gap-3">
                 <Target size={15} className="text-primary mt-0.5 shrink-0" />
                 <div>
                   <div className="text-xs font-bold text-foreground mb-0.5">Current Focus</div>

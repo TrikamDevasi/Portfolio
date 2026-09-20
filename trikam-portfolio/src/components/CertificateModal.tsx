@@ -50,8 +50,8 @@ const CertificateModal = ({
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
           onClick={onClose}
         >
-          {/* Blurred dark overlay */}
-          <div className="absolute inset-0 bg-black/80 backdrop-blur-md" />
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black/55 backdrop-blur-sm" />
 
           {/* Modal content */}
           <motion.div
@@ -60,12 +60,12 @@ const CertificateModal = ({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.88, y: 24 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-10 max-w-3xl w-full rounded-2xl overflow-hidden border border-primary/30 shadow-2xl shadow-primary/10"
+            className="relative z-10 max-w-3xl w-full rounded-2xl overflow-hidden border border-border shadow-2xl shadow-black/40"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header bar */}
-            <div className="flex items-center justify-between px-5 py-3 bg-[#0d0d1a]/90 border-b border-white/10">
-              <span className="text-sm font-medium text-white/70 truncate pr-4">
+            <div className="flex items-center justify-between px-5 py-3 bg-card border-b border-border">
+              <span className="text-sm font-medium text-foreground truncate pr-4">
                 {title}
               </span>
               <div className="flex items-center gap-2 shrink-0">
@@ -74,7 +74,7 @@ const CertificateModal = ({
                     href={certLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 text-xs text-primary hover:text-primary-foreground transition-colors px-3 py-1.5 rounded-lg bg-primary/10 hover:bg-primary/20 border border-primary/20"
+                    className="flex items-center gap-1.5 text-xs text-primary hover:text-primary-foreground transition-colors px-3 py-1.5 rounded-lg bg-accent-soft hover:bg-primary border border-accent-border"
                   >
                     <ExternalLink size={12} />
                     Open
@@ -82,7 +82,7 @@ const CertificateModal = ({
                 )}
                 <button
                   onClick={onClose}
-                  className="p-1.5 rounded-lg text-white/50 hover:text-white hover:bg-white/10 transition-colors"
+                  className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-surface-elevated transition-colors"
                   aria-label="Close modal"
                 >
                   <X size={18} />
@@ -91,11 +91,11 @@ const CertificateModal = ({
             </div>
 
             {/* Certificate image */}
-            <div className="bg-[#0a0a14] flex items-center justify-center p-4">
+            <div className="bg-surface flex items-center justify-center p-4">
               <img
                 src={imageUrl}
                 alt={title}
-                className="w-full max-h-[70vh] object-contain rounded-lg"
+                className="w-full max-h-[70vh] object-contain rounded-lg bg-white"
               />
             </div>
           </motion.div>

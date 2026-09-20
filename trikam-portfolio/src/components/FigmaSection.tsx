@@ -39,19 +39,19 @@ const FigmaSection = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: i * 0.08 }}
-          className="glass-card glow-border p-6 sm:p-8 rounded-2xl relative overflow-hidden group hover:border-primary/40 transition-all flex flex-col justify-between"
+          className="glass-card glow-border p-6 sm:p-8 rounded-2xl relative overflow-hidden group hover:border-border-hover transition-all flex flex-col justify-between"
         >
           <div>
             <div className="flex items-center justify-between mb-4">
-              <div className="p-2.5 rounded-xl bg-[#F24E1E]/10 text-[#F24E1E] border border-[#F24E1E]/20">
+              <div className="p-2.5 rounded-xl bg-surface-elevated text-muted-foreground border border-border">
                 <Figma size={22} />
               </div>
-              <span className="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2.5 py-1 rounded-full border border-primary/20">
+              <span className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground bg-surface-elevated px-2.5 py-1 rounded-full border border-border">
                 {project.tag}
               </span>
             </div>
             
-            <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+            <h3 className="text-lg sm:text-xl font-bold text-foreground mb-2 transition-colors">
               {project.name}
             </h3>
             

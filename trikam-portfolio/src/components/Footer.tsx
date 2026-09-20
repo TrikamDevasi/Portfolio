@@ -10,13 +10,7 @@ const socialLinks = [
 ];
 
 const Footer = () => (
-  <footer className="relative pt-12 pb-10 px-6">
-    {/* Gradient top line */}
-    <div
-      className="absolute top-0 left-6 right-6"
-      style={{ height: "1px", background: "linear-gradient(to right, transparent, hsl(var(--border)), hsl(var(--primary)/0.4), hsl(var(--border)), transparent)" }}
-    />
-
+  <footer className="relative pt-12 pb-10 px-6 bg-surface border-t border-border">
     <div className="container mx-auto max-w-6xl">
       {/* Main row */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-6 mb-8">
@@ -24,7 +18,7 @@ const Footer = () => (
           <p className="text-base font-bold text-foreground tracking-tight font-display">
             Trikam Devasi
           </p>
-          <p className="text-xs font-mono text-primary mt-0.5">
+          <p className="text-xs font-mono text-muted-foreground mt-0.5">
             Full-Stack Developer · B.Tech CSE Student
           </p>
         </div>
@@ -39,7 +33,7 @@ const Footer = () => (
               rel="noopener noreferrer"
               aria-label={`Visit Trikam Devasi on ${label}`}
               title={label}
-              className="p-2.5 rounded-lg border border-border/50 bg-secondary/40 text-muted-foreground hover:text-primary hover:border-primary/40 hover:bg-primary/10 transition-all cursor-pointer"
+              className="p-2.5 rounded-lg border border-border bg-surface-elevated text-muted-foreground hover:text-primary hover:border-border-hover transition-all cursor-pointer"
             >
               <Icon size={16} />
             </a>
@@ -48,11 +42,11 @@ const Footer = () => (
       </div>
 
       {/* Bottom row */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-2 border-t border-border/30 pt-6">
-        <p className="text-xs text-muted-foreground/70 font-mono">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-2 border-t border-border/40 pt-6">
+        <p className="text-xs text-muted-foreground font-mono">
           © {new Date().getFullYear()} Trikam Devasi. All rights reserved.
         </p>
-        <p className="text-xs text-muted-foreground/50 font-mono">
+        <p className="text-xs text-muted-foreground/80 font-mono">
           Built with React · TypeScript · Tailwind CSS · Framer Motion
         </p>
       </div>

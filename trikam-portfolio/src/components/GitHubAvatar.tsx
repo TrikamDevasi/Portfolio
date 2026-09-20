@@ -49,7 +49,7 @@ const GitHubAvatar = () => {
         </motion.div>
 
         {/* ── Availability badge ── */}
-        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full border border-border bg-background text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-[0.18em] text-muted-foreground flex items-center gap-2 whitespace-nowrap">
+        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full border border-accent-border bg-accent-soft text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-[0.18em] text-primary flex items-center gap-2 whitespace-nowrap">
           <span className="relative flex h-2 sm:h-2.5 w-2 sm:w-2.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
             <span className="relative inline-flex rounded-full h-2 sm:h-2.5 w-2 sm:w-2.5 bg-primary" />

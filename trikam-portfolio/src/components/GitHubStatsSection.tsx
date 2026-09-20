@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
 import { RefreshCw, GitCommit, BarChart2, Code2, FolderGit2, Users, Flame, ExternalLink } from "lucide-react";
 import SectionWrapper from "./SectionWrapper";
 
@@ -20,9 +21,12 @@ const STREAK_MIRRORS = [
   "https://streak-stats.demolab.com",
 ];
 
-/* ─── Zinc & Emerald Color Parameters (matches site design system) ─── */
-const COMMON_PARAMS = "bg_color=111113&title_color=FAFAFA&icon_color=10B981&text_color=A1A1AA&border_color=27272A&hide_border=false";
-const STREAK_PARAMS = "theme=dark&background=111113&border=27272A&stroke=27272A&ring=10B981&fire=10B981&currStreakNum=FAFAFA&sideNums=FAFAFA&currStreakLabel=10B981&sideLabels=A1A1AA&dates=71717A&hide_border=false";
+/* ─── Theme-Aware Color Parameters (Emerald accent matches site) ─── */
+const COMMON_PARAMS_DARK = "bg_color=111113&title_color=FAFAFA&icon_color=10B981&text_color=A1A1AA&border_color=27272A&hide_border=false";
+const COMMON_PARAMS_LIGHT = "bg_color=ffffff&title_color=18181B&icon_color=059669&text_color=52525B&border_color=E4E4E7&hide_border=false";
+
+const STREAK_PARAMS_DARK = "theme=dark&background=111113&border=27272A&stroke=27272A&ring=10B981&fire=10B981&currStreakNum=FAFAFA&sideNums=FAFAFA&currStreakLabel=10B981&sideLabels=A1A1AA&dates=71717A&hide_border=false";
+const STREAK_PARAMS_LIGHT = "theme=default&background=FAFAF9&border=E4E4E7&stroke=E4E4E7&ring=059669&fire=059669&currStreakNum=18181B&sideNums=18181B&currStreakLabel=059669&sideLabels=52525B&dates=71717A&hide_border=false";
 
 /* ─── Fallback card when an image fails all mirrors ─── */
 const FallbackCard = ({
@@ -39,10 +43,10 @@ const FallbackCard = ({
     target="_blank"
     rel="noopener noreferrer"
     aria-label={`${label} — View on GitHub`}
-    className="w-full min-h-[195px] flex flex-col items-center justify-center gap-3 p-6 rounded-xl border border-border bg-surface-elevated hover:border-primary/40 hover:bg-surface-elevated/80 transition-all duration-300 group text-center"
+    className="w-full min-h-[195px] flex flex-col items-center justify-center gap-3 p-6 rounded-xl border border-border bg-surface-elevated hover:border-border-hover transition-all duration-300 group text-center"
   >
-    <div className="p-3 rounded-full bg-primary/10 border border-primary/20">
-      <Icon size={24} className="text-primary" />
+    <div className="p-3 rounded-full bg-surface-hover border border-border">
+      <Icon size={24} className="text-muted-foreground" />
     </div>
     <span className="text-xs text-muted-foreground leading-relaxed max-w-xs">
       {label}
@@ -145,6 +149,11 @@ const StatImage = ({
 
 /* ─── Main GitHub Stats Section ─── */
 const GitHubStatsSection = () => {
+  const { resolvedTheme } = useTheme();
+  const isDark = resolvedTheme === "dark";
+  const commonParams = isDark ? COMMON_PARAMS_DARK : COMMON_PARAMS_LIGHT;
+  const streakParams = isDark ? STREAK_PARAMS_DARK : STREAK_PARAMS_LIGHT;
+
   const [reloadKey, setReloadKey] = useState(Date.now());
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [githubUser, setGithubUser] = useState<{
@@ -233,15 +242,15 @@ const GitHubStatsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.3, delay: idx * 0.05 }}
-            className="p-4 rounded-xl border border-border bg-surface-elevated/80 hover:border-primary/40 hover:bg-surface-elevated transition-all group flex flex-col justify-between"
+            className="p-4 rounded-xl border border-border bg-surface-elevated hover:border-border-hover transition-all group flex flex-col justify-between"
           >
             <div className="flex items-center justify-between mb-2">
               <span className="text-[11px] font-mono text-muted-foreground uppercase tracking-wider">
                 {item.label}
               </span>
-              <item.icon size={15} className="text-muted-foreground group-hover:text-primary transition-colors" />
+              <item.icon size={15} className="text-muted-foreground group-hover:text-foreground transition-colors" />
             </div>
-            <div className="text-xl sm:text-2xl font-bold text-foreground font-mono group-hover:text-primary transition-colors">
+            <div className="text-xl sm:text-2xl font-bold text-foreground font-mono transition-colors">
               {item.value}
             </div>
             <div className="text-[11px] text-muted-foreground/80 mt-1">
@@ -257,7 +266,7 @@ const GitHubStatsSection = () => {
           onClick={handleRefresh}
           disabled={isRefreshing}
           aria-label="Refresh GitHub statistics"
-          className="flex items-center gap-2 text-xs font-mono text-muted-foreground hover:text-foreground px-4 py-2 rounded-full border border-border hover:border-primary/40 bg-surface-elevated hover:bg-surface transition-all duration-200 disabled:opacity-50 active:scale-95"
+          className="flex items-center gap-2 text-xs font-mono text-muted-foreground hover:text-foreground px-4 py-2 rounded-full border border-border hover:border-border-hover bg-surface-elevated hover:bg-surface-hover transition-all duration-200 disabled:opacity-50 active:scale-95"
         >
           <RefreshCw
             size={13}
@@ -279,7 +288,7 @@ const GitHubStatsSection = () => {
         >
           <StatImage
             mirrors={STATS_MIRRORS}
-            params={`${COMMON_PARAMS}&show_icons=true&include_all_commits=true&count_private=true`}
+            params={`${commonParams}&show_icons=true&include_all_commits=true&count_private=true`}
             alt="Trikam Devasi GitHub Activity Overview"
             fallbackLabel="GitHub Stats service currently rate-limited. Click to view repositories directly on GitHub."
             fallbackIcon={BarChart2}
@@ -289,7 +298,7 @@ const GitHubStatsSection = () => {
           />
           <StatImage
             mirrors={LANGS_MIRRORS}
-            params={`${COMMON_PARAMS}&layout=compact&langs_count=8`}
+            params={`${commonParams}&layout=compact&langs_count=8`}
             alt="Top Programming Languages"
             fallbackLabel="Top Languages breakdown currently rate-limited. Click to view on GitHub."
             fallbackIcon={Code2}
@@ -311,7 +320,7 @@ const GitHubStatsSection = () => {
             <StatImage
               mirrors={STREAK_MIRRORS}
               userParam="user"
-              params={STREAK_PARAMS}
+              params={streakParams}
               alt="GitHub Contribution Streak Stats"
               fallbackLabel="GitHub Streak widget temporarily unavailable. Click to see commit calendar."
               fallbackIcon={GitCommit}

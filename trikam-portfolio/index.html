@@ -72,6 +72,16 @@
   </head>
 
   <body>
+    <script>
+      (function () {
+        try {
+          var theme = localStorage.getItem("trikam-theme");
+          if (theme === "light") {
+            document.documentElement.classList.remove("dark");
+          }
+        } catch (e) {}
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

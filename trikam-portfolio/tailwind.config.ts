@@ -21,10 +21,20 @@ export default {
       },
       colors: {
         border: "hsl(var(--border))",
+        "border-hover": "hsl(var(--border-hover))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        surface: "hsl(var(--surface))",
+        "surface-hover": "hsl(var(--surface-hover))",
+        "surface-elevated": "hsl(var(--surface-elevated))",
+        "surface-high": "hsl(var(--surface-high))",
+        "primary-hover": "hsl(var(--primary-hover))",
+        "accent-soft": "var(--accent-soft)",
+        "accent-border": "var(--accent-border)",
+        "subtle-foreground": "hsl(var(--subtle-foreground))",
+        "disabled-foreground": "hsl(var(--disabled-foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -52,6 +62,7 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+          hover: "hsl(var(--surface-hover))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

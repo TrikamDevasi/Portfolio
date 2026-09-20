@@ -52,13 +52,13 @@ const AchievementsSection = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: i * 0.08 }}
-          className="glass-card glow-border p-6 rounded-2xl flex flex-col items-center text-center group hover:border-primary/40 transition-all h-full"
+          className="glass-card glow-border p-6 rounded-2xl flex flex-col items-center text-center group hover:border-border-hover transition-all h-full"
         >
-          <div className="p-3.5 rounded-full bg-primary/10 text-primary border border-primary/20 mb-4 group-hover:scale-110 transition-transform">
+          <div className="p-3.5 rounded-full bg-surface-elevated text-muted-foreground border border-border mb-4 group-hover:text-foreground group-hover:border-border-hover transition-all">
             <achievement.icon size={22} />
           </div>
           <h3 className="font-bold text-foreground text-base mb-1">{achievement.title}</h3>
-          <p className="text-xs text-primary font-mono mb-3">{achievement.organization} · {achievement.date}</p>
+          <p className="text-xs text-muted-foreground font-mono mb-3">{achievement.organization} · {achievement.date}</p>
           <p className="text-xs text-muted-foreground leading-relaxed mb-4 flex-1">
             {achievement.description}
           </p>

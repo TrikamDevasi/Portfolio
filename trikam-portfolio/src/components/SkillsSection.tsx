@@ -51,11 +51,11 @@ const SkillsSection = () => (
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: i * 0.08 }}
-          className="glass-card glow-border rounded-2xl p-6 flex flex-col h-full hover:border-primary/40 transition-all"
+          className="glass-card glow-border rounded-2xl p-6 flex flex-col h-full hover:border-border-hover transition-all"
         >
           {/* Category Header */}
           <div className="flex items-center gap-3 mb-5 pb-3 border-b border-border/50">
-            <div className="p-2.5 rounded-xl bg-primary/10 text-primary border border-primary/20">
+            <div className="p-2.5 rounded-xl bg-surface-elevated text-muted-foreground border border-border">
               <cat.icon size={18} />
             </div>
             <h3 className="text-base font-bold text-foreground tracking-tight">

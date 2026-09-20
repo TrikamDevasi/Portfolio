@@ -4,6 +4,7 @@ import { Menu, X, FileText } from "lucide-react";
 import { NavLink, Link } from "react-router-dom";
 import Logo from "./Logo";
 import ResumeModal from "./ResumeModal";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { label: "About", href: "/about" },
@@ -33,7 +34,7 @@ const Navbar = () => {
       transition={{ duration: 0.4, ease: "easeOut" }}
       className={`fixed z-50 transition-all duration-500 ${
         scrolled
-          ? "top-4 left-4 right-4 bg-background/85 backdrop-blur-xl border border-border/60 rounded-2xl py-3 shadow-2xl shadow-black/40"
+          ? "top-4 left-4 right-4 bg-background/90 backdrop-blur-xl border border-border rounded-2xl py-3 shadow-2xl shadow-black/40"
           : "top-0 left-0 right-0 bg-transparent py-5"
       }`}
     >
@@ -61,20 +62,21 @@ const Navbar = () => {
             ))}
           </div>
           
-          <div className="h-4 w-px bg-border/60 mx-1" />
+          <div className="h-4 w-px bg-border mx-1" />
 
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             <button
               onClick={() => setIsResumeOpen(true)}
               aria-label="Open Resume PDF Viewer"
-              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors"
             >
               <FileText size={14} />
               Resume
             </button>
             <NavLink
               to="/contact"
-              className="px-4 py-2 rounded bg-primary text-primary-foreground text-xs font-semibold uppercase tracking-wide transition-colors hover:bg-[hsl(var(--primary-hover))] active:scale-95"
+              className="px-4 py-2 rounded bg-primary text-primary-foreground text-xs font-semibold uppercase tracking-wide transition-colors hover:bg-primary-hover active:scale-95"
             >
               Let's Connect
             </NavLink>
@@ -84,7 +86,7 @@ const Navbar = () => {
         {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden p-2 text-foreground hover:bg-secondary/60 rounded-lg transition-colors"
+          className="lg:hidden p-2 text-foreground hover:bg-surface-elevated rounded-lg transition-colors"
           aria-label={mobileOpen ? "Close menu" : "Open navigation menu"}
           aria-expanded={mobileOpen}
         >
@@ -99,7 +101,7 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="lg:hidden absolute top-full left-4 right-4 mt-2 p-6 glass-card border border-border/80 shadow-2xl rounded-2xl bg-background/95 backdrop-blur-xl"
+            className="lg:hidden absolute top-full left-4 right-4 mt-2 p-6 glass-card border border-border shadow-2xl shadow-black/40 rounded-2xl bg-background/95 backdrop-blur-xl"
           >
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
@@ -109,14 +111,14 @@ const Navbar = () => {
                   onClick={() => setMobileOpen(false)}
                   className={({ isActive }) => 
                     `text-base font-semibold py-1 transition-colors ${
-                      isActive ? "text-primary font-bold" : "text-muted-foreground hover:text-primary"
+                      isActive ? "text-primary font-bold" : "text-muted-foreground hover:text-foreground"
                     }`
                   }
                 >
                   {link.label}
                 </NavLink>
               ))}
-              <div className="h-px bg-border/60 w-full my-2" />
+              <div className="h-px bg-border w-full my-2" />
               <div className="flex flex-col gap-3">
                 <button
                   onClick={() => {
@@ -124,7 +126,7 @@ const Navbar = () => {
                     setMobileOpen(false);
                   }}
                   aria-label="Open Resume PDF Viewer"
-                  className="flex items-center justify-center gap-2 py-3 rounded-xl border border-border bg-secondary/40 text-foreground font-semibold text-sm"
+                  className="flex items-center justify-center gap-2 py-3 rounded-xl border border-border bg-surface-elevated text-foreground font-semibold text-sm hover:border-border-hover transition-colors"
                 >
                   <FileText size={16} />
                   View Resume
@@ -132,10 +134,17 @@ const Navbar = () => {
                 <NavLink
                   to="/contact"
                   onClick={() => setMobileOpen(false)}
-                  className="w-full py-3 rounded bg-primary text-primary-foreground text-center font-semibold text-sm hover:bg-[hsl(var(--primary-hover))] transition-colors"
+                  className="w-full py-3 rounded bg-primary text-primary-foreground text-center font-semibold text-sm hover:bg-primary-hover transition-colors"
                 >
                   Let's Connect
                 </NavLink>
+              </div>
+
+              <div className="flex items-center justify-center border-t border-border/40 pt-4">
+                <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                  Switch Theme
+                </span>
+                <ThemeToggle />
               </div>
             </div>
           </motion.div>

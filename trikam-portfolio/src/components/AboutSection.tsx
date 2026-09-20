@@ -47,7 +47,7 @@ const AboutSection = () => {
             className="md:col-span-7 glass-card p-6 sm:p-8 rounded-2xl glow-border flex flex-col justify-between"
           >
             <div>
-              <div className="flex items-center gap-2.5 mb-5 text-primary">
+              <div className="flex items-center gap-2.5 mb-5 text-muted-foreground">
                 <Terminal size={20} />
                 <h3 className="text-lg font-bold text-foreground">Engineering Profile</h3>
               </div>
@@ -62,13 +62,13 @@ const AboutSection = () => {
             </div>
 
             <div className="border-t border-border/40 pt-4 mt-2 flex flex-wrap items-center gap-3">
-              <span className="flex items-center gap-1.5 text-xs font-mono text-primary font-semibold">
+              <span className="flex items-center gap-1.5 text-xs font-mono text-muted-foreground font-semibold">
                 <MapPin size={13} className="shrink-0" />
                 Based in Ahmedabad, India
               </span>
               <span className="text-border/80">·</span>
               <span className="flex items-center gap-1.5 text-xs font-mono text-muted-foreground font-medium">
-                <Briefcase size={13} className="text-primary shrink-0" />
+                <Briefcase size={13} className="text-muted-foreground shrink-0" />
                 Open to Software Engineering Internships
               </span>
             </div>
@@ -84,7 +84,7 @@ const AboutSection = () => {
           >
             {keyHighlights.map(({ icon: Icon, title, description }) => (
               <div key={title} className="glass-card p-5 rounded-xl glow-border flex-1 flex items-start gap-4">
-                <div className="p-2.5 rounded-lg bg-primary/10 text-primary border border-primary/20 shrink-0 mt-0.5">
+                <div className="p-2.5 rounded-lg bg-surface-elevated text-muted-foreground border border-border shrink-0 mt-0.5">
                   <Icon size={18} />
                 </div>
                 <div>
@@ -99,7 +99,7 @@ const AboutSection = () => {
         {/* ── Journey Timeline ── */}
         <div>
           <h3 className="text-xl font-bold mb-8 text-center sm:text-left flex items-center justify-center sm:justify-start gap-2.5 text-foreground">
-            <span className="text-primary font-mono">//</span> Timeline &amp; Experience
+            <span className="text-muted-foreground font-mono">//</span> Timeline &amp; Experience
           </h3>
           <div className="grid sm:grid-cols-3 gap-6">
             {timeline.map((item, i) => (
@@ -109,13 +109,13 @@ const AboutSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="glass-card glow-border p-6 rounded-2xl flex flex-col h-full hover:border-primary/40 transition-all"
+                className="glass-card glow-border p-6 rounded-2xl flex flex-col h-full hover:border-border-hover transition-all"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <div className="p-2.5 rounded-xl bg-primary/10 text-primary border border-primary/20">
+                  <div className="p-2.5 rounded-xl bg-surface-elevated text-muted-foreground border border-border">
                     <item.icon size={20} />
                   </div>
-                  <span className="text-xs font-mono font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-md border border-primary/20">
+                  <span className="text-xs font-mono font-medium text-muted-foreground bg-surface-elevated px-2.5 py-1 rounded-md border border-border">
                     {item.period}
                   </span>
                 </div>
