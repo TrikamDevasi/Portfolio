@@ -1,172 +1,22 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
-import { RefreshCw, GitCommit, BarChart2, Code2, FolderGit2, Users, Flame, ExternalLink } from "lucide-react";
+import { Github, ExternalLink, Star, GitFork } from "lucide-react";
 import SectionWrapper from "./SectionWrapper";
 
 const USERNAME = "TrikamDevasi";
 
-/* ─── High-Availability Mirror Configuration ─── */
-const STATS_MIRRORS = [
-  "https://github-readme-stats-alpha.vercel.app/api",
-  "https://github-readme-stats.vercel.app/api",
-];
-
-const LANGS_MIRRORS = [
-  "https://github-readme-stats-alpha.vercel.app/api/top-langs/",
-  "https://github-readme-stats.vercel.app/api/top-langs/",
-];
-
-const STREAK_MIRRORS = [
-  "https://streak-stats.demolab.com",
-];
-
-/* ─── Theme-Aware Color Parameters (Emerald accent matches site) ─── */
-const COMMON_PARAMS_DARK = "bg_color=111113&title_color=FAFAFA&icon_color=10B981&text_color=A1A1AA&border_color=27272A&hide_border=false";
-const COMMON_PARAMS_LIGHT = "bg_color=ffffff&title_color=18181B&icon_color=059669&text_color=52525B&border_color=E4E4E7&hide_border=false";
-
-const STREAK_PARAMS_DARK = "theme=dark&background=111113&border=27272A&stroke=27272A&ring=10B981&fire=10B981&currStreakNum=FAFAFA&sideNums=FAFAFA&currStreakLabel=10B981&sideLabels=A1A1AA&dates=71717A&hide_border=false";
-const STREAK_PARAMS_LIGHT = "theme=default&background=FAFAF9&border=E4E4E7&stroke=E4E4E7&ring=059669&fire=059669&currStreakNum=18181B&sideNums=18181B&currStreakLabel=059669&sideLabels=52525B&dates=71717A&hide_border=false";
-
-/* ─── Fallback card when an image fails all mirrors ─── */
-const FallbackCard = ({
-  label,
-  icon: Icon,
-  link,
-}: {
-  label: string;
-  icon: React.ElementType;
-  link: string;
-}) => (
-  <a
-    href={link}
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label={`${label} — View on GitHub`}
-    className="w-full min-h-[195px] flex flex-col items-center justify-center gap-3 p-6 rounded-xl border border-border bg-surface-elevated hover:border-border-hover transition-all duration-300 group text-center"
-  >
-    <div className="p-3 rounded-full bg-surface-hover border border-border">
-      <Icon size={24} className="text-muted-foreground" />
-    </div>
-    <span className="text-xs text-muted-foreground leading-relaxed max-w-xs">
-      {label}
-    </span>
-    <span className="text-[10px] text-primary font-mono uppercase tracking-wider mt-1 border-t border-border pt-2 inline-flex items-center gap-1">
-      View Live on GitHub <ExternalLink size={10} />
-    </span>
-  </a>
-);
-
-/* ─── Resilient Stat Image with Sequential Failover & Active Preloading ─── */
-interface StatImageProps {
-  mirrors: string[];
-  params: string;
-  alt: string;
-  fallbackLabel: string;
-  fallbackIcon: React.ElementType;
-  fallbackLink: string;
-  reloadKey: number;
-  userParam?: string;
-  aspectClass?: string;
+interface GitHubUser {
+  public_repos: number;
+  followers: number;
+  following: number;
 }
 
-const StatImage = ({
-  mirrors,
-  params,
-  alt,
-  fallbackLabel,
-  fallbackIcon,
-  fallbackLink,
-  reloadKey,
-  userParam = "username",
-  aspectClass = "min-h-[195px]",
-}: StatImageProps) => {
-  const [mirrorIndex, setMirrorIndex] = useState(0);
-  const [status, setStatus] = useState<"loading" | "loaded" | "error">("loading");
-
-  const currentSrc = `${mirrors[mirrorIndex]}?${userParam}=${USERNAME}&${params}&t=${reloadKey}`;
-
-  // Reset status on reloadKey change
-  useEffect(() => {
-    setStatus("loading");
-    setMirrorIndex(0);
-  }, [reloadKey]);
-
-  // Failover timeout: if current mirror stalls for 7 seconds, step to next
-  useEffect(() => {
-    if (status !== "loading") return;
-    const timeout = setTimeout(() => {
-      if (mirrorIndex < mirrors.length - 1) {
-        setMirrorIndex((prev) => prev + 1);
-      } else {
-        setStatus("error");
-      }
-    }, 7000);
-    return () => clearTimeout(timeout);
-  }, [mirrorIndex, status, mirrors.length]);
-
-  const handleError = () => {
-    if (mirrorIndex < mirrors.length - 1) {
-      setMirrorIndex((prev) => prev + 1);
-    } else {
-      setStatus("error");
-    }
-  };
-
-  return (
-    <div className={`relative w-full flex items-center justify-center rounded-xl overflow-hidden ${aspectClass}`}>
-      {/* Skeleton overlay while loading */}
-      {status === "loading" && (
-        <div className="absolute inset-0 z-10 w-full h-full rounded-xl border border-border/60 bg-surface-elevated/60 animate-pulse flex items-center justify-center">
-          <span className="text-[11px] font-mono text-muted-foreground/60">Loading GitHub telemetry…</span>
-        </div>
-      )}
-
-      {/* Fallback card if all mirrors fail */}
-      {status === "error" ? (
-        <FallbackCard
-          label={fallbackLabel}
-          icon={fallbackIcon}
-          link={fallbackLink}
-        />
-      ) : (
-        <img
-          key={`${mirrorIndex}-${reloadKey}`}
-          src={currentSrc}
-          alt={alt}
-          loading="eager"
-          decoding="async"
-          className={`w-full h-auto max-w-full rounded-xl border border-border transition-opacity duration-300 ${
-            status === "loaded" ? "opacity-100" : "opacity-0"
-          }`}
-          onLoad={() => setStatus("loaded")}
-          onError={handleError}
-        />
-      )}
-    </div>
-  );
-};
-
-/* ─── Main GitHub Stats Section ─── */
 const GitHubStatsSection = () => {
-  const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === "dark";
-  const commonParams = isDark ? COMMON_PARAMS_DARK : COMMON_PARAMS_LIGHT;
-  const streakParams = isDark ? STREAK_PARAMS_DARK : STREAK_PARAMS_LIGHT;
-
-  const [reloadKey, setReloadKey] = useState(Date.now());
-  const [isRefreshing, setIsRefreshing] = useState(false);
-  const [githubUser, setGithubUser] = useState<{
-    public_repos: number;
-    followers: number;
-    following: number;
-  }>({
+  const [githubUser, setGithubUser] = useState<GitHubUser>({
     public_repos: 40,
     followers: 4,
     following: 1,
   });
 
-  // Fetch live GitHub profile data
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -180,170 +30,70 @@ const GitHubStatsSection = () => {
           });
         }
       } catch {
-        // graceful fallback to initial state
+        // graceful fallback
       }
     };
     fetchUserData();
-  }, [reloadKey]);
-
-  const handleRefresh = () => {
-    setIsRefreshing(true);
-    setReloadKey(Date.now());
-    setTimeout(() => setIsRefreshing(false), 1500);
-  };
-
-  const telemetryHighlights = [
-    {
-      label: "Public Repositories",
-      value: `${githubUser.public_repos}+`,
-      sub: "Active codebases & prototypes",
-      icon: FolderGit2,
-      link: `https://github.com/${USERNAME}?tab=repositories`,
-    },
-    {
-      label: "DSA Problems Solved",
-      value: "250+",
-      sub: "LeetCode & Competitive C++",
-      icon: Code2,
-      link: "https://leetcode.com/u/TrikamDevasi/",
-    },
-    {
-      label: "Continuous Streak",
-      value: "Active",
-      sub: "Daily commit frequency",
-      icon: Flame,
-      link: `https://github.com/${USERNAME}`,
-    },
-    {
-      label: "Developer Network",
-      value: `${githubUser.followers} Followers`,
-      sub: "Open source community",
-      icon: Users,
-      link: `https://github.com/${USERNAME}?tab=followers`,
-    },
-  ];
+  }, []);
 
   return (
-    <SectionWrapper
-      id="github"
-      title="GitHub Activity & Telemetry"
-      subtitle="Open-source contributions, repository analytics, and development frequency"
-      sectionIndex={8}
-    >
-      {/* Telemetry Summary Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto mb-8">
-        {telemetryHighlights.map((item, idx) => (
-          <motion.a
-            key={item.label}
-            href={item.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: idx * 0.05 }}
-            className="p-4 rounded-xl border border-border bg-surface-elevated hover:border-border-hover transition-all group flex flex-col justify-between"
-          >
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-[11px] font-mono text-muted-foreground uppercase tracking-wider">
-                {item.label}
-              </span>
-              <item.icon size={15} className="text-muted-foreground group-hover:text-foreground transition-colors" />
+    <SectionWrapper id="github" title="GitHub" subtitle="Open-source work and code contributions">
+      <div className="max-w-3xl mx-auto">
+        <div className="border border-border rounded-xl overflow-hidden">
+          {/* Header row */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-6 border-b border-border">
+            <div className="flex items-center gap-3">
+              <Github size={20} className="text-foreground" />
+              <div>
+                <p className="font-bold text-foreground text-sm">@{USERNAME}</p>
+                <p className="text-xs font-mono text-muted-foreground mt-0.5">
+                  {githubUser.public_repos} public repositories · {githubUser.followers} followers
+                </p>
+              </div>
             </div>
-            <div className="text-xl sm:text-2xl font-bold text-foreground font-mono transition-colors">
-              {item.value}
-            </div>
-            <div className="text-[11px] text-muted-foreground/80 mt-1">
-              {item.sub}
-            </div>
-          </motion.a>
-        ))}
-      </div>
-
-      {/* Refresh bar */}
-      <div className="flex justify-center mb-8">
-        <button
-          onClick={handleRefresh}
-          disabled={isRefreshing}
-          aria-label="Refresh GitHub statistics"
-          className="flex items-center gap-2 text-xs font-mono text-muted-foreground hover:text-foreground px-4 py-2 rounded-full border border-border hover:border-border-hover bg-surface-elevated hover:bg-surface-hover transition-all duration-200 disabled:opacity-50 active:scale-95"
-        >
-          <RefreshCw
-            size={13}
-            className={isRefreshing ? "animate-spin text-primary" : "text-muted-foreground"}
-          />
-          {isRefreshing ? "Syncing GitHub Telemetry…" : "Sync GitHub Telemetry"}
-        </button>
-      </div>
-
-      {/* Visual Stat Cards */}
-      <div className="max-w-4xl mx-auto flex flex-col items-center gap-6">
-        {/* Row 1: Stats card + Top Languages side by side */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full"
-        >
-          <StatImage
-            mirrors={STATS_MIRRORS}
-            params={`${commonParams}&show_icons=true&include_all_commits=true&count_private=true`}
-            alt="Trikam Devasi GitHub Activity Overview"
-            fallbackLabel="GitHub Stats service currently rate-limited. Click to view repositories directly on GitHub."
-            fallbackIcon={BarChart2}
-            fallbackLink={`https://github.com/${USERNAME}`}
-            reloadKey={reloadKey}
-            aspectClass="min-h-[195px]"
-          />
-          <StatImage
-            mirrors={LANGS_MIRRORS}
-            params={`${commonParams}&layout=compact&langs_count=8`}
-            alt="Top Programming Languages"
-            fallbackLabel="Top Languages breakdown currently rate-limited. Click to view on GitHub."
-            fallbackIcon={Code2}
-            fallbackLink={`https://github.com/${USERNAME}?tab=repositories`}
-            reloadKey={reloadKey}
-            aspectClass="min-h-[195px]"
-          />
-        </motion.div>
-
-        {/* Row 2: Contribution Streak */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.1 }}
-          className="w-full flex justify-center"
-        >
-          <div className="w-full max-w-xl">
-            <StatImage
-              mirrors={STREAK_MIRRORS}
-              userParam="user"
-              params={streakParams}
-              alt="GitHub Contribution Streak Stats"
-              fallbackLabel="GitHub Streak widget temporarily unavailable. Click to see commit calendar."
-              fallbackIcon={GitCommit}
-              fallbackLink={`https://github.com/${USERNAME}`}
-              reloadKey={reloadKey}
-              aspectClass="min-h-[195px]"
-            />
+            <a
+              href={`https://github.com/${USERNAME}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View GitHub profile"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-muted-foreground hover:text-foreground border border-border px-3 py-1.5 rounded-md bg-surface-elevated hover:border-border-hover transition-colors self-start sm:self-auto"
+            >
+              <ExternalLink size={13} />
+              View Profile
+            </a>
           </div>
-        </motion.div>
-      </div>
 
-      <p className="text-center text-xs text-muted-foreground/70 mt-8 font-mono">
-        Telemetry synced from GitHub API. Verified profile:{" "}
-        <a
-          href={`https://github.com/${USERNAME}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-primary hover:underline font-semibold inline-flex items-center gap-1"
-        >
-          @{USERNAME}
-          <ExternalLink size={11} />
-        </a>
-      </p>
+          {/* Content */}
+          <div className="p-6">
+            <p className="text-sm text-muted-foreground leading-relaxed mb-6">
+              I maintain {githubUser.public_repos}+ public repositories spanning full-stack web applications,
+              real-time systems, and learning projects. Most active work is in JavaScript, TypeScript,
+              and C++. The best overview is to browse the repositories directly.
+            </p>
+
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={`https://github.com/${USERNAME}?tab=repositories`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-semibold text-foreground border border-border px-3.5 py-2 rounded-md bg-surface-elevated hover:border-border-hover transition-colors"
+              >
+                <Star size={13} className="text-muted-foreground" />
+                Repositories
+              </a>
+              <a
+                href="https://leetcode.com/u/TrikamDevasi/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-semibold text-foreground border border-border px-3.5 py-2 rounded-md bg-surface-elevated hover:border-border-hover transition-colors"
+              >
+                <GitFork size={13} className="text-muted-foreground" />
+                LeetCode — 250+ Problems
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </SectionWrapper>
   );
 };

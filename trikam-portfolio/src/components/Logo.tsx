@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 interface LogoProps {
   className?: string;
@@ -20,11 +19,9 @@ const Logo: React.FC<LogoProps> = ({ className = "", size = "md" }) => {
   };
 
   return (
-    <div className={`flex items-center gap-2 group cursor-pointer ${className}`}>
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className={`${containerSizes[size]} relative flex items-center justify-center rounded-lg bg-surface-elevated border border-border group-hover:border-border-hover transition-all duration-200 overflow-hidden`}
+    <div className={`flex items-center gap-2 cursor-pointer ${className}`}>
+      <div
+        className={`${containerSizes[size]} relative flex items-center justify-center rounded-lg bg-surface-elevated border border-border hover:border-border-hover transition-colors duration-200 overflow-hidden`}
       >
         <span className={`${sizes[size]} font-bold tracking-tight text-foreground`}>
           T
@@ -32,9 +29,9 @@ const Logo: React.FC<LogoProps> = ({ className = "", size = "md" }) => {
         <span className={`${sizes[size]} font-bold tracking-tight text-primary -ml-0.5`}>
           D
         </span>
-      </motion.div>
+      </div>
       
-      <span className="font-semibold tracking-tight text-foreground/90 group-hover:text-foreground transition-colors hidden sm:inline-block">
+      <span className="font-semibold tracking-tight text-foreground/90 hover:text-foreground transition-colors hidden sm:inline-block">
         Trikam<span className="text-muted-foreground">.</span>Devasi
       </span>
     </div>

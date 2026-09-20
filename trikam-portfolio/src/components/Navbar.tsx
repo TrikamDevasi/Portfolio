@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, FileText } from "lucide-react";
 import { NavLink, Link } from "react-router-dom";
 import Logo from "./Logo";
@@ -28,13 +28,10 @@ const Navbar = () => {
   }, []);
 
   return (
-    <motion.nav
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
-      className={`fixed z-50 transition-all duration-500 ${
+    <nav
+      className={`fixed z-50 transition-all duration-300 ${
         scrolled
-          ? "top-4 left-4 right-4 bg-background/90 backdrop-blur-xl border border-border rounded-2xl py-3 shadow-2xl shadow-black/40"
+          ? "top-4 left-4 right-4 bg-background border border-border rounded-xl py-3"
           : "top-0 left-0 right-0 bg-transparent py-5"
       }`}
     >
@@ -50,14 +47,13 @@ const Navbar = () => {
               <NavLink
                 key={link.href}
                 to={link.href}
-                className={({ isActive }) => 
-                  `relative text-xs font-semibold tracking-wide transition-all duration-200 ${
+                className={({ isActive }) =>
+                  `text-xs font-semibold tracking-wide transition-colors duration-200 ${
                     isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
-                  } group`
+                  }`
                 }
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full" />
               </NavLink>
             ))}
           </div>
@@ -78,7 +74,7 @@ const Navbar = () => {
               to="/contact"
               className="px-4 py-2 rounded bg-primary text-primary-foreground text-xs font-semibold uppercase tracking-wide transition-colors hover:bg-primary-hover active:scale-95"
             >
-              Let's Connect
+              Contact
             </NavLink>
           </div>
         </div>
@@ -98,10 +94,11 @@ const Navbar = () => {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="lg:hidden absolute top-full left-4 right-4 mt-2 p-6 glass-card border border-border shadow-2xl shadow-black/40 rounded-2xl bg-background/95 backdrop-blur-xl"
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.15 }}
+            className="lg:hidden absolute top-full left-4 right-4 mt-2 p-6 bg-background border border-border rounded-xl"
           >
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
@@ -109,7 +106,7 @@ const Navbar = () => {
                   key={link.href}
                   to={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className={({ isActive }) => 
+                  className={({ isActive }) =>
                     `text-base font-semibold py-1 transition-colors ${
                       isActive ? "text-primary font-bold" : "text-muted-foreground hover:text-foreground"
                     }`
@@ -126,7 +123,7 @@ const Navbar = () => {
                     setMobileOpen(false);
                   }}
                   aria-label="Open Resume PDF Viewer"
-                  className="flex items-center justify-center gap-2 py-3 rounded-xl border border-border bg-surface-elevated text-foreground font-semibold text-sm hover:border-border-hover transition-colors"
+                  className="flex items-center justify-center gap-2 py-3 rounded-lg border border-border bg-surface-elevated text-foreground font-semibold text-sm hover:border-border-hover transition-colors"
                 >
                   <FileText size={16} />
                   View Resume
@@ -136,13 +133,13 @@ const Navbar = () => {
                   onClick={() => setMobileOpen(false)}
                   className="w-full py-3 rounded bg-primary text-primary-foreground text-center font-semibold text-sm hover:bg-primary-hover transition-colors"
                 >
-                  Let's Connect
+                  Contact
                 </NavLink>
               </div>
 
               <div className="flex items-center justify-center border-t border-border/40 pt-4">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-                  Switch Theme
+                <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mr-3">
+                  Theme
                 </span>
                 <ThemeToggle />
               </div>
@@ -152,7 +149,7 @@ const Navbar = () => {
       </AnimatePresence>
 
       <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
-    </motion.nav>
+    </nav>
   );
 };
 

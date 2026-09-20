@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
 interface SectionWrapperProps {
@@ -9,24 +8,13 @@ interface SectionWrapperProps {
   sectionIndex?: number;
 }
 
-const SectionWrapper = ({ id, title, subtitle, children, sectionIndex }: SectionWrapperProps) => (
+const SectionWrapper = ({ id, title, subtitle, children }: SectionWrapperProps) => (
   <section id={id} className="section-padding scroll-mt-20">
     <div className="container mx-auto max-w-6xl">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.5 }}
-        className="mb-14"
-      >
+      <div className="mb-14">
         {/* Section label row */}
         <div className="flex items-center gap-4 mb-5">
           <div className="section-accent-line" />
-          {sectionIndex !== undefined && (
-            <span className="text-[10px] font-mono font-bold text-muted-foreground/50 tracking-[0.25em] uppercase">
-              {String(sectionIndex).padStart(2, "0")}
-            </span>
-          )}
         </div>
 
         <h2 className="text-foreground font-bold mb-3">
@@ -37,7 +25,7 @@ const SectionWrapper = ({ id, title, subtitle, children, sectionIndex }: Section
             {subtitle}
           </p>
         )}
-      </motion.div>
+      </div>
       {children}
     </div>
   </section>

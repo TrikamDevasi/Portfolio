@@ -1,5 +1,4 @@
-import { motion } from "framer-motion";
-import { Trophy, Github, ExternalLink, Image as ImageIcon } from "lucide-react";
+import { Trophy, Github, ExternalLink } from "lucide-react";
 import SectionWrapper from "./SectionWrapper";
 
 interface Hackathon {
@@ -18,7 +17,7 @@ const hackathons: Hackathon[] = [
     name: "SU Hackathon 2026",
     location: "Sangam University, Bhilwara",
     rank: "3rd Place Overall",
-    description: "Competed in an intensive 36-hour hackathon with Team Quantum Coders. Designed and developed SkillSense AI—an automated skill assessment pipeline with asynchronous evaluation workflows—securing 3rd position among 50+ participating teams.",
+    description: "Competed in an intensive 36-hour hackathon with Team Quantum Coders. Designed and developed SkillSense AI — an automated skill assessment pipeline with asynchronous evaluation workflows — securing 3rd position among 50+ participating teams.",
     project: "SkillSense AI",
     github: "https://github.com/TrikamDevasi/TEAM_QUANTUM_CODERS-SU-",
     live: "https://skillsense-ai-seven.vercel.app/",
@@ -52,83 +51,79 @@ const hackathons: Hackathon[] = [
 ];
 
 const HackathonsSection = () => (
-  <SectionWrapper id="hackathons" title="Hackathons & Competitions" subtitle="Building functional solutions under tight time constraints" sectionIndex={4}>
-    <div className="max-w-5xl mx-auto space-y-12">
-      {hackathons.map((h, i) => (
-        <motion.div
+  <SectionWrapper id="hackathons" title="Hackathons" subtitle="Building functional solutions under tight time constraints">
+    <div className="max-w-5xl mx-auto space-y-10">
+      {hackathons.map((h) => (
+        <div
           key={h.name}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: i * 0.1 }}
-          className="glass-card overflow-hidden border border-border rounded-2xl hover:border-border-hover transition-colors"
+          className="glass-card overflow-hidden border border-border rounded-xl"
         >
           <div className="p-6 sm:p-10">
-            {/* Header info */}
-            <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-              <div className="flex items-center gap-3.5">
-                <div className="p-3 rounded-lg bg-surface-elevated border border-border text-muted-foreground">
-                  <Trophy size={28} />
+            {/* Header */}
+            <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <Trophy size={15} className="text-muted-foreground" />
+                  <span className="text-xs font-mono font-semibold text-muted-foreground uppercase tracking-wider">
+                    {h.rank}
+                  </span>
                 </div>
-                <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-foreground">{h.name}</h3>
-                  <p className="text-xs sm:text-sm font-mono text-muted-foreground font-medium">{h.rank} · {h.location}</p>
-                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-foreground">{h.name}</h3>
+                <p className="text-xs font-mono text-muted-foreground mt-1">{h.location}</p>
               </div>
 
               <div className="flex items-center gap-3">
-                <a 
-                  href={h.github} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href={h.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={`View ${h.name} submission repository on GitHub`}
-                  className="flex items-center gap-2 text-xs font-mono text-muted-foreground hover:text-foreground transition-colors border border-border px-3.5 py-2 rounded-lg bg-surface-elevated hover:border-border-hover"
+                  className="flex items-center gap-2 text-xs font-mono text-muted-foreground hover:text-foreground transition-colors border border-border px-3 py-1.5 rounded-md bg-surface-elevated hover:border-border-hover"
                 >
-                  <Github size={14} /> Repository
+                  <Github size={13} /> Repository
                 </a>
                 {h.live && (
-                  <a 
-                    href={h.live} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                  <a
+                    href={h.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label={`View live demo of ${h.project}`}
-                    className="flex items-center gap-2 text-xs font-mono text-primary hover:text-primary-foreground transition-colors border border-accent-border px-3.5 py-2 rounded-lg bg-accent-soft hover:bg-primary"
+                    className="flex items-center gap-2 text-xs font-mono text-primary hover:text-primary-hover transition-colors border border-accent-border px-3 py-1.5 rounded-md bg-accent-soft"
                   >
-                    <ExternalLink size={14} /> Live Prototype
+                    <ExternalLink size={13} /> Live Demo
                   </a>
                 )}
               </div>
             </div>
-            
-            <p className="text-muted-foreground leading-relaxed text-sm sm:text-base mb-6">
+
+            <p className="text-muted-foreground leading-relaxed text-sm mb-5">
               {h.description}
             </p>
-            
-            <div className="text-xs font-mono text-muted-foreground flex items-center gap-2 bg-surface-elevated px-3 py-2 rounded-lg border border-border w-fit">
-              <span className="text-foreground font-semibold">Awarded Project:</span> {h.project}
+
+            <div className="text-xs font-mono text-muted-foreground flex items-center gap-1.5">
+              <span className="text-foreground font-semibold">Project:</span> {h.project}
             </div>
           </div>
 
-          {/* ── Local Event Gallery Grid ── */}
+          {/* Photo Gallery */}
           <div className="px-6 sm:px-10 pb-8">
-            <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground mb-4 border-t border-border/40 pt-6">
-              <ImageIcon size={15} /> Event Gallery (SU Hackathon 2026)
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <p className="text-[10px] font-mono font-semibold uppercase tracking-widest text-muted-foreground mb-4 border-t border-border/40 pt-5">
+              Event Gallery
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3">
               {h.images.map((img, idx) => (
-                <div 
+                <div
                   key={idx}
-                  className="relative overflow-hidden rounded-xl border border-border/60 bg-secondary/40 aspect-video group"
+                  className="relative overflow-hidden rounded-lg border border-border bg-surface-elevated aspect-video"
                 >
-                  <img 
-                    src={img.src} 
+                  <img
+                    src={img.src}
                     alt={img.alt}
                     width={img.width}
                     height={img.height}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                    className="w-full h-full object-cover transition-opacity duration-300"
                     onError={(e) => {
                       e.currentTarget.src = "/placeholder.svg";
                     }}
@@ -137,7 +132,7 @@ const HackathonsSection = () => (
               ))}
             </div>
           </div>
-        </motion.div>
+        </div>
       ))}
     </div>
   </SectionWrapper>

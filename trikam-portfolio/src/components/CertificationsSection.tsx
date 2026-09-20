@@ -206,12 +206,12 @@ const CertCard = ({ cert, onPreview }: CertCardProps) => {
     <motion.div
       variants={cardVariants}
       layout
-      className="group relative rounded-2xl overflow-hidden border border-border hover:border-border-hover bg-card transition-all duration-300 flex flex-col h-full"
+      className="group relative rounded-xl overflow-hidden border border-border hover:border-border-hover bg-card transition-colors duration-200 flex flex-col h-full"
     >
       {/* Top Banner Tag */}
       {cert.badge && (
         <div className="absolute top-2.5 left-2.5 z-10">
-          <span className="px-2.5 py-0.5 rounded-full bg-surface-elevated/90 backdrop-blur-md border border-border text-[10px] font-medium text-muted-foreground uppercase tracking-wider shadow-sm">
+          <span className="px-2.5 py-0.5 rounded-md bg-surface-elevated border border-border text-[10px] font-medium text-muted-foreground uppercase tracking-wider">
             {cert.badge}
           </span>
         </div>
@@ -248,7 +248,7 @@ const CertCard = ({ cert, onPreview }: CertCardProps) => {
           src={cert.imageUrl}
           alt={`Certificate for ${cert.title} — ${cert.issuer}`}
           loading="lazy"
-          className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${
+          className={`w-full h-full object-cover transition-opacity duration-300 ${
             imgState === "loaded" ? "opacity-100" : "opacity-0"
           }`}
           onLoad={() => setImgState("loaded")}
@@ -257,9 +257,9 @@ const CertCard = ({ cert, onPreview }: CertCardProps) => {
 
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-          <span className="text-[10px] font-bold text-white tracking-wider uppercase px-3 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm shadow-xl">
-            Click to Expand
-          </span>
+          <span className="text-[10px] font-medium text-white tracking-wider uppercase">
+                    Expand
+                  </span>
         </div>
       </div>
 
@@ -326,47 +326,37 @@ const CertificationsSection = () => {
   return (
     <SectionWrapper
       id="certifications"
-      title="Certifications & Competitions"
-      subtitle="Official certificates from hackathons, national competitions, and verified technical coursework"
-      sectionIndex={6}
+      title="Certifications"
+      subtitle="Hackathon awards, national competitions, and technical coursework"
     >
       <div className="max-w-6xl mx-auto">
         {/* Filter Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-10">
+        <div className="flex flex-wrap items-center gap-2 mb-10">
           <button
             onClick={() => setActiveFilter("all")}
-            className={`px-4 py-2 rounded-xl text-xs font-mono font-semibold transition-all flex items-center gap-2 ${
-              activeFilter === "all"
-                ? "bg-primary text-primary-foreground"
-                : "bg-surface-elevated text-muted-foreground hover:text-foreground border border-border hover:border-border-hover"
+            className={`filter-pill ${
+              activeFilter === "all" ? "filter-pill-active" : "filter-pill-inactive"
             }`}
           >
-            <Layers size={13} />
-            All Certificates ({ALL_CERTIFICATES.length})
+            All ({ALL_CERTIFICATES.length})
           </button>
 
           <button
             onClick={() => setActiveFilter("hackathon")}
-            className={`px-4 py-2 rounded-xl text-xs font-mono font-semibold transition-all flex items-center gap-2 ${
-              activeFilter === "hackathon"
-                ? "bg-primary text-primary-foreground"
-                : "bg-surface-elevated text-muted-foreground hover:text-foreground border border-border hover:border-border-hover"
+            className={`filter-pill ${
+              activeFilter === "hackathon" ? "filter-pill-active" : "filter-pill-inactive"
             }`}
           >
-            <Trophy size={13} />
-            Hackathons & Competitions ({hackathonCount})
+            Hackathons ({hackathonCount})
           </button>
 
           <button
             onClick={() => setActiveFilter("foundational")}
-            className={`px-4 py-2 rounded-xl text-xs font-mono font-semibold transition-all flex items-center gap-2 ${
-              activeFilter === "foundational"
-                ? "bg-primary text-primary-foreground"
-                : "bg-surface-elevated text-muted-foreground hover:text-foreground border border-border hover:border-border-hover"
+            className={`filter-pill ${
+              activeFilter === "foundational" ? "filter-pill-active" : "filter-pill-inactive"
             }`}
           >
-            <BookOpen size={13} />
-            Technical Coursework ({foundationalCount})
+            Coursework ({foundationalCount})
           </button>
         </div>
 

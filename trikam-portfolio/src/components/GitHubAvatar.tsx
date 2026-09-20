@@ -1,8 +1,7 @@
-// 📸 To update: just change your GitHub profile picture at github.com/settings/profile
+// Profile photo component — update by changing /trikam-devasi-profile.jpg in public/
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-import Logo from "./Logo";
+
 const LOCAL_AVATAR_URL = "/trikam-devasi-profile.jpg";
 const GITHUB_AVATAR_URL = "https://github.com/TrikamDevasi.png?size=400";
 
@@ -10,54 +9,31 @@ const GitHubAvatar = () => {
   const [currentSrc, setCurrentSrc] = useState(LOCAL_AVATAR_URL);
   const [imgError, setImgError] = useState(false);
 
-  return (
-    <div className="relative w-full h-full flex flex-col items-center">
-      {/* ── Avatar container ── */}
-      <div className="relative w-full h-full p-1 rounded-full border border-border bg-surface">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="relative rounded-full overflow-hidden w-full h-full border-2 border-background shadow-2xl"
-        >
-          {!imgError ? (
-            <img
-              src={currentSrc}
-              alt="Trikam Devasi — Full-Stack Developer Profile Headshot"
-              width={400}
-              height={400}
-              loading="eager"
-              decoding="async"
-              className="w-full h-full object-cover grayscale-[10%] hover:grayscale-0 transition-all duration-700 hover:scale-110"
-              onError={() => {
-                if (currentSrc === LOCAL_AVATAR_URL) {
-                  setCurrentSrc(GITHUB_AVATAR_URL);
-                } else {
-                  setImgError(true);
-                }
-              }}
-            />
-          ) : (
-
-            /* Fallback: new logo */
-            <div className="w-full h-full flex items-center justify-center select-none bg-secondary/80 backdrop-blur-sm">
-              <Logo size="sm" className="scale-[0.8]" />
-            </div>
-
-          )}
-        </motion.div>
-
-        {/* ── Availability badge ── */}
-        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full border border-accent-border bg-accent-soft text-[10px] sm:text-xs font-mono font-semibold uppercase tracking-[0.18em] text-primary flex items-center gap-2 whitespace-nowrap">
-          <span className="relative flex h-2 sm:h-2.5 w-2 sm:w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-60" />
-            <span className="relative inline-flex rounded-full h-2 sm:h-2.5 w-2 sm:w-2.5 bg-primary" />
-          </span>
-          Available
-        </div>
+  if (imgError) {
+    return (
+      <div className="w-full h-full flex items-center justify-center bg-surface-elevated rounded-full">
+        <span className="text-2xl font-bold text-muted-foreground">TD</span>
       </div>
-    </div>
+    );
+  }
+
+  return (
+    <img
+      src={currentSrc}
+      alt="Trikam Devasi — Full-Stack Developer"
+      width={400}
+      height={400}
+      loading="eager"
+      decoding="async"
+      className="w-full h-full object-cover"
+      onError={() => {
+        if (currentSrc === LOCAL_AVATAR_URL) {
+          setCurrentSrc(GITHUB_AVATAR_URL);
+        } else {
+          setImgError(true);
+        }
+      }}
+    />
   );
 };
 

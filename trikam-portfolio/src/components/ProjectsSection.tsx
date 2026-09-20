@@ -1,16 +1,15 @@
 import { useState } from "react";
-import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
+import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import SectionWrapper from "./SectionWrapper";
 import ProjectCard, { type Project } from "./ProjectCard";
 
 const projects: Project[] = [
-  /* ─── TIER 1: Flagship Engineering Projects ─── */
+  /* ─── TIER 1: Deep Technical Projects ─── */
   {
     name: "SkillSense AI",
     tagline: "AI-Assisted Skill Assessment & Career Intelligence Platform",
     category: "full-stack",
     tier: 1,
-    architectureSchema: "Next.js · Express API · Redis Queue · LLM Inference",
     architectureDetails: [
       "Next.js Interactive Client",
       "↓ RESTful Endpoints",
@@ -37,7 +36,6 @@ const projects: Project[] = [
     tagline: "Real-Time Multiplayer Gaming Portal & WebSocket Room Engine",
     category: "games",
     tier: 1,
-    architectureSchema: "WebSocket Room Namespaces · Server-Authoritative State",
     architectureDetails: [
       "React Client (Browser Canvas)",
       "↓ Socket.io Event Stream",
@@ -71,7 +69,7 @@ const projects: Project[] = [
       "Debounced real-time search with instant query results",
       "Dynamic genre and rating filtering across thousands of titles",
       "Fully responsive mobile-friendly UI crafted from custom Figma designs",
-      "Live deployment hosted on Render cloud platform",
+      "Live deployment hosted on Render",
     ],
     tech: ["React", "Tailwind CSS", "TMDB API", "React Router", "Figma"],
     live: "https://cinephiles-watch-react-js.onrender.com/",
@@ -110,7 +108,7 @@ const projects: Project[] = [
     github: "https://github.com/TrikamDevasi/tic_tech_toe-ecommerce-website-.git",
   },
 
-  /* ─── TIER 3: Recreations & Practice Projects ─── */
+  /* ─── TIER 3: UI Recreations & Practice ─── */
   {
     name: "Netflix Web Interface",
     tagline: "UI Recreation with Dynamic Previews & TMDB Data",
@@ -144,9 +142,9 @@ const projects: Project[] = [
 ];
 
 const categories = [
-  { id: "all", label: "All Projects" },
+  { id: "all", label: "All" },
   { id: "full-stack", label: "Full-Stack" },
-  { id: "games", label: "Real-Time / Games" },
+  { id: "games", label: "Real-Time" },
   { id: "frontend", label: "Frontend" },
   { id: "other", label: "UI Recreations" },
 ] as const;
@@ -161,9 +159,9 @@ const ProjectsSection = () => {
   );
 
   return (
-    <SectionWrapper id="projects" title="Featured Projects" subtitle="Real-world applications and engineering experiments" sectionIndex={3}>
+    <SectionWrapper id="projects" title="Projects" subtitle="Real-world applications and engineering experiments">
       {/* ── Filter Tabs ── */}
-      <div className="flex flex-wrap items-center justify-center gap-2.5 mb-12">
+      <div className="flex flex-wrap items-center gap-2 mb-10">
         {categories.map((cat) => (
           <button
             key={cat.id}
@@ -183,31 +181,24 @@ const ProjectsSection = () => {
         <AnimatePresence mode="popLayout">
           {filteredProjects.length > 0 ? (
             activeFilter === "all" ? (
-              <div className="w-full space-y-12">
-                {/* Flagship Projects */}
+              <div className="w-full space-y-10">
+                {/* Tier 1: Deep technical projects */}
                 <div>
-                  <div className="flex items-center gap-3 mb-6 pb-2 border-b border-border/50">
-                    <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground font-mono">
-                      // Flagship Architecture Projects
-                    </span>
-                    <span className="text-xs text-muted-foreground/60 font-mono">
-                      (Deep Technical Implementation)
-                    </span>
-                  </div>
-                  <div className="grid grid-cols-1 gap-8">
+                  <p className="text-xs font-mono font-semibold uppercase tracking-widest text-muted-foreground mb-5">
+                    Deep Dives
+                  </p>
+                  <div className="grid grid-cols-1 gap-6">
                     {filteredProjects.filter(p => p.tier === 1).map((project, i) => (
                       <ProjectCard key={project.name} project={project} index={i} />
                     ))}
                   </div>
                 </div>
 
-                {/* Core Full-Stack & Frontend Projects */}
+                {/* Tier 2 */}
                 <div>
-                  <div className="flex items-center gap-3 mb-6 pb-2 border-b border-border/50">
-                    <span className="text-xs font-bold uppercase tracking-widest text-foreground/80 font-mono">
-                      // Full-Stack & Web Applications
-                    </span>
-                  </div>
+                  <p className="text-xs font-mono font-semibold uppercase tracking-widest text-muted-foreground mb-5">
+                    Full-Stack & Web Apps
+                  </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {filteredProjects.filter(p => p.tier === 2).map((project, i) => (
                       <ProjectCard key={project.name} project={project} index={i} />
@@ -215,13 +206,11 @@ const ProjectsSection = () => {
                   </div>
                 </div>
 
-                {/* Other Practice & Recreations */}
+                {/* Tier 3 */}
                 <div>
-                  <div className="flex items-center gap-3 mb-6 pb-2 border-b border-border/50">
-                    <span className="text-xs font-bold uppercase tracking-widest text-muted-foreground font-mono">
-                      // UI Recreations & Practice
-                    </span>
-                  </div>
+                  <p className="text-xs font-mono font-semibold uppercase tracking-widest text-muted-foreground mb-5">
+                    UI Recreations
+                  </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {filteredProjects.filter(p => p.tier === 3).map((project, i) => (
                       <ProjectCard key={project.name} project={project} index={i} />
@@ -237,13 +226,13 @@ const ProjectsSection = () => {
               </motion.div>
             )
           ) : (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="py-16 text-center w-full"
             >
               <p className="text-muted-foreground font-mono text-sm">
-                No projects found in this category.
+                No projects in this category.
               </p>
             </motion.div>
           )}

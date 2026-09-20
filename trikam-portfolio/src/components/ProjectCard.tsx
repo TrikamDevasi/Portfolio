@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Github, ExternalLink, Trophy, Construction, Cpu, Youtube, MessageSquare, Figma, CheckCircle } from "lucide-react";
+import { Github, ExternalLink, Trophy, Construction, Youtube, MessageSquare, Figma, CheckCircle } from "lucide-react";
 
 export interface Project {
   name: string;
@@ -50,46 +50,36 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
   return (
     <motion.div
       layout
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.4, delay: index * 0.05 }}
-      className={`relative glass-card flex flex-col group h-full transition-all duration-300 overflow-hidden p-6 glow-border ${
-        tier === 1 ? "lg:flex-row gap-8" : "cursor-pointer"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3, delay: index * 0.04 }}
+      className={`relative glass-card flex flex-col group h-full transition-colors duration-200 overflow-hidden p-6 ${
+        tier === 1 ? "lg:flex-row gap-8" : ""
       }`}
     >
-      {/* ── Tier 1: Case Study Tag ── */}
-      {tier === 1 && (
-        <div className="absolute top-4 left-6 z-10">
-          <div className="flex items-center gap-1.5 px-3 py-1 bg-accent-soft border border-accent-border rounded-full">
-            <Cpu size={12} className="text-primary" />
-            <span className="text-[10px] font-bold text-primary uppercase tracking-widest">Flagship Project</span>
-          </div>
-        </div>
-      )}
-
       {/* ── Hackathon Tag ── */}
       {isHackathon && (
         <div className="absolute top-3 right-3 z-10">
-          <div className="px-2.5 py-1 rounded bg-surface-elevated border border-border">
+          <div className="px-2.5 py-1 rounded-md bg-surface-elevated border border-border">
             <span className="text-[10px] font-mono font-semibold text-muted-foreground uppercase tracking-widest flex items-center gap-1.5">
-              <Trophy size={11} className="text-muted-foreground" />
-              {project.badgeText || "Hackathon Project"}
+              <Trophy size={11} />
+              {project.badgeText || "Hackathon"}
             </span>
           </div>
         </div>
       )}
 
       {/* ── MAIN CONTENT COLUMN ── */}
-      <div className={`flex flex-col flex-1 ${tier === 1 ? "lg:w-3/5 pt-8" : ""}`}>
+      <div className={`flex flex-col flex-1 ${tier === 1 ? "lg:w-3/5" : ""}`}>
         {/* Header */}
         <div className="flex items-start justify-between mb-3 gap-4">
           <div>
-            <h3 className="text-xl font-bold text-foreground transition-colors tracking-tight">
+            <h3 className="text-xl font-bold text-foreground tracking-tight">
               {project.name}
             </h3>
             {project.tagline && (
-              <p className="text-xs text-muted-foreground font-mono mt-1 tracking-tight">
+              <p className="text-xs text-muted-foreground font-mono mt-1">
                 {project.tagline}
               </p>
             )}
@@ -100,7 +90,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             )}
           </div>
 
-          {/* External Action Links (Strictly Validated) */}
+          {/* External Action Links */}
           <div className="flex items-center gap-2 shrink-0">
             {hasGithub && (
               <a
@@ -108,8 +98,8 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`View ${project.name} source code on GitHub`}
-                className="p-2 rounded-lg bg-surface-elevated text-muted-foreground hover:text-foreground hover:border-border-hover transition-all border border-border"
-                title="View Source Code"
+                className="p-1.5 rounded-md text-muted-foreground hover:text-foreground transition-colors"
+                title="Source Code"
               >
                 <Github size={16} />
               </a>
@@ -120,7 +110,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`View ${project.name} Figma Prototype`}
-                className="p-2 rounded-lg bg-surface-elevated text-muted-foreground hover:text-foreground hover:border-border-hover transition-all border border-border"
+                className="p-1.5 rounded-md text-muted-foreground hover:text-foreground transition-colors"
                 title="Figma Prototype"
               >
                 <Figma size={16} />
@@ -132,8 +122,8 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Watch ${project.name} Video Demo`}
-                className="p-2 rounded-lg bg-surface-elevated text-muted-foreground hover:text-foreground hover:border-border-hover transition-all border border-border"
-                title="Watch Demo"
+                className="p-1.5 rounded-md text-muted-foreground hover:text-foreground transition-colors"
+                title="Video Demo"
               >
                 <Youtube size={16} />
               </a>
@@ -144,8 +134,8 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`View ${project.name} API Documentation`}
-                className="p-2 rounded-lg bg-surface-elevated text-muted-foreground hover:text-foreground hover:border-border-hover transition-all border border-border"
-                title="API Documentation"
+                className="p-1.5 rounded-md text-muted-foreground hover:text-foreground transition-colors"
+                title="API Docs"
               >
                 <MessageSquare size={16} />
               </a>
@@ -153,11 +143,11 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           </div>
         </div>
 
-        {/* Status Badge if in active development */}
+        {/* Status Badge */}
         {project.status && (
           <div className="mb-3">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-surface-elevated border border-border text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider">
-              <Construction size={12} />
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-elevated border border-border text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider">
+              <Construction size={11} />
               {project.status}
             </span>
           </div>
@@ -168,22 +158,22 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           {project.description}
         </p>
 
-        {/* Problem / Solution & Key Features (for deep technical clarity) */}
+        {/* Key Engineering Highlights */}
         {project.keyFeatures && project.keyFeatures.length > 0 && (
-          <div className="mb-5 space-y-1.5 bg-surface-elevated p-3.5 rounded-xl border border-border">
+          <div className="mb-5 space-y-1.5 bg-surface-elevated p-3.5 rounded-lg border border-border">
             <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground block mb-2">
-              Key Engineering Highlights
+              Engineering Highlights
             </span>
             {project.keyFeatures.map((feat, idx) => (
               <div key={idx} className="flex items-start gap-2 text-xs text-muted-foreground leading-snug">
-                <CheckCircle size={13} className="text-primary mt-0.5 shrink-0" />
+                <CheckCircle size={12} className="text-primary mt-0.5 shrink-0" />
                 <span>{feat}</span>
               </div>
             ))}
           </div>
         )}
 
-        {/* Primary Action: Live Demo or GitHub Link */}
+        {/* Primary Action */}
         <div className="mt-auto pt-2 mb-4">
           {hasLive ? (
             <a
@@ -192,22 +182,22 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded bg-primary text-primary-foreground text-xs font-semibold uppercase tracking-widest transition-colors hover:bg-primary-hover active:scale-[0.98]"
             >
-              <ExternalLink size={15} />
-              Launch Live Demo
+              <ExternalLink size={14} />
+              Live Demo
             </a>
           ) : hasGithub ? (
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-surface-elevated border border-border text-foreground hover:border-border-hover text-xs font-bold uppercase tracking-widest transition-all"
+              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded border border-border bg-surface-elevated text-foreground hover:border-border-hover text-xs font-semibold uppercase tracking-widest transition-colors"
             >
-              <Github size={15} />
-              Explore GitHub Repository
+              <Github size={14} />
+              GitHub
             </a>
           ) : (
-            <div className="w-full text-center py-2 px-4 rounded-lg bg-surface-elevated border border-border text-muted-foreground text-xs font-mono">
-              Demo Deployment In Progress
+            <div className="w-full text-center py-2 px-4 rounded border border-border text-muted-foreground text-xs font-mono">
+              Deployment In Progress
             </div>
           )}
         </div>
@@ -217,7 +207,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           {project.tech.map((t) => (
             <span
               key={t}
-              className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-md bg-surface-hover text-muted-foreground border border-border"
+              className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-surface-hover text-muted-foreground border border-border"
             >
               {t}
             </span>
@@ -225,14 +215,14 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
         </div>
       </div>
 
-      {/* ── ARCHITECTURE COLUMN (Tier 1 Flagship Only) ── */}
+      {/* ── ARCHITECTURE COLUMN (Tier 1 only) ── */}
       {tier === 1 && project.architectureDetails && (
-        <div className="lg:w-2/5 flex flex-col justify-center mt-6 lg:mt-0 pt-8 lg:pt-0">
+        <div className="lg:w-2/5 flex flex-col justify-center mt-6 lg:mt-0">
           <div className="arch-diagram flex flex-col gap-1 items-center">
             <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-3 w-full text-center border-b border-border pb-2">
-              System Architecture Workflow
+              System Architecture
             </div>
-            
+
             {project.architectureDetails.map((node, i) => {
               const isConnector = node.startsWith("↓");
               return isConnector ? (
@@ -247,7 +237,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
 
           {project.deploymentNote && (
             <div className="mt-3 text-[11px] font-mono text-muted-foreground leading-relaxed bg-surface-elevated p-3 rounded-lg border border-border">
-              <strong className="text-foreground mr-1.5 font-bold">Stack Details:</strong>
+              <strong className="text-foreground mr-1.5 font-bold">Stack:</strong>
               {project.deploymentNote}
             </div>
           )}

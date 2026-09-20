@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Github, Linkedin, Youtube, Mail, Twitter, Code2, CheckCircle2, AlertCircle, Loader2, MapPin, Clock, MessageSquare } from "lucide-react";
+import { Send, Github, Linkedin, Youtube, Mail, Twitter, Code2, CheckCircle2, AlertCircle, Loader2, MapPin, Clock } from "lucide-react";
 import SectionWrapper from "./SectionWrapper";
 import emailjs from "@emailjs/browser";
 
@@ -23,7 +23,7 @@ const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (form.message.trim().length < 10) return;
-    
+
     setStatus("loading");
 
     try {
@@ -35,12 +35,7 @@ const ContactSection = () => {
         throw new Error("Email service is not configured.");
       }
 
-      await emailjs.sendForm(
-        serviceId,
-        templateId,
-        formRef.current!,
-        publicKey
-      );
+      await emailjs.sendForm(serviceId, templateId, formRef.current!, publicKey);
 
       setStatus("success");
       setForm({ name: "", email: "", message: "" });
@@ -53,69 +48,67 @@ const ContactSection = () => {
   };
 
   return (
-    <SectionWrapper id="contact" title="Get In Touch" subtitle="Let's connect and build something impactful" sectionIndex={9}>
+    <SectionWrapper id="contact" title="Contact" subtitle="Reach out directly about opportunities or projects.">
       <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto items-start">
-        {/* Form Container */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="glass-card p-6 sm:p-8 rounded-2xl glow-border relative"
-        >
+
+        {/* Contact Form */}
+        <div className="glass-card p-6 sm:p-8 rounded-xl">
           {/* Success / Error Alerts */}
           <AnimatePresence>
             {status === "success" && (
               <motion.div
                 role="alert"
-                initial={{ opacity: 0, y: -10 }}
+                initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="mb-6 p-4 rounded-xl bg-accent-soft border border-accent-border flex items-center gap-3 text-primary text-sm"
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2 }}
+                className="mb-6 p-4 rounded-lg bg-accent-soft border border-accent-border flex items-center gap-3 text-primary text-sm"
               >
-                <CheckCircle2 size={18} className="shrink-0" />
-                <span>Message sent successfully! I'll get back to you within 24 hours.</span>
+                <CheckCircle2 size={16} className="shrink-0" />
+                <span>Message sent. I'll get back to you within 24 hours.</span>
               </motion.div>
             )}
             {status === "error" && (
               <motion.div
                 role="alert"
-                initial={{ opacity: 0, y: -10 }}
+                initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="mb-6 p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center gap-3 text-rose-400 text-sm"
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.2 }}
+                className="mb-6 p-4 rounded-lg bg-rose-500/10 border border-rose-500/30 flex items-center gap-3 text-rose-400 text-sm"
               >
-                <AlertCircle size={18} className="shrink-0" />
-                <span>Unable to send through the form. Please reach out directly at <a href="mailto:trikam.devasi.cg@gmail.com" className="underline font-semibold text-rose-300">trikam.devasi.cg@gmail.com</a></span>
+                <AlertCircle size={16} className="shrink-0" />
+                <span>
+                  Failed to send. Email me directly at{" "}
+                  <a href="mailto:trikam.devasi.cg@gmail.com" className="underline font-semibold text-rose-300">
+                    trikam.devasi.cg@gmail.com
+                  </a>
+                </span>
               </motion.div>
             )}
           </AnimatePresence>
 
-          <form
-            ref={formRef}
-            onSubmit={handleSubmit}
-            className="space-y-5"
-          >
+          <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label htmlFor="from_name" className="block text-xs font-semibold uppercase tracking-wider text-foreground/80 mb-2">
-                Your Name <span className="text-primary">*</span>
+                Name <span className="text-primary">*</span>
               </label>
               <input
                 id="from_name"
                 type="text"
                 name="from_name"
-                placeholder="Trikam Devasi"
+                placeholder="Your name"
                 required
                 disabled={status === "loading"}
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-surface border border-border text-foreground placeholder:text-subtle-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50 text-sm"
+                className="w-full px-4 py-3 rounded-lg bg-surface border border-border text-foreground placeholder:text-subtle-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors disabled:opacity-50 text-sm"
               />
             </div>
 
             <div>
               <label htmlFor="from_email" className="block text-xs font-semibold uppercase tracking-wider text-foreground/80 mb-2">
-                Your Email <span className="text-primary">*</span>
+                Email <span className="text-primary">*</span>
               </label>
               <input
                 id="from_email"
@@ -126,25 +119,25 @@ const ContactSection = () => {
                 disabled={status === "loading"}
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-surface border border-border text-foreground placeholder:text-subtle-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-50 text-sm"
+                className="w-full px-4 py-3 rounded-lg bg-surface border border-border text-foreground placeholder:text-subtle-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors disabled:opacity-50 text-sm"
               />
             </div>
 
             <div>
               <label htmlFor="message" className="block text-xs font-semibold uppercase tracking-wider text-foreground/80 mb-2">
-                Your Message <span className="text-primary">*</span>
+                Message <span className="text-primary">*</span>
               </label>
               <textarea
                 id="message"
                 name="message"
-                placeholder="Hi Trikam, I'd like to discuss an opportunity..."
+                placeholder="Hi Trikam, I'd like to discuss..."
                 rows={5}
                 required
                 minLength={10}
                 disabled={status === "loading"}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-surface border border-border text-foreground placeholder:text-subtle-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none disabled:opacity-50 text-sm"
+                className="w-full px-4 py-3 rounded-lg bg-surface border border-border text-foreground placeholder:text-subtle-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-none disabled:opacity-50 text-sm"
               />
             </div>
 
@@ -152,7 +145,7 @@ const ContactSection = () => {
               type="submit"
               disabled={status === "loading"}
               aria-label="Send message"
-              className={`w-full px-6 py-3.5 rounded-lg font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2.5 transition-all ${
+              className={`w-full px-6 py-3 rounded-lg font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all ${
                 status === "loading"
                   ? "bg-primary/50 text-primary-foreground cursor-not-allowed"
                   : "bg-primary text-primary-foreground hover:bg-primary-hover active:scale-[0.98]"
@@ -160,57 +153,41 @@ const ContactSection = () => {
             >
               {status === "loading" ? (
                 <>
-                  <Loader2 size={16} className="animate-spin" />
-                  Sending Message...
+                  <Loader2 size={15} className="animate-spin" />
+                  Sending…
                 </>
               ) : (
                 <>
-                  <Send size={16} />
+                  <Send size={15} />
                   Send Message
                 </>
               )}
             </button>
           </form>
-        </motion.div>
+        </div>
 
-        {/* Developer Contact Info & Status Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="flex flex-col gap-6"
-        >
-          {/* Info Card */}
-          <div className="glass-card p-6 sm:p-8 rounded-2xl glow-border">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 rounded-xl bg-surface-elevated text-muted-foreground border border-border">
-                <MessageSquare size={24} />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-foreground">Direct Contact</h3>
-                <p className="text-xs text-muted-foreground font-mono">Open for opportunities</p>
-              </div>
-            </div>
-
-            <p className="text-sm text-muted-foreground leading-relaxed mb-6">
-              I am actively seeking software engineering internships, collaborative open-source projects, and full-stack development opportunities.
+        {/* Contact Info */}
+        <div className="flex flex-col gap-6">
+          <div className="glass-card p-6 rounded-xl">
+            <h3 className="text-sm font-bold text-foreground mb-1">Direct Contact</h3>
+            <p className="text-xs font-mono text-muted-foreground mb-5">
+              Open to internships and collaborative projects.
             </p>
 
-            <div className="space-y-4 border-t border-border/40 pt-6">
+            <div className="space-y-3">
               <div className="flex items-center gap-3 text-sm text-foreground/80">
-                <MapPin size={18} className="text-muted-foreground shrink-0" />
-                <span>Ahmedabad, Gujarat, India</span>
+                <MapPin size={14} className="text-muted-foreground shrink-0" />
+                <span className="text-sm text-muted-foreground">Ahmedabad, Gujarat, India</span>
               </div>
               <div className="flex items-center gap-3 text-sm text-foreground/80">
-                <Clock size={18} className="text-muted-foreground shrink-0" />
-                <span>IST (UTC+5:30) · Quick Response Guaranteed</span>
+                <Clock size={14} className="text-muted-foreground shrink-0" />
+                <span className="text-sm text-muted-foreground">IST (UTC+5:30)</span>
               </div>
-              <div className="flex items-center gap-3 text-sm text-foreground/80">
-                <Mail size={18} className="text-muted-foreground shrink-0" />
+              <div className="flex items-center gap-3">
+                <Mail size={14} className="text-muted-foreground shrink-0" />
                 <a
                   href="mailto:trikam.devasi.cg@gmail.com"
-                  className="text-primary hover:underline font-mono text-xs sm:text-sm font-medium"
+                  className="text-primary hover:underline font-mono text-sm"
                 >
                   trikam.devasi.cg@gmail.com
                 </a>
@@ -218,12 +195,12 @@ const ContactSection = () => {
             </div>
           </div>
 
-          {/* Social Profiles Grid */}
-          <div className="glass-card p-6 rounded-2xl glow-border">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-foreground/70 mb-4">
-              Connect Across Platforms
-            </h4>
-            <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+          {/* Social links */}
+          <div className="glass-card p-6 rounded-xl">
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
+              Profiles
+            </p>
+            <div className="flex flex-wrap gap-2">
               {socials.map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
@@ -232,15 +209,15 @@ const ContactSection = () => {
                   rel="noopener noreferrer"
                   aria-label={label}
                   title={label}
-                  className="flex flex-col items-center justify-center p-3 rounded-xl border border-border bg-surface-elevated hover:border-border-hover text-muted-foreground hover:text-foreground transition-all group"
+                  className="flex items-center gap-2 px-3 py-2 rounded-md border border-border bg-surface-elevated text-muted-foreground hover:text-foreground hover:border-border-hover transition-colors text-xs font-mono"
                 >
-                  <Icon size={20} className="group-hover:scale-110 transition-transform" />
-                  <span className="text-[10px] font-mono mt-1.5 opacity-80 group-hover:opacity-100">{label}</span>
+                  <Icon size={14} />
+                  {label}
                 </a>
               ))}
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </SectionWrapper>
   );
