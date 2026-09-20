@@ -1,5 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import IntroScreen from "@/components/IntroScreen";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -15,8 +17,31 @@ import Footer from "@/components/Footer";
 
 const Index = () => {
   const { pathname } = useLocation();
+  const [showIntro, setShowIntro] = useState(() => {
+    if (typeof window === "undefined") return false;
+    try {
+      return !sessionStorage.getItem("hasSeenIntro");
+    } catch {
+      return false;
+    }
+  });
+
+  // Prevent background scroll while the intro is visible
+  useEffect(() => {
+    if (showIntro) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showIntro]);
 
   useEffect(() => {
+    // Wait until intro is dismissed before scrolling to targets
+    if (showIntro) return;
+
     // If we're at a sub-route (e.g., /about, /hackathons, /achievements), scroll to that section
     if (pathname !== "/" && pathname !== "") {
       const sectionId = pathname.slice(1);
@@ -36,10 +61,15 @@ const Index = () => {
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  }, [pathname]);
+  }, [pathname, showIntro]);
 
   return (
     <div className="min-h-screen bg-background text-foreground selection:bg-primary/20 selection:text-foreground">
+      <AnimatePresence mode="wait">
+        {showIntro && (
+          <IntroScreen key="intro-screen" onComplete={() => setShowIntro(false)} />
+        )}
+      </AnimatePresence>
       <Navbar />
       <main id="main-content">
         <HeroSection />
